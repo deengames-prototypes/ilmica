@@ -66,10 +66,12 @@ namespace QuestionMaker
                 string currentQuestion = this.uxCurrentQuestion.Text;
                 if (this.uxQuestionSetList.SelectedIndex >= 0)
                 {
-                    this._sets[this.uxQuestionSetList.SelectedText].Remove(currentQuestion);
+                    this._sets[this.uxQuestionSetList.SelectedItem.ToString()].Remove(currentQuestion);
                 }
 
                 this.uxCurrentQuestion.Clear();
+
+				refreshQuestionList();
             }
         }
 
@@ -96,7 +98,7 @@ namespace QuestionMaker
             this.uxQuestions.Items.Clear();
             if (this.uxQuestionSetList.SelectedIndex > -1)
             {
-                List<string> questions = this._sets[this.uxQuestionSetList.SelectedText];
+                List<string> questions = this._sets[this.uxQuestionSetList.SelectedItem.ToString()];
                 questions.Sort();
                 foreach (string q in questions)
                 {
@@ -113,7 +115,7 @@ namespace QuestionMaker
                 this.uxQuestionSetList.SelectAll();
             }
 
-            this._sets[this.uxQuestionSetList.SelectedText].Add(this.uxCurrentQuestion.Text);
+            this._sets[this.uxQuestionSetList.SelectedItem.ToString()].Add(this.uxCurrentQuestion.Text);
 
             this.uxQuestions.Items.Add(this.uxCurrentQuestion.Text);
         }
@@ -122,5 +124,70 @@ namespace QuestionMaker
         {
             this.uxCurrentQuestion.Text = this.uxQuestions.SelectedItem.ToString();
         }
+
+		private void uxAddSet_Click(object sender, EventArgs e)
+		{
+			bool clickedCancel = false;			
+			string name = showInputBox("Set name?", "Set Name", ref clickedCancel);
+			if (clickedCancel == false && !string.IsNullOrEmpty(name))
+			{
+				this._sets[name] = new List<string>();
+				this.uxQuestionSetList.Items.Add(name);
+			}
+		}
+
+		private static string showInputBox(string promptText, string title, ref bool clickedCancel)
+		{
+			Form form = new Form();
+			Label label = new Label();
+			TextBox textBox = new TextBox();
+			Button buttonOk = new Button();
+			Button buttonCancel = new Button();
+
+			form.Text = title;
+			label.Text = promptText;
+
+			buttonOk.Text = "OK";
+			buttonCancel.Text = "Cancel";
+			buttonOk.DialogResult = DialogResult.OK;
+			buttonCancel.DialogResult = DialogResult.Cancel;
+
+			label.SetBounds(9, 20, 372, 13);
+			textBox.SetBounds(12, 36, 372, 20);
+			buttonOk.SetBounds(228, 72, 75, 23);
+			buttonCancel.SetBounds(309, 72, 75, 23);
+
+			label.AutoSize = true;
+			textBox.Anchor = textBox.Anchor | AnchorStyles.Right;
+			buttonOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+			buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+
+			form.ClientSize = new Size(396, 107);
+			form.Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
+			form.ClientSize = new Size(Math.Max(300, label.Right + 10), form.ClientSize.Height);
+			form.FormBorderStyle = FormBorderStyle.FixedDialog;
+			form.StartPosition = FormStartPosition.CenterScreen;
+			form.MinimizeBox = false;
+			form.MaximizeBox = false;
+			form.AcceptButton = buttonOk;
+			form.CancelButton = buttonCancel;
+
+			DialogResult dialogResult = form.ShowDialog();
+			if (dialogResult == DialogResult.Cancel)
+			{
+				clickedCancel = true;
+			}
+			else
+			{
+				clickedCancel = false;
+			}
+
+			return textBox.Text;
+		}
+
+		private void uxQuestionSetList_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			refreshQuestionList();
+		}
     }
 }
