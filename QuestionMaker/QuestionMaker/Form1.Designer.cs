@@ -85,6 +85,7 @@
             this.uxQuestions.ScrollAlwaysVisible = true;
             this.uxQuestions.Size = new System.Drawing.Size(260, 472);
             this.uxQuestions.TabIndex = 4;
+            this.uxQuestions.SelectedIndexChanged += new System.EventHandler(this.uxQuestions_SelectedIndexChanged);
             // 
             // label2
             // 

@@ -28,25 +28,32 @@ namespace QuestionMaker
 
         private void uxDeleteSet_Click(object sender, EventArgs e)
         {
-            string selectedSet = this.uxQuestionSetList.SelectedText;
-            if (selectedSet == UNASSIGNED_SET)
+            if (this.uxQuestionSetList.SelectedIndex == -1)
             {
-                MessageBox.Show("You can't delete the unassigned set. Duh!");
+                MessageBox.Show("Select a set first to delete!");
             }
             else
             {
-                DialogResult r = MessageBox.Show("Are you sure you want to delete the set " + selectedSet + "? All the questions will become unassigned.", "Confirm Delete?", MessageBoxButtons.YesNo);
-                if (r == System.Windows.Forms.DialogResult.Yes)
+                string selectedSet = this.uxQuestionSetList.SelectedItem.ToString();
+                if (selectedSet == UNASSIGNED_SET)
                 {
-                    List<string> _setsQuestions = this._sets[selectedSet];
-                    // Reassign questions to unassigned
-                    foreach (string question in _setsQuestions)
+                    MessageBox.Show("You can't delete the unassigned set. Duh!");
+                }
+                else
+                {
+                    DialogResult r = MessageBox.Show("Are you sure you want to delete the set " + selectedSet + "? All the questions will become unassigned.", "Confirm Delete?", MessageBoxButtons.YesNo);
+                    if (r == System.Windows.Forms.DialogResult.Yes)
                     {
-                        this._sets[UNASSIGNED_SET].Add(question);
-                    }
+                        List<string> _setsQuestions = this._sets[selectedSet];
+                        // Reassign questions to unassigned
+                        foreach (string question in _setsQuestions)
+                        {
+                            this._sets[UNASSIGNED_SET].Add(question);
+                        }
 
-                    this._sets.Remove(selectedSet);
-                    this.uxQuestionSetList.Items.Remove(this.uxQuestionSetList.SelectedIndex);
+                        this._sets.Remove(selectedSet);
+                        this.uxQuestionSetList.Items.Remove(this.uxQuestionSetList.SelectedIndex);
+                    }
                 }
             }
         }
@@ -67,17 +74,53 @@ namespace QuestionMaker
         }
 
         private void uxSave_Click(object sender, EventArgs e)
+        {            
+            int selected = this.uxQuestions.SelectedIndex;
+            if (selected > -1)
+            {
+                string oldText = this.uxQuestions.SelectedItem.ToString();
+                // Delete old version
+                this._sets[this.uxQuestionSetList.SelectedText].Remove(oldText);
+                // Add new
+                this._sets[this.uxQuestionSetList.SelectedText].Add(this.uxCurrentQuestion.Text);
+                this.refreshQuestionList();
+            }
+            else
+            {
+                MessageBox.Show("Select a question to edit first!");
+            }
+        }
+
+        private void refreshQuestionList()
         {
-            string oldText = this.uxQuestions.SelectedItem.ToString();
-            // Delete old version
-            this._sets[this.uxQuestionSetList.SelectedText].Remove(oldText);
-            // Add new
-            this._sets[this.uxQuestionSetList.SelectedText].Add(this.uxCurrentQuestion.Text);
+            this.uxQuestions.Items.Clear();
+            if (this.uxQuestionSetList.SelectedIndex > -1)
+            {
+                List<string> questions = this._sets[this.uxQuestionSetList.SelectedText];
+                questions.Sort();
+                foreach (string q in questions)
+                {
+                    this.uxQuestions.Items.Add(q);
+                }
+            }
         }
 
         private void uxSaveAsNew_Click(object sender, EventArgs e)
         {
+            if (this.uxQuestionSetList.SelectedIndex == -1 || this.uxQuestionSetList.Items.Count == 1)
+            {
+                this.uxQuestionSetList.SelectedIndex = 0;
+                this.uxQuestionSetList.SelectAll();
+            }
+
             this._sets[this.uxQuestionSetList.SelectedText].Add(this.uxCurrentQuestion.Text);
+
+            this.uxQuestions.Items.Add(this.uxCurrentQuestion.Text);
+        }
+
+        private void uxQuestions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.uxCurrentQuestion.Text = this.uxQuestions.SelectedItem.ToString();
         }
     }
 }
