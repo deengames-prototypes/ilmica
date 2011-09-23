@@ -37,8 +37,10 @@
 			this.uxCurrentQuestion = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.uxDelete = new System.Windows.Forms.Button();
-			this.uxSave = new System.Windows.Forms.Button();
+			this.uxAnswers = new System.Windows.Forms.TextBox();
+			this.label4 = new System.Windows.Forms.Label();
 			this.uxSaveAsNew = new System.Windows.Forms.Button();
+			this.uxSave = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// uxQuestionSetList
@@ -103,7 +105,7 @@
 			this.uxCurrentQuestion.Location = new System.Drawing.Point(278, 69);
 			this.uxCurrentQuestion.Multiline = true;
 			this.uxCurrentQuestion.Name = "uxCurrentQuestion";
-			this.uxCurrentQuestion.Size = new System.Drawing.Size(494, 454);
+			this.uxCurrentQuestion.Size = new System.Drawing.Size(494, 298);
 			this.uxCurrentQuestion.TabIndex = 6;
 			// 
 			// label3
@@ -125,25 +127,42 @@
 			this.uxDelete.UseVisualStyleBackColor = true;
 			this.uxDelete.Click += new System.EventHandler(this.uxDelete_Click);
 			// 
-			// uxSave
+			// uxAnswers
 			// 
-			this.uxSave.Location = new System.Drawing.Point(697, 531);
-			this.uxSave.Name = "uxSave";
-			this.uxSave.Size = new System.Drawing.Size(75, 23);
-			this.uxSave.TabIndex = 9;
-			this.uxSave.Text = "Save (Edit)";
-			this.uxSave.UseVisualStyleBackColor = true;
-			this.uxSave.Click += new System.EventHandler(this.uxSave_Click);
+			this.uxAnswers.Location = new System.Drawing.Point(278, 386);
+			this.uxAnswers.Multiline = true;
+			this.uxAnswers.Name = "uxAnswers";
+			this.uxAnswers.Size = new System.Drawing.Size(494, 139);
+			this.uxAnswers.TabIndex = 11;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(278, 370);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(163, 13);
+			this.label4.TabIndex = 12;
+			this.label4.Text = "Answers (start each with a dash):";
 			// 
 			// uxSaveAsNew
 			// 
 			this.uxSaveAsNew.Location = new System.Drawing.Point(606, 531);
 			this.uxSaveAsNew.Name = "uxSaveAsNew";
 			this.uxSaveAsNew.Size = new System.Drawing.Size(85, 23);
-			this.uxSaveAsNew.TabIndex = 10;
+			this.uxSaveAsNew.TabIndex = 14;
 			this.uxSaveAsNew.Text = "Save As New";
 			this.uxSaveAsNew.UseVisualStyleBackColor = true;
 			this.uxSaveAsNew.Click += new System.EventHandler(this.uxSaveAsNew_Click);
+			// 
+			// uxSave
+			// 
+			this.uxSave.Location = new System.Drawing.Point(697, 531);
+			this.uxSave.Name = "uxSave";
+			this.uxSave.Size = new System.Drawing.Size(75, 23);
+			this.uxSave.TabIndex = 13;
+			this.uxSave.Text = "Save (Edit)";
+			this.uxSave.UseVisualStyleBackColor = true;
+			this.uxSave.Click += new System.EventHandler(this.uxSave_Click);
 			// 
 			// Form1
 			// 
@@ -152,6 +171,8 @@
 			this.ClientSize = new System.Drawing.Size(784, 562);
 			this.Controls.Add(this.uxSaveAsNew);
 			this.Controls.Add(this.uxSave);
+			this.Controls.Add(this.label4);
+			this.Controls.Add(this.uxAnswers);
 			this.Controls.Add(this.uxDelete);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.uxCurrentQuestion);
@@ -179,9 +200,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox uxCurrentQuestion;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button uxDelete;
-        private System.Windows.Forms.Button uxSave;
-        private System.Windows.Forms.Button uxSaveAsNew;
+		private System.Windows.Forms.Button uxDelete;
+		private System.Windows.Forms.TextBox uxAnswers;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Button uxSaveAsNew;
+		private System.Windows.Forms.Button uxSave;
     }
 }
 

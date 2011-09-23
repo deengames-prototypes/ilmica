@@ -13,7 +13,7 @@ namespace QuestionMaker
     {
 
         private string UNASSIGNED_SET = "(Unassigned)";
-        private Dictionary<string, List<string>> _sets = new Dictionary<string, List<string>>();
+		private Dictionary<string, List<Question>> _sets = new Dictionary<string, List<Question>>();
 
         public Form1()
         {
@@ -23,7 +23,7 @@ namespace QuestionMaker
         private void Form1_Load(object sender, EventArgs e)
         {
             this.uxQuestionSetList.Items.Add(UNASSIGNED_SET);
-            this._sets.Add(UNASSIGNED_SET, new List<string>());
+            this._sets.Add(UNASSIGNED_SET, new List<Question>());
         }
 
         private void uxDeleteSet_Click(object sender, EventArgs e)
@@ -44,9 +44,9 @@ namespace QuestionMaker
                     DialogResult r = MessageBox.Show("Are you sure you want to delete the set " + selectedSet + "? All the questions will become unassigned.", "Confirm Delete?", MessageBoxButtons.YesNo);
                     if (r == System.Windows.Forms.DialogResult.Yes)
                     {
-                        List<string> _setsQuestions = this._sets[selectedSet];
+                        List<Question> _setsQuestions = this._sets[selectedSet];
                         // Reassign questions to unassigned
-                        foreach (string question in _setsQuestions)
+                        foreach (Question question in _setsQuestions)
                         {
                             this._sets[UNASSIGNED_SET].Add(question);
                         }
@@ -63,12 +63,7 @@ namespace QuestionMaker
             DialogResult r = MessageBox.Show("Are you sure you want to delete the current question?", "Confirm Delete?", MessageBoxButtons.YesNo);
             if (r == System.Windows.Forms.DialogResult.Yes)
             {
-                string currentQuestion = this.uxCurrentQuestion.Text;
-                if (this.uxQuestionSetList.SelectedIndex >= 0)
-                {
-                    this._sets[this.uxQuestionSetList.SelectedItem.ToString()].Remove(currentQuestion);
-                }
-
+                removeQuestionFromCurrentSet(this.uxCurrentQuestion.Text);
                 this.uxCurrentQuestion.Clear();
 
 				refreshQuestionList();
@@ -81,11 +76,18 @@ namespace QuestionMaker
             if (selected > -1)
             {
                 string oldText = this.uxQuestions.SelectedItem.ToString();
-                // Delete old version
-                this._sets[this.uxQuestionSetList.SelectedText].Remove(oldText);
-                // Add new
-                this._sets[this.uxQuestionSetList.SelectedText].Add(this.uxCurrentQuestion.Text);
-                this.refreshQuestionList();
+
+				// Remove
+				removeQuestionFromCurrentSet(oldText);
+				List<Question> currentSet = this._sets[this.uxQuestionSetList.SelectedText];
+
+				// Re-add
+				Question q = new Question();
+				q.Text = this.uxCurrentQuestion.Text;
+				q.Answers = this.uxAnswers.Text;
+				currentSet.Add(q);
+
+				this.refreshQuestionList();
             }
             else
             {
@@ -93,16 +95,40 @@ namespace QuestionMaker
             }
         }
 
+		private void removeQuestionFromCurrentSet(string text)
+		{
+			Question found = findQuestionInCurrentSet(text);
+
+			if (found != null)
+			{
+				this._sets[this.uxQuestionSetList.SelectedText].Remove(found);
+			}
+		}
+
+		private Question findQuestionInCurrentSet(string text)
+		{
+			List<Question> currentSet = this._sets[this.uxQuestionSetList.SelectedItem.ToString()];
+
+			foreach (Question q in currentSet)
+			{
+				if (q.Text == text)
+				{
+					return q;
+				}
+			}
+
+			return null;
+		}
+
         private void refreshQuestionList()
         {
             this.uxQuestions.Items.Clear();
             if (this.uxQuestionSetList.SelectedIndex > -1)
             {
-                List<string> questions = this._sets[this.uxQuestionSetList.SelectedItem.ToString()];
-                questions.Sort();
-                foreach (string q in questions)
+                List<Question> questions = this._sets[this.uxQuestionSetList.SelectedItem.ToString()];
+                foreach (Question q in questions)
                 {
-                    this.uxQuestions.Items.Add(q);
+                    this.uxQuestions.Items.Add(q.ToString());
                 }
             }
         }
@@ -115,14 +141,21 @@ namespace QuestionMaker
                 this.uxQuestionSetList.SelectAll();
             }
 
-            this._sets[this.uxQuestionSetList.SelectedItem.ToString()].Add(this.uxCurrentQuestion.Text);
-
-            this.uxQuestions.Items.Add(this.uxCurrentQuestion.Text);
+			Question question = new Question();
+			question.Text = this.uxCurrentQuestion.Text;
+			question.Answers = this.uxAnswers.Text;
+            this._sets[this.uxQuestionSetList.SelectedItem.ToString()].Add(question);
+            this.uxQuestions.Items.Add(question.ToString());
         }
 
         private void uxQuestions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.uxCurrentQuestion.Text = this.uxQuestions.SelectedItem.ToString();
+            Question q = findQuestionInCurrentSet(this.uxQuestions.SelectedItem.ToString());
+			if (q != null)
+			{
+				this.uxCurrentQuestion.Text = q.Text;
+				this.uxAnswers.Text = q.Answers;
+			}
         }
 
 		private void uxAddSet_Click(object sender, EventArgs e)
@@ -131,7 +164,7 @@ namespace QuestionMaker
 			string name = showInputBox("Set name?", "Set Name", ref clickedCancel);
 			if (clickedCancel == false && !string.IsNullOrEmpty(name))
 			{
-				this._sets[name] = new List<string>();
+				this._sets[name] = new List<Question>();
 				this.uxQuestionSetList.Items.Add(name);
 			}
 		}
