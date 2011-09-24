@@ -14,7 +14,7 @@
  * limitations under the License.
  ******************************************************************************/
 
-package com.badlogic.gdx.helloworld;
+package com.deengames.ilmica;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -25,7 +25,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
-public class HelloWorld implements ApplicationListener {
+public class IlmicaGame implements ApplicationListener {
 	SpriteBatch spriteBatch;
 	Texture texture;
 	BitmapFont font;

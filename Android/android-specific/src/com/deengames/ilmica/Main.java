@@ -26,17 +26,17 @@
  * governing permissions and limitations under the License.
  */
 
-package com.badlogic.gdx;
+package com.deengames.ilmica;
 
 import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
-import com.badlogic.gdx.helloworld.HelloWorld;
+import com.deengames.ilmica.IlmicaGame;
 
-public class HelloWorldAndroid extends AndroidApplication {
+public class Main extends AndroidApplication {
 	@Override
 	public void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		initialize(new HelloWorld(), false);
+		initialize(new IlmicaGame(), false);
 	}
 }
