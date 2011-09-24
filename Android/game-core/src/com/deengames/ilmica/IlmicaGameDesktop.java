@@ -14,12 +14,12 @@
  * limitations under the License.
  ******************************************************************************/
 
-package com.badlogic.gdx.helloworld;
+package com.deengames.ilmica;
 
 import com.badlogic.gdx.backends.jogl.JoglApplication;
 
-public class HelloWorldDesktop {
+public class IlmicaGameDesktop {
 	public static void main (String[] argv) {
-		new JoglApplication(new HelloWorld(), "Hello World", 480, 320, false);
+		new JoglApplication(new IlmicaGame(), "Hello World", 480, 320, false);
 	}
 }
