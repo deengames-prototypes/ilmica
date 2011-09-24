@@ -71,31 +71,89 @@ namespace QuestionMaker
         }
 
         private void uxSave_Click(object sender, EventArgs e)
-        {            
-            int selected = this.uxQuestions.SelectedIndex;
-            if (selected > -1)
+        {
+            if (fieldsAreValid())
             {
-                string oldText = this.uxQuestions.SelectedItem.ToString();
+                int selected = this.uxQuestions.SelectedIndex;
+                if (selected > -1)
+                {
+                    string oldText = this.uxQuestions.SelectedItem.ToString();
 
-				// Remove
-				removeQuestionFromCurrentSet(oldText);
-				List<Question> currentSet = this._sets[this.uxQuestionSetList.SelectedText];
+                    // Remove
+                    removeQuestionFromCurrentSet(oldText);
+                    List<Question> currentSet = this._sets[this.uxQuestionSetList.SelectedText];
 
-				// Re-add
-				Question q = new Question();
-				q.Text = this.uxCurrentQuestion.Text;
-				q.Answers = this.uxAnswers.Text;
-				currentSet.Add(q);
+                    // Re-add
+                    Question q = new Question();
+                    q.Text = this.uxCurrentQuestion.Text;
+                    q.Answers = this.uxAnswers.Text;
+                    currentSet.Add(q);
 
-				this.refreshQuestionList();
-            }
-            else
-            {
-                MessageBox.Show("Select a question to edit first!");
+                    this.refreshQuestionList();
+                }
+                else
+                {
+                    MessageBox.Show("Select a question to edit first!");
+                }
             }
         }
 
-		private void removeQuestionFromCurrentSet(string text)
+        private bool fieldsAreValid()
+        {
+            string answers = this.uxAnswers.Text;
+
+            if (!this.uxCurrentQuestion.Text.Any()) {
+                showError("You need to specify question content!");
+                return false;
+            }
+            else if (!answers.Any() || answers.Count(c => c == '\n') < 1)
+            {
+                showError("You need to specify at least 2 answers!");
+                return false;
+            } else {
+                string[] lines = answers.Split('\n');
+                
+                int count = 0;
+                foreach (string line in lines)
+                {
+                    if (line.StartsWith("*"))
+                    {
+                        count++;
+                    }
+                }
+
+                if (count != 1)
+                {
+                    showError("You need to specify only one best answer (starts with *)");
+                    return false;
+                }
+
+                count = 0;
+                foreach (string line in lines)
+                {
+                    if (!string.IsNullOrWhiteSpace(line))
+                    {
+                        count++;
+                    }
+                }
+
+                if (count < 2)
+                {
+                    showError("You need to have at least two non-empty answers.");
+                    return false;
+                }
+
+            }
+
+            return true;
+        }
+
+        private void showError(string message)
+        {
+            MessageBox.Show(message, "Invalid Question", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        void removeQuestionFromCurrentSet(string text)
 		{
 			Question found = findQuestionInCurrentSet(text);
 
@@ -135,17 +193,21 @@ namespace QuestionMaker
 
         private void uxSaveAsNew_Click(object sender, EventArgs e)
         {
-            if (this.uxQuestionSetList.SelectedIndex == -1 || this.uxQuestionSetList.Items.Count == 1)
+            if (fieldsAreValid())
             {
-                this.uxQuestionSetList.SelectedIndex = 0;
-                this.uxQuestionSetList.SelectAll();
-            }
+                if (this.uxQuestionSetList.SelectedIndex == -1 || this.uxQuestionSetList.Items.Count == 1)
+                {
+                    // Select the "UNASSIGNED" set if a set is not selected
+                    this.uxQuestionSetList.SelectedIndex = 0;
+                    this.uxQuestionSetList.SelectAll();
+                }
 
-			Question question = new Question();
-			question.Text = this.uxCurrentQuestion.Text;
-			question.Answers = this.uxAnswers.Text;
-            this._sets[this.uxQuestionSetList.SelectedItem.ToString()].Add(question);
-            this.uxQuestions.Items.Add(question.ToString());
+                Question question = new Question();
+                question.Text = this.uxCurrentQuestion.Text;
+                question.Answers = this.uxAnswers.Text;
+                this._sets[this.uxQuestionSetList.SelectedItem.ToString()].Add(question);
+                this.uxQuestions.Items.Add(question.ToString());
+            }
         }
 
         private void uxQuestions_SelectedIndexChanged(object sender, EventArgs e)
