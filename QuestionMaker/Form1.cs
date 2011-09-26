@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace QuestionMaker
 {
@@ -283,6 +284,65 @@ namespace QuestionMaker
 		private void uxQuestionSetList_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			refreshQuestionList();
+		}
+
+		private void openToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+			saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+			saveFileDialog1.FilterIndex = 2;
+			saveFileDialog1.RestoreDirectory = true;
+
+			if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+			{
+				using (System.IO.StreamWriter file = new System.IO.StreamWriter(saveFileDialog1.FileName))
+				{
+					foreach (string setName in this._sets.Keys.ToArray())
+					{
+						writeSet(setName, file);
+					}
+				}
+			}
+			else
+			{
+				MessageBox.Show("Couldn't open the file, sorry.", "Data Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		private void writeSet(string setName, StreamWriter file)
+		{
+			List<Question> set = this._sets[setName];
+			file.WriteLine("Set: " + setName);
+			foreach (Question q in set)
+			{
+				file.WriteLine("  Question: " + q.Text);
+				foreach (String answer in q.Answers.Split(new char[] { '\n' }))
+				{
+					string cleanAnswer = answer;
+
+					file.Write("    ");
+					if (answer.StartsWith("*"))
+					{
+						file.Write("Best ");
+						cleanAnswer = answer.Substring(1);
+					}
+					else if (answer.StartsWith("-"))
+					{
+						cleanAnswer = answer.Substring(1);
+					}
+
+					if (cleanAnswer.Length > 0)
+					{
+						file.WriteLine("Answer: " + cleanAnswer.Trim());
+					}
+				}
+			}
 		}
     }
 }
