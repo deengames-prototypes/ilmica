@@ -288,20 +288,92 @@ namespace QuestionMaker
 
 		private void openToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			OpenFileDialog dialog = new OpenFileDialog();
 
+			dialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+			dialog.RestoreDirectory = true;
+			
+			if (dialog.ShowDialog() == DialogResult.OK) // Test result.
+			{
+				string file = dialog.FileName;
+				try
+				{
+					parseData(File.ReadAllText(file));
+				}
+				catch (IOException i)
+				{
+					MessageBox.Show("Couldn't open " + file + ". Error details are: " + i.Message);
+				}
+
+				this.uxQuestionSetList.Items.Clear();
+				foreach (string setName in this._sets.Keys.ToArray())
+				{
+					this.uxQuestionSetList.Items.Add(setName);
+				}
+			}
+		}
+
+		private void parseData(string sets)
+		{
+			string[] data = sets.Split(new char[] { '\n' });
+
+			// Sigh, stateful parsing :/
+			string currentSet = "";
+			Question currentQuestion = null;
+
+			foreach (string curLine in data)
+			{
+				string line = curLine.Trim();
+				if (line.StartsWith("Set"))
+				{
+					// Save previous question
+					if (currentQuestion != null)
+					{
+						_sets[currentSet].Add(currentQuestion);
+						currentQuestion = null;
+					}
+
+					// It's a set
+					currentSet = line.Substring(line.IndexOf(':') + 2);
+					_sets[currentSet] = new List<Question>();
+				}
+				else if (line.StartsWith("Question:"))
+				{
+					// Save previous question
+					if (currentQuestion != null)
+					{
+						_sets[currentSet].Add(currentQuestion);
+						currentQuestion = null;
+					}
+
+					currentQuestion = new Question();
+					currentQuestion.Text = line.Substring(line.IndexOf(':') + 2);
+				}
+				else if (line.StartsWith("Answer") || line.StartsWith("Best Answer"))
+				{
+					string answer = line.Substring(line.IndexOf(':') + 2);
+					if (line.StartsWith("Best"))
+					{
+						answer = "*" + answer;
+					}
+					currentQuestion.Answers += answer + "\r\n";
+				}
+			}
+
+			// Push the final question
+			_sets[currentSet].Add(currentQuestion);
 		}
 
 		private void saveToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+			SaveFileDialog dialog = new SaveFileDialog();
 
-			saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-			saveFileDialog1.FilterIndex = 2;
-			saveFileDialog1.RestoreDirectory = true;
+			dialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+			dialog.RestoreDirectory = true;
 
-			if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+			if (dialog.ShowDialog() == DialogResult.OK)
 			{
-				using (System.IO.StreamWriter file = new System.IO.StreamWriter(saveFileDialog1.FileName))
+				using (System.IO.StreamWriter file = new System.IO.StreamWriter(dialog.FileName))
 				{
 					foreach (string setName in this._sets.Keys.ToArray())
 					{
