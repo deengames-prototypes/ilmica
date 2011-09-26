@@ -9,6 +9,7 @@ namespace QuestionMaker
 	{
 		public string Text { get; set; }
 		public string Answers { get; set; }
+		public Dictionary<QuestionMetaDataType, string> MetaData { get; set; }
 
 		public override string ToString()
 		{
@@ -20,6 +21,11 @@ namespace QuestionMaker
 			{
 				return Text;
 			}
-		}
+		}		
+	}
+
+	public enum QuestionMetaDataType
+	{
+		Information
 	}
 }
