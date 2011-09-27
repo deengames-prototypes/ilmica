@@ -7,7 +7,7 @@ public class Screen {
 	ArrayList<Sprite> _sprites = new ArrayList<Sprite>(); 
 		
 	public Sprite[] getSprites() { 
-		return (Sprite[])this._sprites.toArray();
+		return this._sprites.toArray(new Sprite[0]);
 	}
 	
 	public void initialize() {

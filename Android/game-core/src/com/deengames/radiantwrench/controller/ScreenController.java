@@ -8,11 +8,11 @@ public abstract class ScreenController {
 	
 	static Screen _currentScreen;
 	
-	public static Screen GetCurrentScreen() { 
+	public static Screen getCurrentScreen() { 
 		return _currentScreen;
 	}
 	
-	public static void ShowScreen(Screen s) {
+	public static void showScreen(Screen s) {
 		if (_currentScreen != null) {
 			_currentScreen.destroy();
 		}
