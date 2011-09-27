@@ -8,9 +8,10 @@ public class Sprite {
 	private int _x = 0;
 	private int _y = 0;
 	private Texture _texture;
+	private String _fileName = "";
 
 	public Sprite(String fileName) {
-		this._texture = new Texture(Gdx.files.internal(fileName));
+		this._fileName = fileName;
 	}
 	
 	public int getX() {
@@ -24,6 +25,10 @@ public class Sprite {
 	}
 	public void setY(int _y) {
 		this._y = _y;
+	}
+	
+	public void loadTexture() {
+		_texture = new Texture(Gdx.files.internal(this._fileName));
 	}
 	
 	public Texture getTexture() {
