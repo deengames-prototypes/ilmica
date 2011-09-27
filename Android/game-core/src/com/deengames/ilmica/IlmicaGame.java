@@ -24,18 +24,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.deengames.ilmica.screens.TitleScreen;
 import com.deengames.radiantwrench.controller.ScreenController;
 import com.deengames.radiantwrench.core.Game;
 
-public class IlmicaGame extends Game {
-	SpriteBatch spriteBatch = new SpriteBatch();;
-	Texture texture;
+public class IlmicaGame extends Game implements ApplicationListener {
 	
-	Vector2 textPosition = new Vector2(100, 100);
-	Vector2 textDirection = new Vector2(1, 1);
-	
-	public IlmicaGame() {
-		ScreenController.ShowScreen(new TitleScreen());
+	public void create () {
+		ScreenController.showScreen(new TitleScreen());
+		super.create();
 	}
 }
