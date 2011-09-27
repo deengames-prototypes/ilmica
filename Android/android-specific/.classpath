@@ -6,6 +6,5 @@
 	<classpathentry excluding="**/.svn/*" kind="src" path="gen"/>
 	<classpathentry kind="lib" path="libs/gdx-backend-android.jar"/>
 	<classpathentry kind="lib" path="libs/gdx.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/RadiantWrench"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
