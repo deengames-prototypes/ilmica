@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.deengames.radiantwrench.controller.ScreenController;
 import com.deengames.radiantwrench.view.Screen;
 import com.deengames.radiantwrench.view.Sprite;
+import com.deengames.radiantwrench.view.Text;
 
 public class Game implements ApplicationListener {
 	
@@ -45,19 +46,26 @@ public class Game implements ApplicationListener {
 
 	@Override
 	public void render () {
-		int centerX = Gdx.graphics.getWidth() / 2;
-		int centerY = Gdx.graphics.getHeight() / 2;
+		int SCREEN_WIDTH = Gdx.graphics.getWidth();
+		int SCREEN_HEIGHT = Gdx.graphics.getHeight();
+		int centerX = SCREEN_WIDTH / 2;
+		int centerY = SCREEN_HEIGHT / 2;
 
 		clearScreen();
 
 		_spriteBatch.begin();
 		_spriteBatch.setColor(Color.WHITE);
 		
-		for (Sprite s : ScreenController.getCurrentScreen().getSprites()) {
+		Screen currentScreen = ScreenController.getCurrentScreen();		
+		
+		for (Sprite s : currentScreen.getSprites()) {
 			Texture t = s.getTexture();
-			_spriteBatch.draw(t,  centerX - (t.getWidth() / 2) + s.getX(),
-					centerY - (t.getHeight() / 2) + s.getY(), 0, 0, 
+			_spriteBatch.draw(t,  s.getX(), SCREEN_HEIGHT - t.getHeight() - s.getY(), 0, 0, 
 					t.getWidth(), t.getHeight());
+		}
+		
+		for (Text t : currentScreen.getTexts()) {
+			_defaultFont.draw(this._spriteBatch, t.getDisplayText(), t.getX(), SCREEN_HEIGHT - t.getY());			
 		}
 		
 		_spriteBatch.end();

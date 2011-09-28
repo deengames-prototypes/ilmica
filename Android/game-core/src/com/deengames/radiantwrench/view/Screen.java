@@ -4,10 +4,15 @@ import java.util.ArrayList;
 
 public class Screen {
 	
-	ArrayList<Sprite> _sprites = new ArrayList<Sprite>(); 
+	ArrayList<Sprite> _sprites = new ArrayList<Sprite>();
+	ArrayList<Text> _texts = new ArrayList<Text>();
 		
 	public Sprite[] getSprites() { 
 		return this._sprites.toArray(new Sprite[0]);
+	}
+	
+	public Text[] getTexts() {
+		return this._texts.toArray(new Text[0]);
 	}
 	
 	public void initialize() {
@@ -22,5 +27,11 @@ public class Screen {
 		Sprite s = new Sprite(fileName);
 		this._sprites.add(s);
 		return s;
+	}
+	
+	public Text addText(String text) {
+		Text t= new Text(text);
+		this._texts.add(t);
+		return t;
 	}
 }
