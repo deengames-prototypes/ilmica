@@ -24,13 +24,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.deengames.ilmica.screens.SplashScreen;
+import com.deengames.ilmica.screens.TitleScreen;
 import com.deengames.radiantwrench.controller.ScreenController;
 import com.deengames.radiantwrench.core.Game;
 
 public class IlmicaGame extends Game implements ApplicationListener {
 	
 	public void create () {
-		ScreenController.showScreen(new TitleScreen());
+		ScreenController.showScreen(new SplashScreen());
 		super.create();
 	}
 }

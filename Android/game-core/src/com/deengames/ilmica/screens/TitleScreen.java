@@ -1,10 +1,11 @@
-package com.deengames.ilmica;
+package com.deengames.ilmica.screens;
 
 import com.deengames.radiantwrench.view.Screen;
 import com.deengames.radiantwrench.view.Sprite;
 import com.deengames.radiantwrench.view.Text;
 
 public class TitleScreen extends Screen {
+	
 	@Override
 	public void initialize() {
 		Sprite s = this.addSprite("data/badlogic.jpg");
