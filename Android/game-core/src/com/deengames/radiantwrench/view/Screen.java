@@ -2,6 +2,8 @@ package com.deengames.radiantwrench.view;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
+
 public class Screen {
 	
 	ArrayList<Sprite> _sprites = new ArrayList<Sprite>();
@@ -33,5 +35,13 @@ public class Screen {
 		Text t= new Text(text);
 		this._texts.add(t);
 		return t;
+	}
+	
+	public int getWidth() {
+		return Gdx.graphics.getWidth();
+	}
+	
+	public int getHeight() {
+		return Gdx.graphics.getHeight();
 	}
 }
