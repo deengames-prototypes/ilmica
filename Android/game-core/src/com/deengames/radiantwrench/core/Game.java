@@ -1,6 +1,7 @@
 package com.deengames.radiantwrench.core;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -19,9 +20,11 @@ public class Game implements ApplicationListener {
 	
 	SpriteBatch _spriteBatch;
 	BitmapFont _defaultFont;
+	Date _lastRenderOn;
 	
 	private static Game _instance = new Game();
 	public static Game GetCurrentGame() { return _instance; }
+	private Color NO_BLENDING = new Color(1, 1, 1, 1);
 	
 	public Game() {
 		_instance = this;
@@ -46,29 +49,42 @@ public class Game implements ApplicationListener {
 
 	@Override
 	public void render () {
+		if (this._lastRenderOn == null) {
+			this._lastRenderOn = new Date();
+		}
+		
+		Date now = new Date();		
+		double elapsedTime = (now.getTime() - this._lastRenderOn.getTime()) / 1000f;
+		
 		int SCREEN_WIDTH = Gdx.graphics.getWidth();
 		int SCREEN_HEIGHT = Gdx.graphics.getHeight();
 		int centerX = SCREEN_WIDTH / 2;
 		int centerY = SCREEN_HEIGHT / 2;
 
+		Screen currentScreen = ScreenController.getCurrentScreen();
+		currentScreen.update(elapsedTime);
+		
 		clearScreen();
 
 		_spriteBatch.begin();
-		_spriteBatch.setColor(Color.WHITE);
-		
-		Screen currentScreen = ScreenController.getCurrentScreen();		
+		_spriteBatch.setColor(Color.WHITE);	
 		
 		for (Sprite s : currentScreen.getSprites()) {
 			Texture t = s.getTexture();
-			_spriteBatch.draw(t,  s.getX(), SCREEN_HEIGHT - t.getHeight() - s.getY(), 0, 0, 
-					t.getWidth(), t.getHeight());
+			_spriteBatch.setColor(new Color(1, 1, 1, s.getAlpha()));
+			_spriteBatch.draw(t,  0f + s.getX(), 0f + SCREEN_HEIGHT - t.getHeight() - s.getY(), 0, 0, 
+					t.getWidth(), t.getHeight());					
 		}
+		
+		_spriteBatch.setColor(NO_BLENDING);
 		
 		for (Text t : currentScreen.getTexts()) {
 			_defaultFont.draw(this._spriteBatch, t.getDisplayText(), t.getX(), SCREEN_HEIGHT - t.getY());			
 		}
 		
 		_spriteBatch.end();
+		
+		this._lastRenderOn = new Date();
 	}
 
 	@Override
