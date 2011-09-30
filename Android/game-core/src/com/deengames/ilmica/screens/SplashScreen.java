@@ -8,9 +8,11 @@ public class SplashScreen extends Screen {
 
 	@Override
 	public void initialize() {
-		//this.fadeOutImmediately();
+		super.initialize();
 		
-		Sprite s = this.addSprite("data/logo.png");
+		this.fadeOutImmediately();
+		
+		Sprite s = this.addSprite("content/logo.png");
 		
 		// Data height: 460. Padded to 512, sigh.
 		s.setX((this.getWidth() - 460) / 2);
@@ -18,6 +20,11 @@ public class SplashScreen extends Screen {
 		// Data height: 243. Padded to 256, sigh.
 		s.setY((this.getHeight() - 243) / 2);
 		
-		//this.fadeIn();
+		this.fadeIn();
+	}
+	
+	@Override
+	public void update(double elapsedSeconds) {
+		super.update(elapsedSeconds);
 	}
 }
