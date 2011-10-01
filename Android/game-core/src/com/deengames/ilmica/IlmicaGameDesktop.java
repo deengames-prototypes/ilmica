@@ -20,6 +20,6 @@ import com.badlogic.gdx.backends.jogl.JoglApplication;
 
 public class IlmicaGameDesktop {
 	public static void main (String[] argv) {
-		new JoglApplication(new IlmicaGame(), "Hello World", 480, 320, false);
+		new JoglApplication(new IlmicaGame(), "Deen Games", 480, 320, false);
 	}
 }

@@ -131,6 +131,7 @@ public class Screen {
 		Sprite s = new Sprite(fileName);
 		this._sprites.add(s);
 		Collections.sort(this._sprites);
+		s.loadTexture();
 		return s;
 	}
 	

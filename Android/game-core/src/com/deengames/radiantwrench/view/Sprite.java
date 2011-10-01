@@ -98,4 +98,9 @@ public class Sprite implements Comparable<Sprite> {
 			return 0;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return this._fileName;
+	}
 }
