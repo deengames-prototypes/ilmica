@@ -8,12 +8,14 @@ public class TitleScreen extends Screen {
 	
 	@Override
 	public void initialize() {
-		Sprite s = this.addSprite("data/badlogic.jpg");
-		s.setX(100);
-		s.setY(50);
+		super.initialize();
+		
+		this.fadeOutImmediately();
 		
 		Text t = this.addText("Hi mom!");
 		t.setX(25);
 		t.setY(10);
+		
+		this.fadeIn();
 	}
 }

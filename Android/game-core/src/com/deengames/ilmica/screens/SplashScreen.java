@@ -32,10 +32,18 @@ public class SplashScreen extends Screen {
 			}
 		});
 		
+		this.addFadeOutListener(new Action() {
+			public void invoke() {
+				ScreenController.showScreen(new TitleScreen());
+			}
+		});
+		
 		this.fadeIn();
 	}
 	
 	private class FadeOutClass extends TimerTask {
+		public FadeOutClass() { }
+		
 		public void run() {
 			ScreenController.getCurrentScreen().fadeOut();
 		}
