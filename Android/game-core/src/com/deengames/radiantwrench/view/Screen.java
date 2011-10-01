@@ -4,8 +4,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import com.badlogic.gdx.Gdx;
+import com.deengames.radiantwrench.utils.Action;
 
-public class Screen {
+public class Screen {	
+	
+	// #region fade delegate/events
+	private ArrayList<Action> _fadeOutListeners = new ArrayList<Action>();
+	private ArrayList<Action> _fadeInListeners = new ArrayList<Action>();
+	
+	public void addFadeOutListener(Action f) {
+		this._fadeOutListeners.add(f);
+	}
+	
+	public void removeFadeOutListener(Action f) {
+		this._fadeOutListeners.remove(f);
+	}
+	
+	public void addFadeInListener(Action f) {
+		this._fadeInListeners.add(f);
+	}
+	
+	public void removeFadeInListener(Action f) {
+		this._fadeInListeners.remove(f);
+	}
+	// #endregion
 	
 	protected ArrayList<Sprite> _sprites = new ArrayList<Sprite>();
 	protected ArrayList<Text> _texts = new ArrayList<Text>();
@@ -82,6 +104,23 @@ public class Screen {
                         }
                 }
             }
+			
+			if (this._fadeInListeners.size() > 0 && this._blackoutSprite.getAlphaRate() != 0) {
+				if (this._blackoutSprite.getAlphaRate() <= 0 && this._blackoutSprite.getAlpha() <= 0) {
+					this._blackoutSprite.setAlpha(0);
+					this._blackoutSprite.setAlphaRate(0);
+					for (Action a : this._fadeInListeners) {
+						a.invoke();
+					}
+				} else if (this._blackoutSprite.getAlphaRate() >= 0 && this._blackoutSprite.getAlpha() >= 1) {
+					this._blackoutSprite.setAlpha(1);
+					this._blackoutSprite.setAlphaRate(0);
+					for (Action a : this._fadeOutListeners) {
+						a.invoke();
+					}
+				}
+					
+			}
         }
 
 	public void destroy() {
