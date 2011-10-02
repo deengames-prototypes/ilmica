@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
+import com.deengames.radiantwrench.core.Game;
 import com.deengames.radiantwrench.utils.Action;
 
 public class Screen {	
@@ -11,6 +15,7 @@ public class Screen {
 	// #region fade delegate/events
 	private ArrayList<Action> _fadeOutListeners = new ArrayList<Action>();
 	private ArrayList<Action> _fadeInListeners = new ArrayList<Action>();
+	private ArrayList<Button> _buttons = new ArrayList<Button>();
 	
 	public void addFadeOutListener(Action f) {
 		this._fadeOutListeners.add(f);
@@ -39,6 +44,10 @@ public class Screen {
 	
 	public Text[] getTexts() {
 		return this._texts.toArray(new Text[0]);
+	}
+	
+	public Button[] getButtons() {
+		return this._buttons.toArray(new Button[0]);
 	}
 	
 	public void initialize() {
@@ -136,9 +145,16 @@ public class Screen {
 	}
 	
 	public Text addText(String text) {
-		Text t= new Text(text);
+		Text t = new Text(text);
 		this._texts.add(t);
 		return t;
+	}
+	
+	public Button addButton() {
+		Button button = new Button("Single", Game.getCurrentGame().getSkin().getStyle(ButtonStyle.class), "button-sl");
+		this._buttons.add(button);
+		Game.getCurrentGame().addButton(button);
+		return button;
 	}
 	
 	public int getWidth() {
