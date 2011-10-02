@@ -3,7 +3,7 @@ package com.deengames.radiantwrench.view;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
-public class Sprite implements Comparable<Sprite> {
+public class Sprite implements Comparable<Sprite>, Drawable {
 	
 	private int _x = 0;
 	private int _y = 0;
@@ -23,22 +23,22 @@ public class Sprite implements Comparable<Sprite> {
 	public int getX() {
 		return _x;
 	}
-	public void setX(int _x) {
-		this._x = _x;
+	public void setX(int x) {
+		this._x = x;
 	}
 	public int getY() {
 		return _y;
 	}
-	public void setY(int _y) {
-		this._y = _y;
+	public void setY(int y) {
+		this._y = y;
 	}
 
 	public int getZ() {
 		return _z;
 	}
 
-	public void setZ(int _z) {
-		this._z = _z;
+	public void setZ(int z) {
+		this._z = z;
 	}
 	
 	public void loadTexture() {
@@ -87,6 +87,7 @@ public class Sprite implements Comparable<Sprite> {
 	}
 
 	@Override
+	// For sorting
 	public int compareTo(Sprite o) {
 		int myZ = this.getZ();
 		int theirZ = o.getZ();
@@ -102,5 +103,13 @@ public class Sprite implements Comparable<Sprite> {
 	@Override
 	public String toString() {
 		return this._fileName;
+	}
+
+	public int getWidth() {
+		return this._texture.getWidth();
+	}
+
+	public int getHeight() {
+		return this._texture.getHeight();
 	}
 }
