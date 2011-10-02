@@ -79,7 +79,11 @@ public class Game implements ApplicationListener {
 		_spriteBatch.setColor(NO_BLENDING);
 		
 		for (Text t : currentScreen.getTexts()) {
-			_defaultFont.draw(this._spriteBatch, t.getDisplayText(), t.getX(), SCREEN_HEIGHT - t.getY());			
+			BitmapFont font = _defaultFont;			
+			if (t.getFont() != null) {
+				font = t.getFont();
+			}
+			font.draw(this._spriteBatch, t.getDisplayText(), t.getX(), SCREEN_HEIGHT - t.getY());			
 		}
 		
 		_spriteBatch.end();
