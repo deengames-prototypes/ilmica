@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.deengames.radiantwrench.controller.ScreenController;
+import com.deengames.radiantwrench.view.ImageButton;
 import com.deengames.radiantwrench.view.Screen;
 import com.deengames.radiantwrench.view.Sprite;
 import com.deengames.radiantwrench.view.Text;
@@ -26,9 +27,6 @@ public class Game implements ApplicationListener {
 	SpriteBatch _spriteBatch;
 	BitmapFont _defaultFont;
 	Date _lastRenderOn;
-	Stage _ui;
-	Skin _skin;
-	Window _window;
 	
 	private static Game _instance = new Game();
 	public static Game getCurrentGame() { return _instance; }
@@ -38,29 +36,15 @@ public class Game implements ApplicationListener {
 		_instance = this;
 	}
 	
-	public Skin getSkin() {
-		return this._skin;
-	}
 	
 	private void clearScreen() {
 		Gdx.graphics.getGL10().glClear(GL10.GL_COLOR_BUFFER_BIT);
-	}
-	
-	public void addButton(Button b) {
-		this._ui.addActor(b);
 	}
 	
 	@Override
 	public void create () {
 		_defaultFont = new BitmapFont();
 		_defaultFont.setColor(Color.WHITE);	
-		
-		this._skin = new Skin(Gdx.files.internal("data/uiskin.json"), Gdx.files.internal("data/uiskin.png"));
-		this._ui = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
-		Gdx.input.setInputProcessor(this._ui);
-		this._window = new Window("window", "Dialog", this._ui, this._skin.getStyle(WindowStyle.class), 420, 440);
-        this._window.x = this._window.y = 0;
-        this._ui.addActor(this._window);
 		
 		// Can't be earlier
 		for (Sprite s : ScreenController.getCurrentScreen().getSprites()) {
@@ -109,10 +93,10 @@ public class Game implements ApplicationListener {
 			font.draw(this._spriteBatch, t.getDisplayText(), t.getX(), SCREEN_HEIGHT - t.getY());			
 		}
 		
-		for (Button b : currentScreen.getButtons()) {
+		for (ImageButton b : currentScreen.getImageButtons()) {
 			b.x = 50;
-			b.y = 100;
-			b.draw(_spriteBatch, 1);
+			b.y = 50;
+			_spriteBatch.draw(b.getCurrentRegion(), b.x, b.y);
 		}
 			
 		
