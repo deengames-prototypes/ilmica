@@ -16,8 +16,8 @@ public class TitleScreen extends Screen {
 		super.initialize();
 		
 		this.fadeOutImmediately();
-		//this.addSprite("content/titlescreen.jpg");
-		this.addButton();		
+		this.addSprite("content/titlescreen.jpg");
+		this.addImageButon("content/go-button.png");		
 		this.fadeIn();
 	}
 }

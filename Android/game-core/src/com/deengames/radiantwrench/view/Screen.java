@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
@@ -15,7 +17,7 @@ public class Screen {
 	// #region fade delegate/events
 	private ArrayList<Action> _fadeOutListeners = new ArrayList<Action>();
 	private ArrayList<Action> _fadeInListeners = new ArrayList<Action>();
-	private ArrayList<Button> _buttons = new ArrayList<Button>();
+	private ArrayList<ImageButton> _imageButtons = new ArrayList<ImageButton>();
 	
 	public void addFadeOutListener(Action f) {
 		this._fadeOutListeners.add(f);
@@ -46,8 +48,8 @@ public class Screen {
 		return this._texts.toArray(new Text[0]);
 	}
 	
-	public Button[] getButtons() {
-		return this._buttons.toArray(new Button[0]);
+	public ImageButton[] getImageButtons() {
+		return this._imageButtons.toArray(new ImageButton[0]);
 	}
 	
 	public void initialize() {
@@ -138,9 +140,9 @@ public class Screen {
 	
 	public Sprite addSprite(String fileName) {
 		Sprite s = new Sprite(fileName);
+		s.loadTexture();
 		this._sprites.add(s);
 		Collections.sort(this._sprites);
-		s.loadTexture();
 		return s;
 	}
 	
@@ -150,11 +152,18 @@ public class Screen {
 		return t;
 	}
 	
-	public Button addButton() {
-		Button button = new Button("Single", Game.getCurrentGame().getSkin().getStyle(ButtonStyle.class), "button-sl");
-		this._buttons.add(button);
-		Game.getCurrentGame().addButton(button);
-		return button;
+	public ImageButton addImageButon(String fileName) {
+		ImageButton b = new ImageButton(fileName);
+		b.loadTexture();
+		Texture t = b.getTexture();
+		
+		int halfWidth = t.getWidth() / 2;
+		int width = t.getWidth();
+		
+		b.setDownRegion(new TextureRegion(t, 0, 0, halfWidth, t.getHeight()));
+		b.setUpRegion(new TextureRegion(t, halfWidth, 0, halfWidth, t.getHeight()));
+		this._imageButtons.add(b);
+		return b;
 	}
 	
 	public int getWidth() {
