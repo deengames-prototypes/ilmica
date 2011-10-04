@@ -5,6 +5,7 @@ import java.util.Date;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
@@ -22,7 +23,7 @@ import com.deengames.radiantwrench.view.Screen;
 import com.deengames.radiantwrench.view.Sprite;
 import com.deengames.radiantwrench.view.Text;
 
-public class Game implements ApplicationListener {
+public class Game implements ApplicationListener, InputProcessor {
 	
 	SpriteBatch _spriteBatch;
 	BitmapFont _defaultFont;
@@ -33,7 +34,7 @@ public class Game implements ApplicationListener {
 	private Color NO_BLENDING = new Color(1, 1, 1, 1);
 	
 	public Game() {
-		_instance = this;
+		_instance = this;		
 	}
 	
 	
@@ -52,6 +53,8 @@ public class Game implements ApplicationListener {
 		}
 		
 		_spriteBatch = new SpriteBatch(); // Can't be earlier
+		
+		Gdx.input.setInputProcessor(this);
 	}
 	
 	@Override
@@ -99,7 +102,6 @@ public class Game implements ApplicationListener {
 			_spriteBatch.draw(b.getCurrentRegion(), b.x, b.y);
 		}
 			
-		
 		_spriteBatch.end();
 		
 		this._lastRenderOn = new Date();
@@ -123,5 +125,66 @@ public class Game implements ApplicationListener {
 	@Override
 	public void dispose () {
 
+	}
+
+
+	@Override
+	public boolean keyDown(int keyCode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean keyTyped(char character) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean keyUp(int keyCode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean scrolled(int amount) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean touchDown(int x, int y, int pointer, int button) { 
+		int realY = ScreenController.getCurrentScreen().getHeight() - y;
+		
+		for (ImageButton b : ScreenController.getCurrentScreen().getImageButtons()) {
+			b.touchDown(x, realY, pointer);			
+		}
+		
+		return true;
+	}
+
+
+	@Override
+	public boolean touchDragged(int x, int y, int pointer) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean touchMoved(int x, int y) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean touchUp(int x, int y, int pointer, int button) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

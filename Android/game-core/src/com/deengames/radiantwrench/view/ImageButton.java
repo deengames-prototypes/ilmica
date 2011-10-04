@@ -15,7 +15,7 @@ public class ImageButton extends Image {
 	private Texture _texture;
 	private String _fileName;
 
-	public ClickListener clickListener;
+	private ClickListener _clickListener;
 
 	public ImageButton(String fileName) {
 		super("Button");
@@ -24,11 +24,21 @@ public class ImageButton extends Image {
 
 	@Override
 	public boolean touchDown(float x, float y, int pointer) {
-		boolean touchDown = super.touchDown(x, y, pointer);
-
+		// WHYYYYYY??!?!?!
+		//boolean touchDown = super.touchDown(x, y, pointer);
+		boolean touchDown = (x >= this.x && x <= this.x + this.width && 
+				y >= this.y && y <= this.y + this.height);
+		
 		if (touchDown) {
-			this.region.setRegion(_down);
-			this.clickListener.onClick(this);
+			if (this.region == null) {
+				this.region  = this._down;
+			} else {
+				this.region.setRegion(_down);
+			}
+			
+			if (this._clickListener != null) {
+				this._clickListener.onClick(this);
+			}
 			this._currentRegion = this._down;
 		}
 
@@ -43,11 +53,13 @@ public class ImageButton extends Image {
 	}
 
 	public interface ClickListener {
-		public void onClick(ImageButton imageButton);
+		public void onClick(ImageButton clickedOn);
 	}
 
 	public void loadTexture() {
 		_texture = new Texture(Gdx.files.internal(this._fileName));
+		this.width = this._texture.getWidth() / 2;
+		this.height = this._texture.getHeight();
 	}
 
 	public Texture getTexture() {
@@ -68,5 +80,9 @@ public class ImageButton extends Image {
 		}
 		
 		return this._currentRegion;
+	}
+	
+	public void setClickListener(ClickListener c) {
+		this._clickListener = c;
 	}
 }
