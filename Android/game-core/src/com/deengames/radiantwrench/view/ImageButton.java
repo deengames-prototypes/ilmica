@@ -14,6 +14,7 @@ public class ImageButton extends Image {
 	private TextureRegion _up;
 	private Texture _texture;
 	private String _fileName;
+	private boolean _wasDown = false;
 
 	private ClickListener _clickListener;
 
@@ -30,15 +31,8 @@ public class ImageButton extends Image {
 				y >= this.y && y <= this.y + this.height);
 		
 		if (touchDown) {
-			if (this.region == null) {
-				this.region  = this._down;
-			} else {
-				this.region.setRegion(_down);
-			}
-			
-			if (this._clickListener != null) {
-				this._clickListener.onClick(this);
-			}
+			this.region  = this._down;
+			this._wasDown = true;
 			this._currentRegion = this._down;
 		}
 
@@ -47,9 +41,17 @@ public class ImageButton extends Image {
 
 	@Override
 	public void touchUp(float x, float y, int pointer) {
-		this.region.setRegion(_up);
+		this.region = this._up;
 		this._currentRegion = this._up;
 		super.touchUp(x, y, pointer);
+		
+		if (this._wasDown) {
+			if (this._clickListener != null) {
+				this._clickListener.onClick(this);
+			}
+			
+			this._wasDown = false;
+		}
 	}
 
 	public interface ClickListener {
@@ -72,6 +74,10 @@ public class ImageButton extends Image {
 
 	public void setUpRegion(TextureRegion up) {
 		this._up = up;
+		this._currentRegion = this._up;
+		if (this.region != null) {
+			this.region.setRegion(this._up);			
+		}
 	}
 
 	public TextureRegion getCurrentRegion() {
