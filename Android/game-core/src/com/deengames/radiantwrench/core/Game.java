@@ -28,6 +28,7 @@ public class Game implements ApplicationListener, InputProcessor {
 	SpriteBatch _spriteBatch;
 	BitmapFont _defaultFont;
 	Date _lastRenderOn;
+	Sprite _blackout;
 	
 	private static Game _instance = new Game();
 	public static Game getCurrentGame() { return _instance; }
@@ -36,7 +37,6 @@ public class Game implements ApplicationListener, InputProcessor {
 	public Game() {
 		_instance = this;		
 	}
-	
 	
 	private void clearScreen() {
 		Gdx.graphics.getGL10().glClear(GL10.GL_COLOR_BUFFER_BIT);
@@ -50,6 +50,9 @@ public class Game implements ApplicationListener, InputProcessor {
 		// Can't be earlier
 		for (Sprite s : ScreenController.getCurrentScreen().getSprites()) {
 			s.loadTexture();
+			if (s.getFileName().endsWith("/blackout.jpg")) {
+				this._blackout = s;
+			}
 		}
 		
 		_spriteBatch = new SpriteBatch(); // Can't be earlier
@@ -80,10 +83,12 @@ public class Game implements ApplicationListener, InputProcessor {
 		_spriteBatch.setColor(Color.WHITE);	
 		
 		for (Sprite s : currentScreen.getSprites()) {
-			Texture t = s.getTexture();
-			_spriteBatch.setColor(new Color(1, 1, 1, s.getAlpha()));
-			_spriteBatch.draw(t,  0f + s.getX(), 0f + SCREEN_HEIGHT - t.getHeight() - s.getY(), 0, 0, 
-					t.getWidth(), t.getHeight());					
+			if (s.getFileName().endsWith("/blackout.jpg")) {
+				// For some reason, assigning this early on gives us two copies?!?!
+				this._blackout = s;
+			} else {
+				drawSprite(s, SCREEN_HEIGHT);
+			}
 		}
 		
 		_spriteBatch.setColor(NO_BLENDING);
@@ -101,12 +106,21 @@ public class Game implements ApplicationListener, InputProcessor {
 			b.y = 50;
 			_spriteBatch.draw(b.getCurrentRegion(), b.x, b.y);
 		}
+		
+		this.drawSprite(this._blackout, SCREEN_HEIGHT);
 			
 		_spriteBatch.end();
 		
 		this._lastRenderOn = new Date();
 	}
 
+	private void drawSprite(Sprite s, int SCREEN_HEIGHT) {
+		Texture t = s.getTexture();			
+		_spriteBatch.setColor(new Color(1, 1, 1, s.getAlpha()));
+		_spriteBatch.draw(t,  0f + s.getX(), 0f + SCREEN_HEIGHT - t.getHeight() - s.getY(), 0, 0, 
+				t.getWidth(), t.getHeight());
+	}
+	
 	@Override
 	public void resize (int width, int height) {
 		_spriteBatch.getProjectionMatrix().setToOrtho2D(0, 0, width, height);
