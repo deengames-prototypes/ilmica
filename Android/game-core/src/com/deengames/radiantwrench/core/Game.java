@@ -158,10 +158,10 @@ public class Game implements ApplicationListener, InputProcessor {
 
 	@Override
 	public boolean touchDown(int x, int y, int pointer, int button) { 
-		int realY = ScreenController.getCurrentScreen().getHeight() - y;
+		int yFromScreenTop = ScreenController.getCurrentScreen().getHeight() - y;
 		
 		for (ImageButton b : ScreenController.getCurrentScreen().getImageButtons()) {
-			b.touchDown(x, realY, pointer);			
+			b.touchDown(x, yFromScreenTop, pointer);			
 		}
 		
 		return true;
@@ -184,7 +184,12 @@ public class Game implements ApplicationListener, InputProcessor {
 
 	@Override
 	public boolean touchUp(int x, int y, int pointer, int button) {
-		// TODO Auto-generated method stub
-		return false;
+int yFromScreenTop = ScreenController.getCurrentScreen().getHeight() - y;
+		
+		for (ImageButton b : ScreenController.getCurrentScreen().getImageButtons()) {
+			b.touchUp(x, yFromScreenTop, pointer);			
+		}
+		
+		return true;
 	}
 }
