@@ -112,4 +112,8 @@ public class Sprite implements Comparable<Sprite>, Drawable {
 	public int getHeight() {
 		return this._texture.getHeight();
 	}
+	
+	public String getFileName() {
+		return this._fileName;
+	}
 }

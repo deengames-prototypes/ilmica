@@ -116,7 +116,7 @@ public class Screen {
                 }
             }
 			
-			if (this._fadeInListeners.size() > 0 && this._blackoutSprite.getAlphaRate() != 0) {
+			if ((this._fadeInListeners.size() > 0 || this._fadeOutListeners.size() > 0) && this._blackoutSprite.getAlphaRate() != 0) {
 				if (this._blackoutSprite.getAlphaRate() <= 0 && this._blackoutSprite.getAlpha() <= 0) {
 					this._blackoutSprite.setAlpha(0);
 					this._blackoutSprite.setAlphaRate(0);
