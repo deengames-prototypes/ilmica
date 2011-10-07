@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 
 public class Text implements Drawable {
+	
 	private int _x = 0;
 	private int _y = 0;
 	private int _z = 0;
@@ -57,5 +58,6 @@ public class Text implements Drawable {
 	public void setFont(BitmapFont font) {
 		this._font = font;
 	}
+	
 	
 }
