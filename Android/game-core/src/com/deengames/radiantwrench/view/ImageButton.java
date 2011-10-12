@@ -5,9 +5,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.actors.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.deengames.radiantwrench.utils.ClickListener;
+import com.deengames.radiantwrench.utils.Clickable;
 
 // Adapted from http://www.badlogicgames.com/forum/viewtopic.php?f=11&t=2168&sid=a5ac07a6f80769c1b8405b8ba181e913#p11486
-public class ImageButton extends Image {
+public class ImageButton extends Image implements Clickable {
 	
 	private TextureRegion _currentRegion;
 	private TextureRegion _down;
@@ -25,8 +27,6 @@ public class ImageButton extends Image {
 
 	@Override
 	public boolean touchDown(float x, float y, int pointer) {
-		// WHYYYYYY??!?!?!
-		//boolean touchDown = super.touchDown(x, y, pointer);
 		boolean touchDown = (x >= this.x && x <= this.x + this.width && 
 				y >= this.y && y <= this.y + this.height);
 		
@@ -52,10 +52,6 @@ public class ImageButton extends Image {
 			
 			this._wasDown = false;
 		}
-	}
-
-	public interface ClickListener {
-		public void onClick(ImageButton clickedOn);
 	}
 
 	public void loadTexture() {

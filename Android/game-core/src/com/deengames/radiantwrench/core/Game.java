@@ -42,6 +42,10 @@ public class Game implements ApplicationListener, InputProcessor {
 		Gdx.graphics.getGL10().glClear(GL10.GL_COLOR_BUFFER_BIT);
 	}
 	
+	public BitmapFont getDefaultFont() {
+		return this._defaultFont;
+	}
+	
 	@Override
 	public void create () {
 		_defaultFont = new BitmapFont();
@@ -173,8 +177,13 @@ public class Game implements ApplicationListener, InputProcessor {
 	@Override
 	public boolean touchDown(int x, int y, int pointer, int button) { 
 		int yFromScreenTop = ScreenController.getCurrentScreen().getHeight() - y;
+		Screen currentScreen = ScreenController.getCurrentScreen();
 		
-		for (ImageButton b : ScreenController.getCurrentScreen().getImageButtons()) {
+		for (Text t : currentScreen.getTexts()) {
+			t.touchDown(x, y, pointer);
+		}
+		
+		for (ImageButton b : currentScreen.getImageButtons()) {
 			b.touchDown(x, yFromScreenTop, pointer);			
 		}
 		
@@ -198,9 +207,14 @@ public class Game implements ApplicationListener, InputProcessor {
 
 	@Override
 	public boolean touchUp(int x, int y, int pointer, int button) {
-int yFromScreenTop = ScreenController.getCurrentScreen().getHeight() - y;
+		int yFromScreenTop = ScreenController.getCurrentScreen().getHeight() - y;
+		Screen currentScreen = ScreenController.getCurrentScreen();
 		
-		for (ImageButton b : ScreenController.getCurrentScreen().getImageButtons()) {
+		for (Text t : currentScreen.getTexts()) {
+			t.touchUp(x,  y, pointer);
+		}
+		
+		for (ImageButton b : currentScreen.getImageButtons()) {
 			b.touchUp(x, yFromScreenTop, pointer);			
 		}
 		

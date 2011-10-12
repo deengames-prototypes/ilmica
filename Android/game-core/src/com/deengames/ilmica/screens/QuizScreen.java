@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.deengames.ilmica.model.DataHelper;
 import com.deengames.radiantwrench.controller.ScreenController;
 import com.deengames.radiantwrench.utils.Action;
 import com.deengames.radiantwrench.utils.ClickListener;
@@ -15,9 +14,13 @@ import com.deengames.radiantwrench.view.Screen;
 import com.deengames.radiantwrench.view.Sprite;
 import com.deengames.radiantwrench.view.Text;
 
-public class SetSelectionScreen extends Screen {
+public class QuizScreen extends Screen {
 	
-	private final int VERTICAL_SPACE_BETWEEN_SETS = 30;
+	private String _setName;
+	
+	public QuizScreen(String setName) {
+		this._setName = setName;
+	}
 	
 	@Override
 	public void initialize() {
@@ -25,31 +28,10 @@ public class SetSelectionScreen extends Screen {
 		
 		this.fadeOutImmediately();
 		this.addSprite("content/mainMenuBackground.jpg");
-		this.addSprite("content/choose-question-set.png");		
-		
-		String[] sets = DataHelper.getQuestionSetNames();
-		
-		int baseX = 50;
-		int baseY = 100;
-		
-		for (int i = 0; i < sets.length; i++) {
-			final Text t = this.addText(sets[i]);
-			
-			t.setX(baseX);
-			t.setY(baseY + (VERTICAL_SPACE_BETWEEN_SETS * i));
-			
-			t.setClickListener(new ClickListener() {
-				public void onClick(Clickable clicked) {
-					ScreenController.getCurrentScreen().fadeOut();
-					ScreenController.getCurrentScreen().addFadeOutListener(new Action() {
-						public void invoke() {
-							ScreenController.showScreen(new QuizScreen(t.getDisplayText()));
-						}
-					});
-				}
-			});
-		}
-		
+		Text t= this.addText(_setName);
+		t.getFont().setScale(2);
+		t.setX((this.getWidth() - t.getWidth()) / 2);
+		t.setY(12);
 		this.fadeIn();
 	}
 }

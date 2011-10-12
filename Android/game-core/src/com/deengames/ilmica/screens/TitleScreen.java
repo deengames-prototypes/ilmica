@@ -7,8 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.deengames.radiantwrench.controller.ScreenController;
 import com.deengames.radiantwrench.utils.Action;
+import com.deengames.radiantwrench.utils.ClickListener;
+import com.deengames.radiantwrench.utils.Clickable;
 import com.deengames.radiantwrench.view.ImageButton;
-import com.deengames.radiantwrench.view.ImageButton.ClickListener;
 import com.deengames.radiantwrench.view.Screen;
 import com.deengames.radiantwrench.view.Sprite;
 import com.deengames.radiantwrench.view.Text;
@@ -22,11 +23,12 @@ public class TitleScreen extends Screen {
 		this.fadeOutImmediately();
 		this.addSprite("content/mainMenuBackground.jpg");
 		this.addSprite("content/ilmica.png");
+		
 		ImageButton go = this.addImageButon("content/go-button.png");
 		Screen me = this;
 		
 		go.setClickListener(new ClickListener() {
-			public void onClick(ImageButton clickedOn) {
+			public void onClick(Clickable clicked) {
 				Screen me = ScreenController.getCurrentScreen();
 				me.fadeOut();
 				me.addFadeOutListener(new Action() {
