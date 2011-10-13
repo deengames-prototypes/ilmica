@@ -1,7 +1,10 @@
 package com.deengames.radiantwrench.view;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.deengames.radiantwrench.controller.ScreenController;
 
 public class Sprite implements Comparable<Sprite>, Drawable {
 	
@@ -115,5 +118,14 @@ public class Sprite implements Comparable<Sprite>, Drawable {
 	
 	public String getFileName() {
 		return this._fileName;
+	}
+
+	public void draw(SpriteBatch spriteBatch) {
+		int screenHeight = ScreenController.getCurrentScreen().getHeight();
+		Texture t = this._texture;
+		
+		spriteBatch.setColor(new Color(1, 1, 1, this._alpha));
+		spriteBatch.draw(t,  0f + this._x, 0f + screenHeight - t.getHeight() - this._y, 0, 0, 
+				t.getWidth(), t.getHeight());
 	}
 }

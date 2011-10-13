@@ -1,6 +1,7 @@
 package com.deengames.radiantwrench.controller;
 
 import com.deengames.radiantwrench.core.Game;
+import com.deengames.radiantwrench.util.RadiantWrenchException;
 import com.deengames.radiantwrench.view.Screen;
 
 // Static class
@@ -12,7 +13,7 @@ public abstract class ScreenController {
 		return _currentScreen;
 	}
 	
-	public static void showScreen(Screen s) {
+	public static void showScreen(Screen s) throws RadiantWrenchException {
 		if (_currentScreen != null) {
 			_currentScreen.destroy();
 		}

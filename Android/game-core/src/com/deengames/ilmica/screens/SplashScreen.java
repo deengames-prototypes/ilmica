@@ -1,6 +1,7 @@
 package com.deengames.ilmica.screens;
 
 import com.deengames.radiantwrench.controller.ScreenController;
+import com.deengames.radiantwrench.util.RadiantWrenchException;
 import com.deengames.radiantwrench.utils.Action;
 import com.deengames.radiantwrench.view.Screen;
 import com.deengames.radiantwrench.view.Sprite;
@@ -13,7 +14,7 @@ public class SplashScreen extends Screen {
 	private Timer _timer = new Timer();
 	
 	@Override
-	public void initialize() {
+	public void initialize() throws RadiantWrenchException {
 		super.initialize();
 		
 		this.fadeOutImmediately();
@@ -33,7 +34,7 @@ public class SplashScreen extends Screen {
 		});
 		
 		this.addFadeOutListener(new Action() {
-			public void invoke() {
+			public void invoke() throws RadiantWrenchException {
 				ScreenController.showScreen(new TitleScreen());
 			}
 		});
@@ -50,7 +51,7 @@ public class SplashScreen extends Screen {
 	}
 	
 	@Override
-	public void update(double elapsedSeconds) {
+	public void update(double elapsedSeconds) throws RadiantWrenchException {
 		super.update(elapsedSeconds);
 	}
 }

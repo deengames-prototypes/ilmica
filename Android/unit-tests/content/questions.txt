@@ -1,0 +1,199 @@
+Set: S1
+  Question: Q1
+    Answer: A
+    Answer: B
+    Best Answer: C
+    Answer: D
+  Question: Q2
+  	Answer: True
+  	Best Answer: False
+  	
+Set: Arithmetic Questions
+  Question: 1 + 1 = ?
+    Best Answer: 2
+    Answer: 3
+    Answer: 4
+  Question: 2 + 2 = ?
+    Best Answer: 4
+    Answer: 1
+    Answer: 0
+  Question: 3 + 9 = ?
+    Answer: 12
+    Answer: -6
+    Best Answer: 27
+    Answer: 1/3
+  Question: 4 + 5 = ?
+    Answer: 9
+    Answer: -1
+    Best Answer: 20
+    Answer: 0.8
+  Question: 5 + 5 = ?
+    Answer: 0
+    Best Answer: 1
+    Answer: 2
+    Answer: 5
+  Question: 11 + 11 = ?
+    Best Answer: 22
+    Answer: 33
+    Answer: 44
+  Question: 22 + 22 = ?
+    Best Answer: 44
+    Answer: 11
+    Answer: 0
+  Question: 33 + 99 = ?
+    Answer: 123
+    Answer: -61
+    Best Answer: 3267
+    Answer: 1/3
+  Question: 40 + 50 = ?
+    Answer: 90
+    Answer: -10
+    Best Answer: 2000
+    Answer: 0.80
+  Question: 50 + 50 = ?
+    Answer: 0
+    Best Answer: 10
+    Answer: 20
+    Answer: 50
+    
+Set: Fundamentals of Tawheed 1.0
+  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. While a man is praying salaah, some people enter the room. The man starts beautifying his salaah, and makes his recitation more beautiful. 
+    Answer: Shirk by humanization
+    Answer: Shirk by Deification
+    Answer: Shirk Al Akbar
+    Best Answer: Shirk Al Asghar
+
+  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk.Brahma is a supreme God, but his powers are shared by Vishnu and Shiva. 
+    Best Answer: Shirk by association
+    Answer: Shirk by humanization
+    Answer: Shirk by Deification
+    Answer: Shirk Al Akbar
+ 
+  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk.Hindus worship Idols as representation of God. These idols look like elephants and Asian men. 
+    Answer: Shirk by negation
+    Best Answer: Shirk by humanization
+    Answer: Shirk Al Akbar
+    Answer: Shirk Al Asghar
+ 
+  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk.Ahura Mazda is the creator of all that is good, but Angra Mainya is creation and a symbol of darkness.
+    Best Answer: Shirk by association
+    Answer: Shirk by negation
+    Answer: Shirk by humanization
+    Answer: Shirk Al Akbar
+ 
+  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. God is the total of all parts of the universe including man.
+    Answer: Shirk by association
+    Best Answer: Shirk by negation
+    Answer: Shirk by humanization
+    Answer: Shirk by Deification
+ 
+  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. Catholics praying to Maryum, stating she is mother of God. 
+    Answer: Shirk by humanization
+    Answer: Shirk by Deification
+    Answer: Shirk Al Akbar
+    Best Answer: Shirk Al Asghar
+ 
+  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. Souls of saints and righteous people affect the affairs of this world even after their death.
+    Best Answer: Shirk by association
+    Answer: Shirk by humanization
+    Answer: Shirk by Deification
+    Answer: Shirk Al Akbar
+
+  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. Some Muslims, in the past and the present, say, " All is Allah and Allah is all."
+    Answer: Shirk by association
+    Best Answer: Shirk by negation
+    Answer: Shirk by Deification
+    Answer: Shirk Al Asghar
+ 
+  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. Praying to Prophet Muhammad (saw). 
+    Answer: Shirk by association
+    Answer: Shirk by Deification
+    Best Answer: Shirk Al Akbar
+    Answer: Shirk Al Asghar
+
+  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. God the father, Jesus, and Holy Spirit are three entities sharing the same power of God.
+    Best Answer: Shirk by association
+    Answer: Shirk by Deification
+    Answer: Shirk Al Akbar
+    Answer: Shirk by negation
+ 
+  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. Some extreme Muslims spiritualists believe that you can reach a state where you can become one with God and you don't have to do any outward deeds of worship. 
+    Answer: Shirk by negation
+    Answer: Shirk by humanization
+    Best Answer: Shirk by Deification
+    Answer: Shirk Al Akbar
+
+  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. Hinayana Buddhism fell into which category of shirk?
+    Best Answer: Shirk by negation
+    Answer: Shirk by humanization
+    Answer: Shirk by Deification
+    Answer: Shirk Al Akbar
+
+ 
+  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. Darwin's proposal that man is merely a mutated and glorified ape. 
+    Answer: Shirk by association
+    Best Answer: Shirk by negation
+    Answer: Shirk by humanization
+    Answer: Shirk by Deification
+
+
+  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. Musalaymah ad-dajjal took the name of Rahman for himself. 
+    Answer: Shirk by association
+    Answer: Shirk by humanization
+    Best Answer: Shirk by Deification
+    Answer: Shirk Al Asghar
+
+ 
+  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk.Pharaoh said, "I am your Lord, the Most High." (an-Naziaat, 79:24)
+    Answer: Shirk by association
+    Best Answer: Shirk by negation
+    Answer: Shirk by humanization
+    Answer: Shirk Al Akbar
+ 
+  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk.Michaelangelo painted pictures of god as being an old bearded man with huge muscles and rippling abs. 
+    Answer: Shirk by association
+    Answer: Shirk by negation
+    Best Answer: Shirk by humanization
+    Answer: Shirk Al Akbar
+
+
+  Question: All of the following are ways of taking graves as a place of worship except:
+    Answer: Making prayer or sujood towards a grave
+    Answer: Building a masjid over a grave
+    Answer: Putting a grave in a masjid.
+    Best Answer: All of these options are taking graves as a place of worship.
+
+ 
+  Question: A child is born with his natural belief in Allaah. If a child was left alone he would grow up aware of Allah in His unity. What is this concept called?
+    Answer: Shirk
+    Best Answer: Fitrah
+    Answer: Mawlid
+    Answer: Sihr
+
+ 
+  Question: Horoscopes has the same ruling as: 
+    Answer: Omens
+    Answer: Tameemah
+    Answer: Amulet
+    Best Answer: Fortune telling
+
+ 
+  Question: Prophet (saw) said, "The most Evil of mankind are those will be alive when the Last Day arrives and those who ___________________" (Musnad Ahmed)
+    Answer: Commit shirk
+    Answer: Practice Magic
+    Answer: Worship saints
+    Best Answer: Take graves as a place of worship
+
+ 
+  Question: Although the act is shirk, an object that is used to bring good luck and avert any sort of evil is called:
+    Answer: Omen
+    Best Answer: Tameemah
+    Answer: Amulet
+    Answer: Astrology
+
+ 
+  Question: Sorcery, witchcraft, divination and necromancy are all categories of what? 
+    Answer: Tameemah
+    Answer: Amulet
+    Answer: Fortune telling
+    Best Answer: Sihr

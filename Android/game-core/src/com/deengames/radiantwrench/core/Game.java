@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.deengames.radiantwrench.controller.ScreenController;
+import com.deengames.radiantwrench.util.RadiantWrenchException;
 import com.deengames.radiantwrench.view.ImageButton;
 import com.deengames.radiantwrench.view.Screen;
 import com.deengames.radiantwrench.view.Sprite;
@@ -47,7 +48,7 @@ public class Game implements ApplicationListener, InputProcessor {
 	}
 	
 	@Override
-	public void create () {
+	public void create() {
 		_defaultFont = new BitmapFont();
 		_defaultFont.setColor(Color.WHITE);	
 		
@@ -66,63 +67,54 @@ public class Game implements ApplicationListener, InputProcessor {
 	
 	@Override
 	public void render () {
-		if (this._lastRenderOn == null) {
-			this._lastRenderOn = new Date();
-		}
-		
-		Date now = new Date();		
-		double elapsedTime = (now.getTime() - this._lastRenderOn.getTime()) / 1000f;
-		
-		int SCREEN_WIDTH = Gdx.graphics.getWidth();
-		int SCREEN_HEIGHT = Gdx.graphics.getHeight();
-		int centerX = SCREEN_WIDTH / 2;
-		int centerY = SCREEN_HEIGHT / 2;
-
-		Screen currentScreen = ScreenController.getCurrentScreen();
-		currentScreen.update(elapsedTime);
-		
-		clearScreen();
-
-		_spriteBatch.begin();
-		_spriteBatch.setColor(Color.WHITE);	
-		
-		for (Sprite s : currentScreen.getSprites()) {
-			if (s.getFileName().endsWith("/blackout.jpg")) {
-				// For some reason, assigning this early on gives us two copies?!?!
-				this._blackout = s;
-			} else {
-				drawSprite(s, SCREEN_HEIGHT);
+		try {
+			if (this._lastRenderOn == null) {
+				this._lastRenderOn = new Date();
 			}
-		}
-		
-		_spriteBatch.setColor(NO_BLENDING);
-		
-		for (Text t : currentScreen.getTexts()) {
-			BitmapFont font = _defaultFont;			
-			if (t.getFont() != null) {
-				font = t.getFont();
-			}
-			font.draw(this._spriteBatch, t.getDisplayText(), t.getX(), SCREEN_HEIGHT - t.getY());			
-		}
-		
-		for (ImageButton b : currentScreen.getImageButtons()) {
-			b.x = 50;
-			b.y = 50;
-			_spriteBatch.draw(b.getCurrentRegion(), b.x, b.y);
-		}
-		
-		this.drawSprite(this._blackout, SCREEN_HEIGHT);
 			
-		_spriteBatch.end();
-		
-		this._lastRenderOn = new Date();
-	}
-
-	private void drawSprite(Sprite s, int SCREEN_HEIGHT) {
-		Texture t = s.getTexture();			
-		_spriteBatch.setColor(new Color(1, 1, 1, s.getAlpha()));
-		_spriteBatch.draw(t,  0f + s.getX(), 0f + SCREEN_HEIGHT - t.getHeight() - s.getY(), 0, 0, 
-				t.getWidth(), t.getHeight());
+			Date now = new Date();		
+			double elapsedTime = (now.getTime() - this._lastRenderOn.getTime()) / 1000f;
+			
+			int SCREEN_WIDTH = Gdx.graphics.getWidth();
+			int SCREEN_HEIGHT = Gdx.graphics.getHeight();
+			int centerX = SCREEN_WIDTH / 2;
+			int centerY = SCREEN_HEIGHT / 2;
+	
+			Screen currentScreen = ScreenController.getCurrentScreen();
+			currentScreen.update(elapsedTime);
+			
+			clearScreen();
+	
+			_spriteBatch.begin();
+			_spriteBatch.setColor(Color.WHITE);	
+			
+			for (Sprite s : currentScreen.getSprites()) {
+				if (s.getFileName().endsWith("/blackout.jpg")) {
+					// For some reason, assigning this early on gives us two copies?!?!
+					this._blackout = s;
+				} else {
+					s.draw(this._spriteBatch);
+				}
+			}
+			
+			_spriteBatch.setColor(NO_BLENDING);
+			
+			for (Text t : currentScreen.getTexts()) {
+				t.draw(this._spriteBatch);
+			}
+			
+			for (ImageButton b : currentScreen.getImageButtons()) {
+				b.rwDraw(this._spriteBatch);
+			}
+			
+			this._blackout.draw(this._spriteBatch);
+				
+			_spriteBatch.end();
+			
+			this._lastRenderOn = new Date();
+		} catch (Exception e) {
+			ScreenController.getCurrentScreen().showException(e);
+		}
 	}
 	
 	@Override
@@ -219,5 +211,9 @@ public class Game implements ApplicationListener, InputProcessor {
 		}
 		
 		return true;
+	}
+
+	public void rethrowException(RadiantWrenchException r) throws RadiantWrenchException {
+		throw r;
 	}
 }
