@@ -2,9 +2,11 @@ package com.deengames.radiantwrench.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.actors.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.deengames.radiantwrench.controller.ScreenController;
 import com.deengames.radiantwrench.utils.ClickListener;
 import com.deengames.radiantwrench.utils.Clickable;
 
@@ -27,8 +29,10 @@ public class ImageButton extends Image implements Clickable {
 
 	@Override
 	public boolean touchDown(float x, float y, int pointer) {
+		int yFromTop = (int)(ScreenController.getCurrentScreen().getHeight() - y);
+		
 		boolean touchDown = (x >= this.x && x <= this.x + this.width && 
-				y >= this.y && y <= this.y + this.height);
+				yFromTop >= this.y && yFromTop <= this.y + this.height);
 		
 		if (touchDown) {
 			this.region  = this._down;
@@ -78,7 +82,7 @@ public class ImageButton extends Image implements Clickable {
 
 	public TextureRegion getCurrentRegion() {
 		if (this._currentRegion == null) {
-			this._currentRegion = this._down;
+			this._currentRegion = this._up;
 		}
 		
 		return this._currentRegion;
@@ -86,5 +90,11 @@ public class ImageButton extends Image implements Clickable {
 	
 	public void setClickListener(ClickListener c) {
 		this._clickListener = c;
+	}
+
+	// THere's already a draw from our inherited class. Sigh. RW = Radiant Wrench
+	public void rwDraw(SpriteBatch _spriteBatch) {
+		// Calculating Y is complicated (inverted Y). Sigh. Just accept it, it's experimentally derived.
+		_spriteBatch.draw(this._currentRegion, this.x, ScreenController.getCurrentScreen().getHeight() - this.y - this.height);
 	}
 }

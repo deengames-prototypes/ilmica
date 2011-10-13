@@ -4,7 +4,10 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.deengames.radiantwrench.controller.ScreenController;
 import com.deengames.radiantwrench.core.Game;
+import com.deengames.radiantwrench.util.RadiantWrenchException;
 import com.deengames.radiantwrench.utils.Action;
 import com.deengames.radiantwrench.utils.ClickListener;
 import com.deengames.radiantwrench.utils.Clickable;
@@ -18,11 +21,13 @@ public class Text implements Drawable, Clickable {
 	private BitmapFont _font;
 	private boolean _wasDown = false;
 
+	private int _maxWidth = Integer.MAX_VALUE;
+	
 	private ClickListener _clickListener;
 	
 	public Text(String text) {
 		this._text = text;
-		this._font = Game.getCurrentGame().getDefaultFont();
+		this._font = new BitmapFont();
 	}
 	
 	public boolean touchDown(float x, float y, int pointer) {
@@ -48,6 +53,13 @@ public class Text implements Drawable, Clickable {
 			
 			this._wasDown = false;
 		}
+	}
+	
+	public void setMaxWidth(int value) throws RadiantWrenchException {
+		if (this._maxWidth < 1) {
+			throw new RadiantWrenchException("MaxWidth must be at least 1.");
+		}
+		this._maxWidth = value;
 	}
 	
 	public int getX() {
@@ -96,5 +108,15 @@ public class Text implements Drawable, Clickable {
 	
 	public void setClickListener(ClickListener c) {
 		this._clickListener = c;
+	}
+
+	public void draw(SpriteBatch spriteBatch) {
+		if (this._maxWidth == Integer.MAX_VALUE) {
+			this._font.draw(spriteBatch, this._text,
+				this._x, ScreenController.getCurrentScreen().getHeight() - this._y);
+		} else {
+			this._font.drawWrapped(spriteBatch, this._text,
+				this._x, ScreenController.getCurrentScreen().getHeight() - this._y, this._maxWidth);
+		}
 	}
 }

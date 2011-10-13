@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.deengames.radiantwrench.core.Game;
+import com.deengames.radiantwrench.util.RadiantWrenchException;
 import com.deengames.radiantwrench.utils.Action;
 
 public class Screen {	
@@ -38,7 +40,7 @@ public class Screen {
 	
 	protected ArrayList<Sprite> _sprites = new ArrayList<Sprite>();
 	protected ArrayList<Text> _texts = new ArrayList<Text>();
-	private Sprite _blackoutSprite;
+	protected Sprite _blackoutSprite;
 		
 	public Sprite[] getSprites() { 
 		return this._sprites.toArray(new Sprite[0]);
@@ -52,13 +54,13 @@ public class Screen {
 		return this._imageButtons.toArray(new ImageButton[0]);
 	}
 	
-	public void initialize() {
+	public void initialize() throws RadiantWrenchException {
 		this._blackoutSprite = this.addSprite("content/blackout.jpg");
 		this._blackoutSprite.setZ(999999999);
 		this._blackoutSprite.setAlpha(0);
 	}
 	
-	public void update(double elapsedSeconds) {
+	public void update(double elapsedSeconds) throws RadiantWrenchException {
 		for (Sprite s : this._sprites) {
 			s.update();
 		}
@@ -92,7 +94,7 @@ public class Screen {
 		this._blackoutSprite.setAlphaRate(-1.0f / inSeconds);
 	}
 	
-	private void updateSpriteAlphas(double elapsedSeconds)
+	private void updateSpriteAlphas(double elapsedSeconds) throws RadiantWrenchException
         {
 			for (Sprite sprite : this._sprites)
             {
@@ -160,8 +162,8 @@ public class Screen {
 		int halfWidth = t.getWidth() / 2;
 		int width = t.getWidth();
 		
-		b.setDownRegion(new TextureRegion(t, 0, 0, halfWidth, t.getHeight()));
-		b.setUpRegion(new TextureRegion(t, halfWidth, 0, halfWidth, t.getHeight()));
+		b.setUpRegion(new TextureRegion(t, 0, 0, halfWidth, t.getHeight()));
+		b.setDownRegion(new TextureRegion(t, halfWidth, 0, halfWidth, t.getHeight()));
 		this._imageButtons.add(b);
 		return b;
 	}
@@ -172,5 +174,15 @@ public class Screen {
 	
 	public int getHeight() {
 		return Gdx.graphics.getHeight();
+	}
+	
+	public void showException(Exception e) {
+		this._sprites.clear();
+		this._texts.clear();
+		this._imageButtons.clear();
+		
+		Text t= this.addText("An exception occurred: " + e.getMessage());
+		t.getFont().setScale(2);
+		t.getFont().setColor(Color.RED);
 	}
 }
