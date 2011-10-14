@@ -37,6 +37,8 @@ public class QuizScreen extends Screen {
 	private final int CHECKMARK_IMAGE_HORIZONTAL_WHITESPACE_OFFSET = 4;
 	private final int CHECKMARK_IMAGE_VERTICAL_WHITESPACE_OFFSET = 9;
 	
+	private ImageCheckbox _clickedCheckbox = null;
+	
 	public QuizScreen(String setName) {
 		this._setName = setName;
 	}
@@ -86,6 +88,27 @@ public class QuizScreen extends Screen {
 			c.setScale(0.25f);
 			c.x = t.getX() - c.getScaledWidth() - CHECKMARK_IMAGE_HORIZONTAL_WHITESPACE_OFFSET;
 			c.y = t.getY() - CHECKMARK_IMAGE_VERTICAL_WHITESPACE_OFFSET;
+			
+			c.setClickListener(new ClickListener() {
+				public void onClick(Clickable clickable) {
+					_clickedCheckbox = (ImageCheckbox)clickable;
+					checkedQuestionChanged();
+				}			
+			});
+		}
+	}
+	
+	/**
+	 * Uncheck every checkbox except the checked guy.
+	 * Essentially, this is like a set of radio buttons.
+	 */
+	public void checkedQuestionChanged() {
+		for (ImageCheckbox c : this._imageCheckBoxes) {
+			if (c == this._clickedCheckbox && c.getIsChecked() == true) {
+				c.setIsChecked(true);
+			} else {
+				c.setIsChecked(false);
+			}
 		}
 	}
 }

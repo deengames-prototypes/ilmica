@@ -66,6 +66,10 @@ public class ImageCheckbox extends Image implements Clickable {
 			} else {
 				this.region = this._unchecked;
 			}
+			
+			if (this._clickListener != null) {
+				this._clickListener.onClick(this);
+			}
 		}
 
 		return touchDown;
@@ -103,6 +107,11 @@ public class ImageCheckbox extends Image implements Clickable {
 
 	public void setIsChecked(boolean value) {
 		this._isChecked = value;
+		if (this._isChecked) {
+			this.region = this._checked;			
+		} else {
+			this.region = this._unchecked;
+		}
 	}
 	
 	public int getScaledWidth() {
@@ -125,6 +134,10 @@ public class ImageCheckbox extends Image implements Clickable {
 		spriteBatch.draw(this.region, this.x, 
 				ScreenController.getCurrentScreen().getHeight() - this.y - this.getScaledHeight(),
 				this.getScaledWidth(), this.getScaledHeight());
+	}
+
+	public boolean getIsChecked() {
+		return this._isChecked;
 	}
 	
 }
