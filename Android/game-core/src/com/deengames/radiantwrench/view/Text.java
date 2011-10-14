@@ -7,10 +7,10 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.deengames.radiantwrench.controller.ScreenController;
 import com.deengames.radiantwrench.core.Game;
-import com.deengames.radiantwrench.util.RadiantWrenchException;
 import com.deengames.radiantwrench.utils.Action;
 import com.deengames.radiantwrench.utils.ClickListener;
 import com.deengames.radiantwrench.utils.Clickable;
+import com.deengames.radiantwrench.utils.RadiantWrenchException;
 
 public class Text implements Drawable, Clickable {
 	
@@ -55,7 +55,7 @@ public class Text implements Drawable, Clickable {
 		}
 	}
 	
-	public void setMaxWidth(int value) throws RadiantWrenchException {
+	public void setMaxWidth(int value) { // throws RadiantWrenchException {
 		if (this._maxWidth < 1) {
 			throw new RadiantWrenchException("MaxWidth must be at least 1.");
 		}
@@ -95,7 +95,7 @@ public class Text implements Drawable, Clickable {
 	}
 
 	public int getHeight() {
-		return Math.round(this._font.getBounds(this._text).height);
+		return Math.round(this._font.getWrappedBounds(this._text, this._maxWidth).height);
 	}
 	
 	public BitmapFont getFont() {

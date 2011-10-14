@@ -1,6 +1,5 @@
 package com.deengames.radiantwrench.utils;
 
-import com.deengames.radiantwrench.util.RadiantWrenchException;
 
 /**
  * Just like our C# equivalent, a generic method delegate that takes
@@ -9,5 +8,5 @@ import com.deengames.radiantwrench.util.RadiantWrenchException;
  *
  */
 public interface Action {
-	void invoke() throws RadiantWrenchException;
+	void invoke();
 }

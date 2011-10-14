@@ -29,16 +29,17 @@ import com.deengames.ilmica.screens.SplashScreen;
 import com.deengames.ilmica.screens.TitleScreen;
 import com.deengames.radiantwrench.controller.ScreenController;
 import com.deengames.radiantwrench.core.Game;
-import com.deengames.radiantwrench.util.RadiantWrenchException;
+import com.deengames.radiantwrench.utils.RadiantWrenchException;
 
 public class IlmicaGame extends Game implements ApplicationListener {
 	
 	public void create() {
-		try {
+		//try {
+			//ScreenController.showScreen(new SplashScreen());
 			ScreenController.showScreen(new QuizScreen("Fundamentals of Tawheed 1.0"));
 			super.create();
-		} catch (Exception e) {
-			ScreenController.getCurrentScreen().showException(e);
-		}
+		//} catch (Exception e) {
+		//	ScreenController.getCurrentScreen().showException(e);
+		//}
 	}
 }

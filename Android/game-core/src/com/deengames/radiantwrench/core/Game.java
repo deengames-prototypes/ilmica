@@ -18,8 +18,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.deengames.radiantwrench.controller.ScreenController;
-import com.deengames.radiantwrench.util.RadiantWrenchException;
+import com.deengames.radiantwrench.utils.RadiantWrenchException;
 import com.deengames.radiantwrench.view.ImageButton;
+import com.deengames.radiantwrench.view.ImageCheckbox;
 import com.deengames.radiantwrench.view.Screen;
 import com.deengames.radiantwrench.view.Sprite;
 import com.deengames.radiantwrench.view.Text;
@@ -67,7 +68,7 @@ public class Game implements ApplicationListener, InputProcessor {
 	
 	@Override
 	public void render () {
-		try {
+		//try {
 			if (this._lastRenderOn == null) {
 				this._lastRenderOn = new Date();
 			}
@@ -107,14 +108,18 @@ public class Game implements ApplicationListener, InputProcessor {
 				b.rwDraw(this._spriteBatch);
 			}
 			
+			for (ImageCheckbox i : currentScreen.getImageCheckboxes()) {
+				i.rwDraw(this._spriteBatch);
+			}
+			
 			this._blackout.draw(this._spriteBatch);
 				
 			_spriteBatch.end();
 			
 			this._lastRenderOn = new Date();
-		} catch (Exception e) {
+		/*} catch (Exception e) {
 			ScreenController.getCurrentScreen().showException(e);
-		}
+		}*/
 	}
 	
 	@Override
@@ -177,6 +182,10 @@ public class Game implements ApplicationListener, InputProcessor {
 		
 		for (ImageButton b : currentScreen.getImageButtons()) {
 			b.touchDown(x, yFromScreenTop, pointer);			
+		}
+		
+		for (ImageCheckbox c : currentScreen.getImageCheckboxes()) {
+			c.touchDown(x, yFromScreenTop, pointer);
 		}
 		
 		return true;
