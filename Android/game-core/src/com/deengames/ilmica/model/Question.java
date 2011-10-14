@@ -29,4 +29,8 @@ public class Question {
 			this._bestAnswer = this._answers.size() - 1;			
 		}
 	}
+
+	public String[] getAnswers() {
+		return this._answers.toArray(new String[0]);
+	}
 }

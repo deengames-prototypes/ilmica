@@ -7,10 +7,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.deengames.ilmica.model.DataHelper;
 import com.deengames.radiantwrench.controller.ScreenController;
-import com.deengames.radiantwrench.util.RadiantWrenchException;
 import com.deengames.radiantwrench.utils.Action;
 import com.deengames.radiantwrench.utils.ClickListener;
 import com.deengames.radiantwrench.utils.Clickable;
+import com.deengames.radiantwrench.utils.RadiantWrenchException;
 import com.deengames.radiantwrench.view.ImageButton;
 import com.deengames.radiantwrench.view.Screen;
 import com.deengames.radiantwrench.view.Sprite;
@@ -21,7 +21,7 @@ public class SetSelectionScreen extends Screen {
 	private final int VERTICAL_SPACE_BETWEEN_SETS = 30;
 	
 	@Override
-	public void initialize() throws RadiantWrenchException {
+	public void initialize() { // throws RadiantWrenchException {
 		super.initialize();
 		
 		this.fadeOutImmediately();
@@ -43,7 +43,7 @@ public class SetSelectionScreen extends Screen {
 				public void onClick(Clickable clicked) {
 					ScreenController.getCurrentScreen().fadeOut();
 					ScreenController.getCurrentScreen().addFadeOutListener(new Action() {
-						public void invoke() throws RadiantWrenchException {
+						public void invoke() {
 							ScreenController.showScreen(new QuizScreen(t.getDisplayText()));
 						}
 					});

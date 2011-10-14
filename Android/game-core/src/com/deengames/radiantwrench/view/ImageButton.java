@@ -13,18 +13,26 @@ import com.deengames.radiantwrench.utils.Clickable;
 // Adapted from http://www.badlogicgames.com/forum/viewtopic.php?f=11&t=2168&sid=a5ac07a6f80769c1b8405b8ba181e913#p11486
 public class ImageButton extends Image implements Clickable {
 	
-	private TextureRegion _currentRegion;
 	private TextureRegion _down;
 	private TextureRegion _up;
 	private Texture _texture;
 	private String _fileName;
-	private boolean _wasDown = false;
+	private boolean _wasClicked = false;
 
 	private ClickListener _clickListener;
 
 	public ImageButton(String fileName) {
 		super("Button");
 		this._fileName = fileName;
+		
+		this.loadTexture();
+		Texture t = this.getTexture();
+		
+		int halfWidth = t.getWidth() / 2;
+		int width = t.getWidth();
+		
+		this.setUpRegion(new TextureRegion(t, 0, 0, halfWidth, t.getHeight()));
+		this.setDownRegion(new TextureRegion(t, halfWidth, 0, halfWidth, t.getHeight()));
 	}
 
 	@Override
@@ -36,8 +44,7 @@ public class ImageButton extends Image implements Clickable {
 		
 		if (touchDown) {
 			this.region  = this._down;
-			this._wasDown = true;
-			this._currentRegion = this._down;
+			this._wasClicked = true;
 		}
 
 		return touchDown;
@@ -46,15 +53,14 @@ public class ImageButton extends Image implements Clickable {
 	@Override
 	public void touchUp(float x, float y, int pointer) {
 		this.region = this._up;
-		this._currentRegion = this._up;
 		super.touchUp(x, y, pointer);
 		
-		if (this._wasDown) {
+		if (this._wasClicked) {
 			if (this._clickListener != null) {
 				this._clickListener.onClick(this);
 			}
 			
-			this._wasDown = false;
+			this._wasClicked = false;
 		}
 	}
 
@@ -74,27 +80,26 @@ public class ImageButton extends Image implements Clickable {
 
 	public void setUpRegion(TextureRegion up) {
 		this._up = up;
-		this._currentRegion = this._up;
 		if (this.region != null) {
 			this.region.setRegion(this._up);			
 		}
 	}
 
-	public TextureRegion getCurrentRegion() {
-		if (this._currentRegion == null) {
-			this._currentRegion = this._up;
-		}
-		
-		return this._currentRegion;
-	}
-	
 	public void setClickListener(ClickListener c) {
 		this._clickListener = c;
 	}
+	
+	private void verifyRegionIsSet() {
+		if (this.region == null) {
+			this.region = this._up;
+		}
+	}
 
-	// THere's already a draw from our inherited class. Sigh. RW = Radiant Wrench
+
+	// There's already a draw from our inherited class. Sigh. RW = Radiant Wrench
 	public void rwDraw(SpriteBatch _spriteBatch) {
+		verifyRegionIsSet();
 		// Calculating Y is complicated (inverted Y). Sigh. Just accept it, it's experimentally derived.
-		_spriteBatch.draw(this._currentRegion, this.x, ScreenController.getCurrentScreen().getHeight() - this.y - this.height);
+		_spriteBatch.draw(this.region, this.x, ScreenController.getCurrentScreen().getHeight() - this.y - this.height);
 	}
 }
