@@ -24,13 +24,16 @@ public class MainController {
 		} else if (allQuestions.size() == numQuestions) {
 			return allQuestions.toArray(new Question[0]);
 		} else {
+			// Pick random questions
 			Random rGen = new Random();
 			while (toReturn.size() < numQuestions) {
-				int nextQuestion = rGen.nextInt(allQuestions.size());
-				toReturn.add(allQuestions.get(nextQuestion));
+				int nextQuestionIndex = rGen.nextInt(allQuestions.size());
+				Question nextQuestion = allQuestions.get(nextQuestionIndex); 
+				toReturn.add(nextQuestion);
 				// Prevent dupes
-				allQuestions.remove(nextQuestion);
-			}
+				allQuestions.remove(nextQuestionIndex);
+				nextQuestion.randomizeAnswerOrder();
+			}			
 		}
 		
 		return toReturn.toArray(new Question[0]);
