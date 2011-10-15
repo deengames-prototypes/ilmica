@@ -3,6 +3,7 @@ package com.deengames.ilmica.screens;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
@@ -52,12 +53,12 @@ public class QuizScreen extends Screen {
 		this.addSprite("content/mainMenuBackground.jpg");
 		
 		Text t = this.addText(_setName);
-		t.getFont().setScale(2);
+		t.setFontSize(24);
 		t.setX((this.getWidth() - t.getWidth()) / 2);
 		t.setY(12);
 		
 		this._questionText = this.addText("");
-		this._questionText.getFont().setScale(1.20f);
+		this._questionText.setFontSize(14);
 		this._questionText.setX(QUESTION_TEXT_HORIZONTAL_OFFSET);
 		this._questionText.setY(t.getY() + QUESTION_TEXT_VERTICAL_OFFSET);
 		
@@ -95,6 +96,7 @@ public class QuizScreen extends Screen {
 			t.setY(this._questionText.getY() + 
 					ANSWERS_PADDING_FROM_QUESTION + 
 					this._questionText.getHeight() + (SPACE_BETWEEN_ANSWERS * i));
+			t.setFontSize(12);
 			
 			ImageCheckbox c = this.addImageCheckbox();
 			c.setScale(0.25f);
