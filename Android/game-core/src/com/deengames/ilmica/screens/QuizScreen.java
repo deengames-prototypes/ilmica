@@ -66,18 +66,7 @@ public class QuizScreen extends Screen {
 		this._questionText.setMaxWidth(this.getWidth() - (2 * QUESTION_TEXT_HORIZONTAL_OFFSET));
 		
 		this._questions = MainController.makeQuizForSet(this._setName);
-		showFirstQuestion();
-
-		SpriteSheet s = this.addSpriteSheet("content/left-button.png", 128, 128);
-		s.setFrameIndex(1);
-		s.setScale(2.25f);
-		
-		s = this.addSpriteSheet("content/left-button.png", 128, 128);
-		s.setFrameIndex(1);
-
-		s = this.addSpriteSheet("content/left-button.png", 128, 128);
-		s.setScale(0.25f);
-
+		showFirstQuestion();		
 		
 		this.fadeIn();
 	}
@@ -99,7 +88,6 @@ public class QuizScreen extends Screen {
 			t.setFontSize(12);
 			
 			ImageCheckbox c = this.addImageCheckbox();
-			c.setScale(0.25f);
 			c.x = t.getX() - c.getScaledWidth() - CHECKMARK_IMAGE_HORIZONTAL_WHITESPACE_OFFSET;
 			c.y = t.getY() - CHECKMARK_IMAGE_VERTICAL_WHITESPACE_OFFSET;
 			

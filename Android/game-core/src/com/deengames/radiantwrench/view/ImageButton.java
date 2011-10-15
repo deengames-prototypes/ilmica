@@ -34,6 +34,10 @@ public class ImageButton extends Image implements Clickable {
 		
 		this.setUpRegion(new TextureRegion(t, 0, 0, halfWidth, t.getHeight()));
 		this.setDownRegion(new TextureRegion(t, halfWidth, 0, halfWidth, t.getHeight()));
+		
+		this.rotation = 123;
+		this.originX = width;
+		this.originY = 999;
 	}
 	
 	public void setScale(float scale) {
@@ -108,14 +112,38 @@ public class ImageButton extends Image implements Clickable {
 			this.region = this._up;
 		}
 	}
+	
+	public int getScaledWidth() {
+		return Math.round(this.width * this.scaleX);
+	}
+	
+	public int getScaledHeight() {
+		return Math.round(this.height * this.scaleY);
+	}
 
 
 	// There's already a draw from our inherited class. Sigh. RW = Radiant Wrench
-	public void rwDraw(SpriteBatch _spriteBatch) {
+	public void rwDraw(SpriteBatch spriteBatch) {
 		verifyRegionIsSet();
+		
 		// Calculating Y is complicated (inverted Y). Sigh. Just accept it, it's experimentally derived.
-		_spriteBatch.draw(this.region, this.x,
+		spriteBatch.draw(this.region, this.x,
 				ScreenController.getCurrentScreen().getHeight() - this.y - this.height,
 				this.scaleX * this.width, this.scaleY * this.height);
+		
+		/*
+		 * Epic fail LOL, looked at the wrong class three times XD
+		 
+		float destX = this.x;
+		float destY = ScreenController.getCurrentScreen().getHeight() - this.y - this.height;
+		int srcX = (this.region == _up ? 0 : Math.round(this.width / 2)); 
+				
+		spriteBatch.draw(this._texture, destX, destY,
+				this.originX, this.originY, this.getScaledWidth(), this.getScaledHeight(), // Use center origin
+				this.originX, this.originY, this.rotation, // No scale/rotation, really
+				srcX, 0, Math.round(this.width), Math.round(this.height), // Assume 2 frames
+				false, false); // No flip
+		*/
+				
 	}
 }
