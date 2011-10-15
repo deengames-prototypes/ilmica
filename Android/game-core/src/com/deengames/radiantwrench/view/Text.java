@@ -2,6 +2,7 @@ package com.deengames.radiantwrench.view;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,6 +21,11 @@ public class Text implements Drawable, Clickable {
 	private String _text = "";
 	private BitmapFont _font;
 	private boolean _wasDown = false;
+	
+	// Todo: generate somehow?
+	private int[] _fontSizes = new int[] { 
+			12, 14, 24, 72
+	};
 
 	private int _maxWidth = Integer.MAX_VALUE;
 	
@@ -27,7 +33,7 @@ public class Text implements Drawable, Clickable {
 	
 	public Text(String text) {
 		this._text = text;
-		this._font = new BitmapFont();
+		this.setFontSize(15);
 	}
 	
 	public boolean touchDown(float x, float y, int pointer) {
@@ -110,6 +116,30 @@ public class Text implements Drawable, Clickable {
 		this._clickListener = c;
 	}
 
+	
+	/**
+	 * Android only supports LTR. So LibGDX uses bitmap fonts ...
+	 * Given that quality degrades to crap, know about what fonts
+	 * exist in the file-system; choose the closest, and scale.
+	 * @param fontSize the target font size
+	 */
+	public void setFontSize(float fontSize) {
+		int bestFit = this._fontSizes[0];
+		
+		for (int f : this._fontSizes) {
+			if (Math.abs(f - fontSize) < Math.abs(bestFit - fontSize)) {
+				bestFit = f;
+			}
+		}
+
+		// Load best-fit font
+		this._font = new BitmapFont(new FileHandle("Content/fonts/arial-" + bestFit + "pt-white.fnt"), false);
+		// Scale
+		if (bestFit != fontSize) {
+			this._font.scale(fontSize / bestFit);
+		}
+	}
+	
 	public void draw(SpriteBatch spriteBatch) {
 		if (this._maxWidth == Integer.MAX_VALUE) {
 			this._font.draw(spriteBatch, this._text,
