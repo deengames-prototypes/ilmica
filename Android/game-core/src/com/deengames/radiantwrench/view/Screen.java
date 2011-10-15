@@ -62,7 +62,7 @@ public class Screen {
 	}
 
 	public void initialize() { //throws RadiantWrenchException {
-		this._blackoutSprite = this.addSprite("content/blackout.jpg");
+		this._blackoutSprite = this.addSprite("content/images/blackout.jpg");
 		this._blackoutSprite.setZ(Integer.MAX_VALUE);
 		this._blackoutSprite.setAlpha(0);
 	}
@@ -160,7 +160,7 @@ public class Screen {
 		return t;
 	}
 
-	public ImageButton addImageButon(String fileName) {
+	public ImageButton addImageButton(String fileName) {
 		ImageButton b = new ImageButton(fileName);
 		this._imageButtons.add(b);
 		return b;
@@ -171,7 +171,7 @@ public class Screen {
 	}
 
 	public ImageCheckbox addImageCheckbox(boolean isChecked) {
-		ImageCheckbox c = new ImageCheckbox("content/checkmark.png");
+		ImageCheckbox c = new ImageCheckbox("content/images/radiobutton.png");
 		c.setIsChecked(isChecked);
 		this._imageCheckBoxes.add(c);
 		return c;

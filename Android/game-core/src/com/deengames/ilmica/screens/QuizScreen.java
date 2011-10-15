@@ -40,6 +40,11 @@ public class QuizScreen extends Screen {
 	private final int CHECKMARK_IMAGE_VERTICAL_WHITESPACE_OFFSET = 10;
 	
 	private ImageCheckbox _clickedCheckbox = null;
+	private SpriteSheet _previousButton = null;
+	private SpriteSheet _nextButton = null;
+	
+	// TODO: move into model?
+	int _currentQuestionIndex = 0;
 	
 	public QuizScreen(String setName) {
 		this._setName = setName;
@@ -50,7 +55,7 @@ public class QuizScreen extends Screen {
 		super.initialize();
 		
 		this.fadeOutImmediately();
-		this.addSprite("content/mainMenuBackground.jpg");
+		this.addSprite("content/images/mainMenuBackground.jpg");
 		
 		Text t = this.addText(_setName);
 		t.setFontSize(24);
@@ -66,16 +71,69 @@ public class QuizScreen extends Screen {
 		this._questionText.setMaxWidth(this.getWidth() - (2 * QUESTION_TEXT_HORIZONTAL_OFFSET));
 		
 		this._questions = MainController.makeQuizForSet(this._setName);
-		showFirstQuestion();		
+		
+		Sprite doneButton = this.addSprite("content/images/checkmark.png");
+		doneButton.setX((this.getWidth() - doneButton.getWidth()) / 2);
+		doneButton.setY(this.getHeight() - doneButton.getHeight());
+		
+		this._previousButton = this.addSpriteSheet("content/images/left-arrow.png", 64, 64);
+		this._previousButton.setY(this.getHeight() - this._previousButton.getHeight());
+		this._previousButton.setClickListener(new ClickListener() {
+			public void onClick(Clickable clickable) {
+				showPreviousQuestionIfPossible();
+			}
+		});
+		
+		this._nextButton = this.addSpriteSheet("content/images/right-arrow.png", 64, 64);
+		this._nextButton.setX(this.getWidth() - this._nextButton.getWidth());
+		this._nextButton.setY(this.getHeight() - this._nextButton.getHeight());
+		this._nextButton.setClickListener(new ClickListener() {
+			public void onClick(Clickable clickable) {
+				showNextQuestionIfPossible();
+			}
+		});
+
+		showCurrentQuestion();
 		
 		this.fadeIn();
 	}
 
-	private void showFirstQuestion() {
-		showQuestion(0);
+	private void showPreviousQuestionIfPossible() {
+		if (this._currentQuestionIndex > 0) {
+			this._currentQuestionIndex--;
+			this.showCurrentQuestion();
+		}
 	}
 	
-	private void showQuestion(int index) {
+	private void showNextQuestionIfPossible() {
+		if (this._currentQuestionIndex < this._questions.length - 1) {
+			this._currentQuestionIndex++;
+			this.showCurrentQuestion();
+		}
+	}
+	
+	private void setupNextAndPreviousControls(int questionNumber) {
+		if (questionNumber > 0) {
+			this._previousButton.setFrameIndex(1);
+		} else {
+			this._previousButton.setFrameIndex(0);
+		}
+		
+		if (questionNumber == this._questions.length - 1) {
+			this._nextButton.setFrameIndex(0);
+		} else {
+			this._nextButton.setFrameIndex(1);
+		}
+	}
+
+	private void showCurrentQuestion() {		
+		showQuestionAndAnswers(this._currentQuestionIndex);
+		setupNextAndPreviousControls(this._currentQuestionIndex);
+	}
+
+	private void showQuestionAndAnswers(int index) {
+		clearPreviousAnswerControls();
+		
 		this._questionText.setDisplayText(this._questions[index].getText());
 		String[] answers = this._questions[index].getAnswers();
 		
@@ -100,6 +158,24 @@ public class QuizScreen extends Screen {
 		}
 	}
 	
+	private void clearPreviousAnswerControls() {
+		// Iterating over a list and removing items from it? ARRR MATEY!
+		ArrayList<Text> toRemove = new ArrayList<Text>();
+		
+		for (int i = 0; i < this._texts.size(); i++) {
+			Text t = this._texts.get(i);
+			if (t != this._questionText) {
+				toRemove.add(t);
+			}
+		}
+		
+		this._texts.removeAll(toRemove);
+		
+		while (this._imageCheckBoxes.size() > 0) {
+			this._imageCheckBoxes.remove(0);
+		}
+	}
+
 	/**
 	 * Uncheck every checkbox except the checked guy.
 	 * Essentially, this is like a set of radio buttons.

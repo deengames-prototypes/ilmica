@@ -5,9 +5,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.deengames.radiantwrench.controller.ScreenController;
+import com.deengames.radiantwrench.utils.ClickListener;
+import com.deengames.radiantwrench.utils.Clickable;
 import com.deengames.radiantwrench.utils.RadiantWrenchException;
 
-public class Sprite implements Comparable<Sprite>, Drawable {
+public class Sprite implements Comparable<Sprite>, Drawable, Clickable {
 	
 	protected int _x = 0;
 	protected int _y = 0;
@@ -20,6 +22,9 @@ public class Sprite implements Comparable<Sprite>, Drawable {
 	protected int _rotationAngle = 0;
 	protected float _alpha = 1;
 	protected float _alphaRate = 0;
+
+	private ClickListener _clickListener;
+	private boolean _wasClicked = false;
 
 	public Sprite(String fileName) {
 		this._fileName = fileName;
@@ -129,16 +134,7 @@ public class Sprite implements Comparable<Sprite>, Drawable {
 	
 	public String getFileName() {
 		return this._fileName;
-	}
-
-	public void draw(SpriteBatch spriteBatch) {
-		int screenHeight = ScreenController.getCurrentScreen().getHeight();
-		Texture t = this._texture;
-		
-		spriteBatch.setColor(new Color(1, 1, 1, this._alpha));
-		spriteBatch.draw(t,  0f + this._x, 0f + screenHeight - t.getHeight() - this._y, 0, 0, 
-				this.getWidth(), this.getHeight());
-	}
+	}	
 
 	public int getHeight() {
 		return Math.round(this.getTexture().getHeight() * this._scale);
@@ -146,5 +142,41 @@ public class Sprite implements Comparable<Sprite>, Drawable {
 
 	public int getWidth() {
 		return Math.round(this.getTexture().getWidth() * this._scale);
+	}
+	
+	public void setClickListener(ClickListener c) {
+		this._clickListener = c;
+	}
+	
+	public boolean touchDown(float x, float y, int pointer) {
+		int yFromTop = (int)(ScreenController.getCurrentScreen().getHeight() - y);
+		
+		boolean touchDown = (x >= this.getX() && x <= this.getX() + this.getWidth() && 
+				yFromTop >= this.getY() && yFromTop <= this.getY() + this.getHeight());
+		
+		if (touchDown) {
+			this._wasClicked = true;
+		}
+
+		return touchDown;
+	}
+
+	public void touchUp(float x, float y, int pointer) {
+		if (this._wasClicked) {
+			if (this._clickListener != null) {
+				this._clickListener.onClick(this);
+			}
+			
+			this._wasClicked  = false;
+		}
+	}
+	
+	public void draw(SpriteBatch spriteBatch) {
+		int screenHeight = ScreenController.getCurrentScreen().getHeight();
+		Texture t = this._texture;
+		
+		spriteBatch.setColor(new Color(1, 1, 1, this._alpha));
+		spriteBatch.draw(t,  0f + this._x, 0f + screenHeight - t.getHeight() - this._y, 0, 0, 
+				this.getWidth(), this.getHeight());
 	}
 }
