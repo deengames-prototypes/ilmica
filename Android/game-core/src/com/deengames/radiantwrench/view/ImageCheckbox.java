@@ -135,9 +135,26 @@ public class ImageCheckbox extends Image implements Clickable {
 	// There's already a draw from our inherited class. Sigh. RW = Radiant Wrench
 	public void rwDraw(SpriteBatch spriteBatch) {
 		verifyRegionIsSet();
+		/*
 		spriteBatch.draw(this.region, this.x, 
 				ScreenController.getCurrentScreen().getHeight() - this.y - this.getScaledHeight(),
 				this.getScaledWidth(), this.getScaledHeight());
+		*/
+		
+		int frameIndex = (this._isChecked == true ? 1 : 0);		
+		int horizontalFrames = 2;
+		int frameWidth = Math.round(this.width);
+		
+		float destX = this.x;
+		float destY = ScreenController.getCurrentScreen().getHeight() - this.y - this.height;
+		int srcX = frameIndex * frameWidth;		
+		
+		spriteBatch.draw(this._texture, destX, destY, // Draw to
+				frameWidth / 2, this.height / 2, // Origin
+				this.width, this.height, // Stretch to this width/height
+				this.scaleX, this.scaleY, 0, // Scale stretch width/height by (1, 1), rotation = 0
+				srcX, 0, Math.round(this.width), Math.round(this.height),
+				false, false); // No flip
 	}
 
 }

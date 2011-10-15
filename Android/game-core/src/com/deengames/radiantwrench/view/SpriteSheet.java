@@ -70,6 +70,7 @@ public class SpriteSheet extends Sprite {
 	
 	
 	public void draw(SpriteBatch spriteBatch) {
+		/*
 		int screenHeight = ScreenController.getCurrentScreen().getHeight();
 		Texture t = this._texture;
 		
@@ -84,5 +85,19 @@ public class SpriteSheet extends Sprite {
 		spriteBatch.setColor(new Color(1, 1, 1, this._alpha));
 		spriteBatch.draw(t,  0f + this._x, 0f + screenHeight - t.getHeight() - this._y,
 				this.getWidth(), this.getHeight(), u, v, u2, v2);
+		*/
+		
+
+		float destX = this._x;
+		float destY = ScreenController.getCurrentScreen().getHeight() - this._y - this.getOriginalHeight();
+		int srcX = this._frameIndex * this._frameWidth;
+		int srcY = this._frameRow * this._frameHeight;
+				
+		spriteBatch.draw(this._texture, destX, destY, // Draw to
+				this._frameWidth / 2, this._frameHeight / 2, // Origin
+				this.getOriginalWidth() / this._horizontalFrames, this.getOriginalHeight() / this._verticalFrames, // Stretch to this width/height
+				this._scale, this._scale, 0, // Scale stretch width/height by (1, 1), rotation = 0
+				srcX, srcY, this._frameWidth, this._frameHeight,
+				false, false); // No flip
 	}
 }
