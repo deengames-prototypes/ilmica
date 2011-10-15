@@ -63,7 +63,7 @@ public class Screen {
 
 	public void initialize() { //throws RadiantWrenchException {
 		this._blackoutSprite = this.addSprite("content/blackout.jpg");
-		this._blackoutSprite.setZ(999999999);
+		this._blackoutSprite.setZ(Integer.MAX_VALUE);
 		this._blackoutSprite.setAlpha(0);
 	}
 
@@ -142,7 +142,13 @@ public class Screen {
 
 	public Sprite addSprite(String fileName) {
 		Sprite s = new Sprite(fileName);
-		s.loadTexture();
+		this._sprites.add(s);
+		Collections.sort(this._sprites);
+		return s;
+	}
+	
+	public SpriteSheet addSpriteSheet(String fileName, int frameWidth, int frameHeight) {
+		SpriteSheet s = new SpriteSheet(fileName, frameWidth, frameHeight);
 		this._sprites.add(s);
 		Collections.sort(this._sprites);
 		return s;
@@ -177,15 +183,5 @@ public class Screen {
 
 	public int getHeight() {
 		return Gdx.graphics.getHeight();
-	}
-
-	public void showException(Exception e) {
-		this._sprites.clear();
-		this._texts.clear();
-		this._imageButtons.clear();
-
-		Text t = this.addText("An exception occurred: " + e.getMessage());
-		t.getFont().setScale(2);
-		t.getFont().setColor(Color.RED);
 	}
 }

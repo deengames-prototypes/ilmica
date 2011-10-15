@@ -128,6 +128,10 @@ public class ImageCheckbox extends Image implements Clickable {
 		}
 	}
 	
+	public boolean getIsChecked() {
+		return this._isChecked;
+	}
+	
 	// There's already a draw from our inherited class. Sigh. RW = Radiant Wrench
 	public void rwDraw(SpriteBatch spriteBatch) {
 		verifyRegionIsSet();
@@ -136,8 +140,4 @@ public class ImageCheckbox extends Image implements Clickable {
 				this.getScaledWidth(), this.getScaledHeight());
 	}
 
-	public boolean getIsChecked() {
-		return this._isChecked;
-	}
-	
 }

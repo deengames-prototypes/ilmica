@@ -55,7 +55,7 @@ public class Game implements ApplicationListener, InputProcessor {
 		
 		// Can't be earlier
 		for (Sprite s : ScreenController.getCurrentScreen().getSprites()) {
-			s.loadTexture();
+			//s.loadTexture();
 			if (s.getFileName().endsWith("/blackout.jpg")) {
 				this._blackout = s;
 			}
