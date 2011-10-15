@@ -5,22 +5,25 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.deengames.radiantwrench.controller.ScreenController;
+import com.deengames.radiantwrench.utils.RadiantWrenchException;
 
 public class Sprite implements Comparable<Sprite>, Drawable {
 	
-	private int _x = 0;
-	private int _y = 0;
-	private int _z = 0;
+	protected int _x = 0;
+	protected int _y = 0;
+	protected int _z = 0;
+	protected float _scale = 1f;
 	
-	private Texture _texture;
+	protected Texture _texture;
 	private String _fileName = "";
 	
-	private int _rotationAngle = 0;
-	private float _alpha = 1;
-	private float _alphaRate = 0;
+	protected int _rotationAngle = 0;
+	protected float _alpha = 1;
+	protected float _alphaRate = 0;
 
 	public Sprite(String fileName) {
 		this._fileName = fileName;
+		this.loadTexture();
 	}
 	
 	public int getX() {
@@ -44,7 +47,15 @@ public class Sprite implements Comparable<Sprite>, Drawable {
 		this._z = z;
 	}
 	
-	public void loadTexture() {
+	public void setScale(float scale) {
+		this._scale = scale;
+	}
+	
+	public float getScale() {
+		return this._scale;
+	}
+	
+	private void loadTexture() {
 		_texture = new Texture(Gdx.files.internal(this._fileName));
 	}
 	
@@ -108,11 +119,11 @@ public class Sprite implements Comparable<Sprite>, Drawable {
 		return this._fileName;
 	}
 
-	public int getWidth() {
+	public int getOriginalWidth() {
 		return this._texture.getWidth();
 	}
 
-	public int getHeight() {
+	public int getOriginalHeight() {
 		return this._texture.getHeight();
 	}
 	
@@ -126,6 +137,14 @@ public class Sprite implements Comparable<Sprite>, Drawable {
 		
 		spriteBatch.setColor(new Color(1, 1, 1, this._alpha));
 		spriteBatch.draw(t,  0f + this._x, 0f + screenHeight - t.getHeight() - this._y, 0, 0, 
-				t.getWidth(), t.getHeight());
+				this.getWidth(), this.getHeight());
+	}
+
+	public int getHeight() {
+		return Math.round(this.getTexture().getHeight() * this._scale);
+	}
+
+	public int getWidth() {
+		return Math.round(this.getTexture().getWidth() * this._scale);
 	}
 }

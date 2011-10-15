@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.deengames.radiantwrench.controller.ScreenController;
 import com.deengames.radiantwrench.utils.ClickListener;
 import com.deengames.radiantwrench.utils.Clickable;
+import com.deengames.radiantwrench.utils.RadiantWrenchException;
 
 // Adapted from http://www.badlogicgames.com/forum/viewtopic.php?f=11&t=2168&sid=a5ac07a6f80769c1b8405b8ba181e913#p11486
 public class ImageButton extends Image implements Clickable {
@@ -33,6 +34,19 @@ public class ImageButton extends Image implements Clickable {
 		
 		this.setUpRegion(new TextureRegion(t, 0, 0, halfWidth, t.getHeight()));
 		this.setDownRegion(new TextureRegion(t, halfWidth, 0, halfWidth, t.getHeight()));
+	}
+	
+	public void setScale(float scale) {
+		this.scaleX = scale;
+		this.scaleY = scale;
+	}
+	
+	public float getScale() {
+		if (this.scaleX != this.scaleY) {
+			throw new RadiantWrenchException("Scale X and Y don't match.");
+		} else {
+			return this.scaleX;
+		}
 	}
 
 	@Override
@@ -100,6 +114,8 @@ public class ImageButton extends Image implements Clickable {
 	public void rwDraw(SpriteBatch _spriteBatch) {
 		verifyRegionIsSet();
 		// Calculating Y is complicated (inverted Y). Sigh. Just accept it, it's experimentally derived.
-		_spriteBatch.draw(this.region, this.x, ScreenController.getCurrentScreen().getHeight() - this.y - this.height);
+		_spriteBatch.draw(this.region, this.x,
+				ScreenController.getCurrentScreen().getHeight() - this.y - this.height,
+				this.scaleX * this.width, this.scaleY * this.height);
 	}
 }

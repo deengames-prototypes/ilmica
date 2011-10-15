@@ -19,6 +19,7 @@ import com.deengames.radiantwrench.view.ImageButton;
 import com.deengames.radiantwrench.view.ImageCheckbox;
 import com.deengames.radiantwrench.view.Screen;
 import com.deengames.radiantwrench.view.Sprite;
+import com.deengames.radiantwrench.view.SpriteSheet;
 import com.deengames.radiantwrench.view.Text;
 
 public class QuizScreen extends Screen {
@@ -32,10 +33,10 @@ public class QuizScreen extends Screen {
 	private final int QUESTION_TEXT_HORIZONTAL_OFFSET = 32;
 	private final int QUESTION_TEXT_VERTICAL_OFFSET = 44;
 	private final int ANSWER_HORIZONTAL_OFFSET = 72;
-	private final int ANSWERS_PADDING_FROM_QUESTION = 32;
+	private final int ANSWERS_PADDING_FROM_QUESTION = 36;
 	private final int SPACE_BETWEEN_ANSWERS = 32;
 	private final int CHECKMARK_IMAGE_HORIZONTAL_WHITESPACE_OFFSET = 4;
-	private final int CHECKMARK_IMAGE_VERTICAL_WHITESPACE_OFFSET = 9;
+	private final int CHECKMARK_IMAGE_VERTICAL_WHITESPACE_OFFSET = 10;
 	
 	private ImageCheckbox _clickedCheckbox = null;
 	
@@ -56,7 +57,7 @@ public class QuizScreen extends Screen {
 		t.setY(12);
 		
 		this._questionText = this.addText("");
-		this._questionText.getFont().setScale(1.25f);
+		this._questionText.getFont().setScale(1.20f);
 		this._questionText.setX(QUESTION_TEXT_HORIZONTAL_OFFSET);
 		this._questionText.setY(t.getY() + QUESTION_TEXT_VERTICAL_OFFSET);
 		
@@ -65,6 +66,17 @@ public class QuizScreen extends Screen {
 		
 		this._questions = MainController.makeQuizForSet(this._setName);
 		showFirstQuestion();
+
+		SpriteSheet s = this.addSpriteSheet("content/left-button.png", 128, 128);
+		s.setFrameIndex(1);
+		s.setScale(2.25f);
+		
+		s = this.addSpriteSheet("content/left-button.png", 128, 128);
+		s.setFrameIndex(1);
+
+		s = this.addSpriteSheet("content/left-button.png", 128, 128);
+		s.setScale(0.25f);
+
 		
 		this.fadeIn();
 	}
