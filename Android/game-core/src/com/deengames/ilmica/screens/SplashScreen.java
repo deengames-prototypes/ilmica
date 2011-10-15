@@ -19,7 +19,7 @@ public class SplashScreen extends Screen {
 		
 		this.fadeOutImmediately();
 		
-		Sprite s = this.addSprite("content/logo.png");
+		Sprite s = this.addSprite("content/images/logo.png");
 		
 		// Data height: 460. Padded to 512, sigh.
 		s.setX((this.getWidth() - 460) / 2);

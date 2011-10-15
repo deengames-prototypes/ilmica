@@ -25,8 +25,8 @@ public class SetSelectionScreen extends Screen {
 		super.initialize();
 		
 		this.fadeOutImmediately();
-		this.addSprite("content/mainMenuBackground.jpg");
-		this.addSprite("content/choose-question-set.png");		
+		this.addSprite("content/images/mainMenuBackground.jpg");
+		this.addSprite("content/images/choose-question-set.png");		
 		
 		String[] sets = DataHelper.getQuestionSetNames();
 		

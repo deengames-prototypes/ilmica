@@ -176,6 +176,9 @@ public class Game implements ApplicationListener, InputProcessor {
 		int yFromScreenTop = ScreenController.getCurrentScreen().getHeight() - y;
 		Screen currentScreen = ScreenController.getCurrentScreen();
 		
+		for (Sprite s : currentScreen.getSprites())
+			s.touchDown(x, yFromScreenTop, pointer);
+		
 		for (Text t : currentScreen.getTexts()) {
 			t.touchDown(x, y, pointer);
 		}
@@ -211,12 +214,20 @@ public class Game implements ApplicationListener, InputProcessor {
 		int yFromScreenTop = ScreenController.getCurrentScreen().getHeight() - y;
 		Screen currentScreen = ScreenController.getCurrentScreen();
 		
+		for (Sprite s : currentScreen.getSprites()) {
+			s.touchUp(x, yFromScreenTop, pointer);
+		}
+		
 		for (Text t : currentScreen.getTexts()) {
 			t.touchUp(x,  y, pointer);
 		}
 		
 		for (ImageButton b : currentScreen.getImageButtons()) {
 			b.touchUp(x, yFromScreenTop, pointer);			
+		}
+		
+		for (ImageCheckbox c : currentScreen.getImageCheckboxes()) {
+			c.touchUp(x, yFromScreenTop, pointer);
 		}
 		
 		return true;
