@@ -1,6 +1,7 @@
 package com.deengames.ilmica.model;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Question {
 	private String _text;
@@ -32,5 +33,18 @@ public class Question {
 
 	public String[] getAnswers() {
 		return this._answers.toArray(new String[0]);
+	}
+
+	public void randomizeAnswerOrder() {
+		ArrayList<String> randomized = new ArrayList<String>();
+		Random rGen = new Random();
+		
+		while (this._answers.size() > 0) {
+			int next = rGen.nextInt(this._answers.size());
+			randomized.add(this._answers.get(next));
+			this._answers.remove(next);
+		}
+		
+		this._answers.addAll(randomized);
 	}
 }
