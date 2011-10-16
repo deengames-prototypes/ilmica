@@ -1,12 +1,15 @@
 package com.deengames.ilmica.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
+
 
 public class Question {
 	private String _text;
 	private ArrayList<String> _answers = new ArrayList<String>();
 	private int _bestAnswer = -1;
+	private HashMap<QuestionMetaDataType, String> _metaData = new HashMap<QuestionMetaDataType, String>();
 	
 	public Question(String text) {
 		this._text = text;
@@ -46,5 +49,13 @@ public class Question {
 		}
 		
 		this._answers.addAll(randomized);
+	}
+
+	public String getMetaData(QuestionMetaDataType key) {
+		return _metaData.get(key);
+	}
+
+	public void setMetaData(QuestionMetaDataType key, String value) {
+		this._metaData.put(key, value);
 	}
 }

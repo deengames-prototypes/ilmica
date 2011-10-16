@@ -58,8 +58,19 @@ public class DataHelper {
 						// Best answer
 						currentQuestion.addBestAnswer(trimmed.substring(12).trim());
 					}
+				} else if (trimmed.startsWith("Meta:")) {
+					String metaKeyValue = trimmed.substring(5);
+					int equalsSignIndex = metaKeyValue.indexOf('=');
+					String key = metaKeyValue.substring(0, equalsSignIndex).trim().toUpperCase();
+					String value = metaKeyValue.substring(equalsSignIndex + 1).trim();
+					currentQuestion.setMetaData(QuestionMetaDataType.valueOf(key), value);
 				}
 			}
+		}
+		
+		// Add the final question
+		if (!toReturn.contains(currentQuestion)) {
+			toReturn.add(currentQuestion);
 		}
 		
 		return toReturn;

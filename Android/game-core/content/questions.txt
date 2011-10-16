@@ -4,57 +4,67 @@ Set: Fundamentals of Tawheed 1.0
     Answer: Shirk by Deification
     Answer: Shirk Al Akbar
     Best Answer: Shirk Al Asghar
+    Meta: Information=Small
 
   Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk.Brahma is a supreme God, but his powers are shared by Vishnu and Shiva. 
     Best Answer: Shirk by association
     Answer: Shirk by humanization
     Answer: Shirk by Deification
     Answer: Shirk Al Akbar
+    Meta: Information=It's by partnership.
  
-  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk.Hindus worship Idols as representation of God. These idols look like elephants and Asian men. 
+  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk.HINDUS worship Idols as representation of God. These idols look like elephants and Asian men. 
     Answer: Shirk by negation
     Best Answer: Shirk by humanization
     Answer: Shirk Al Akbar
     Answer: Shirk Al Asghar
+    Meta: Information=Hindus are a religion predominant in south-east Asia (desi people). They are one of the most polytheistic nations, having hundreds and thousands of idols. Seriously.
  
   Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk.Ahura Mazda is the creator of all that is good, but Angra Mainya is creation and a symbol of darkness.
     Best Answer: Shirk by association
     Answer: Shirk by negation
     Answer: Shirk by humanization
     Answer: Shirk Al Akbar
+	Meta: Information=
  
   Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. God is the total of all parts of the universe including man.
     Answer: Shirk by association
     Best Answer: Shirk by negation
     Answer: Shirk by humanization
     Answer: Shirk by Deification
+    Meta: Information=This premise is illogical. Is god a part of your washrooms and your poop? Then the concept is "God is part of everything except poop and pee?" Crazy mushriks.
  
   Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. Catholics praying to Maryum, stating she is mother of God. 
     Answer: Shirk by humanization
     Answer: Shirk by Deification
     Answer: Shirk Al Akbar
     Best Answer: Shirk Al Asghar
+    Meta: Information=ALL YOUR BASE ARE BELONG TO US!!1
  
   Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. Souls of saints and righteous people affect the affairs of this world even after their death.
     Best Answer: Shirk by association
     Answer: Shirk by humanization
     Answer: Shirk by Deification
     Answer: Shirk Al Akbar
+    Meta: Information=Not al-Akbar
 
   Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. Some Muslims, in the past and the present, say, " All is Allah and Allah is all."
     Answer: Shirk by association
     Best Answer: Shirk by negation
     Answer: Shirk by Deification
     Answer: Shirk Al Asghar
+    Meta: Information=Not an "A" word shirk
  
   Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. Praying to Prophet Muhammad (saw). 
     Answer: Shirk by association
     Answer: Shirk by Deification
     Best Answer: Shirk Al Akbar
     Answer: Shirk Al Asghar
+    Meta: Information=Al-...
 
   Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. God the father, Jesus, and Holy Spirit are three entities sharing the same power of God.
     Best Answer: Shirk by association
     Answer: Shirk by Deification
     Answer: Shirk Al Akbar
     Answer: Shirk by negation
+    Meta: Information="Shirk by ..."
