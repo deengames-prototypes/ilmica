@@ -34,8 +34,8 @@ import com.deengames.radiantwrench.utils.RadiantWrenchException;
 public class IlmicaGame extends Game implements ApplicationListener {
 	
 	public void create() {
-		//ScreenController.showScreen(new SplashScreen());
-		ScreenController.showScreen(new QuizScreen("Fundamentals of Tawheed 1.0"));
+		ScreenController.showScreen(new SplashScreen());
+		//ScreenController.showScreen(new QuizScreen("Fundamentals of Tawheed 1.0"));
 		super.create();
 	}
 }

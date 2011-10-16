@@ -59,7 +59,7 @@ public class QuizScreen extends Screen {
 		super.initialize();
 		
 		this.fadeOutImmediately();
-		this.addSprite("content/images/mainMenuBackground.jpg");
+		this.addSprite("content/images/mainBackground.jpg");
 		
 		this._questionHeaderText = this.addText("");
 		this._questionHeaderText.setFontSize(24);

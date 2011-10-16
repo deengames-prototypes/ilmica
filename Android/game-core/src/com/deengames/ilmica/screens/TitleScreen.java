@@ -22,7 +22,7 @@ public class TitleScreen extends Screen {
 		super.initialize();
 		
 		this.fadeOutImmediately();
-		this.addSprite("content/images/mainMenuBackground.jpg");
+		this.addSprite("content/images/mainBackground.jpg");
 		this.addSprite("content/images/ilmica.png");
 		
 		ImageButton go = this.addImageButton("content/images/go-button.png");
