@@ -176,7 +176,11 @@ public class Sprite implements Comparable<Sprite>, Drawable, Clickable {
 		Texture t = this._texture;
 		
 		spriteBatch.setColor(new Color(1, 1, 1, this._alpha));
-		spriteBatch.draw(t,  0f + this._x, 0f + screenHeight - t.getHeight() - this._y, 0, 0, 
-				this.getWidth(), this.getHeight());
+		spriteBatch.draw(t,  0f + this._x, 0f + screenHeight - this.getHeight() - this._y,
+				this.getWidth() / 2, this.getHeight() / 2, // origin 
+				this.getWidth(), this.getHeight(), // draw scaled
+				1, 1, 0, // Scale to (1, 1), rotation = 0
+				0, 0, this.getOriginalWidth(), this.getOriginalHeight(),
+				false, false);
 	}
 }
