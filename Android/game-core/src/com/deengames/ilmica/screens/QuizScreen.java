@@ -22,6 +22,7 @@ import com.deengames.radiantwrench.view.Screen;
 import com.deengames.radiantwrench.view.Sprite;
 import com.deengames.radiantwrench.view.SpriteSheet;
 import com.deengames.radiantwrench.view.Text;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 
 public class QuizScreen extends Screen {
 	
@@ -38,10 +39,12 @@ public class QuizScreen extends Screen {
 	private final int SPACE_BETWEEN_ANSWERS = 32;
 	private final int CHECKMARK_IMAGE_HORIZONTAL_WHITESPACE_OFFSET = 4;
 	private final int CHECKMARK_IMAGE_VERTICAL_WHITESPACE_OFFSET = 10;
+	private final int QUESTION_HEADER_OFFSET = 12;
 	
 	private ImageCheckbox _clickedCheckbox = null;
 	private SpriteSheet _previousButton = null;
 	private SpriteSheet _nextButton = null;
+	private Text _questionHeaderText = null;
 	
 	// TODO: move into model?
 	int _currentQuestionIndex = 0;
@@ -57,15 +60,14 @@ public class QuizScreen extends Screen {
 		this.fadeOutImmediately();
 		this.addSprite("content/images/mainMenuBackground.jpg");
 		
-		Text t = this.addText(_setName);
-		t.setFontSize(24);
-		t.setX((this.getWidth() - t.getWidth()) / 2);
-		t.setY(12);
+		this._questionHeaderText = this.addText("");
+		this._questionHeaderText.setFontSize(24);
+		this._questionHeaderText.setY(QUESTION_HEADER_OFFSET);
 		
 		this._questionText = this.addText("");
 		this._questionText.setFontSize(14);
 		this._questionText.setX(QUESTION_TEXT_HORIZONTAL_OFFSET);
-		this._questionText.setY(t.getY() + QUESTION_TEXT_VERTICAL_OFFSET);
+		this._questionText.setY(this._questionHeaderText.getY() + QUESTION_TEXT_VERTICAL_OFFSET);
 		
 		// Equal out with our LHS padding
 		this._questionText.setMaxWidth(this.getWidth() - (2 * QUESTION_TEXT_HORIZONTAL_OFFSET));
@@ -93,7 +95,13 @@ public class QuizScreen extends Screen {
 			}
 		});
 
+		Sprite infoButton = this.addSprite("content/images/info.png");
+		infoButton.setX(this.getWidth() - infoButton.getWidth()- QUESTION_HEADER_OFFSET);
+		infoButton.setY(QUESTION_HEADER_OFFSET);
+		
 		showCurrentQuestion();
+		
+		Button b = new Button(new ButtonStyle());
 		
 		this.fadeIn();
 	}
@@ -134,6 +142,9 @@ public class QuizScreen extends Screen {
 	private void showQuestionAndAnswers(int index) {
 		clearPreviousAnswerControls();
 		
+		this._questionHeaderText.setDisplayText("Question " + (index + 1) + "/" + this._questions.length);
+		this._questionHeaderText.setX((this.getWidth() - this._questionHeaderText.getWidth()) / 2);
+		
 		this._questionText.setDisplayText(this._questions[index].getText());
 		String[] answers = this._questions[index].getAnswers();
 		
@@ -164,7 +175,7 @@ public class QuizScreen extends Screen {
 		
 		for (int i = 0; i < this._texts.size(); i++) {
 			Text t = this._texts.get(i);
-			if (t != this._questionText) {
+			if (t != this._questionText && t != this._questionHeaderText) {
 				toRemove.add(t);
 			}
 		}
