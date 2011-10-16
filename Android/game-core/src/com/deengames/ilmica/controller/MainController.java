@@ -5,6 +5,7 @@ import java.util.Random;
 
 import com.deengames.ilmica.model.DataHelper;
 import com.deengames.ilmica.model.Question;
+import com.deengames.radiantwrench.utils.RadiantWrenchException;
 
 public class MainController {
 
@@ -20,7 +21,7 @@ public class MainController {
 		ArrayList<Question> allQuestions = DataHelper.getQuestionsForSet(setName);		
 		// Pick questions based on difficulty? ... nah ...
 		if (allQuestions.size() < numQuestions) {
-			// throw new Exception("Asked for " + numQuestions + " questions, but we only have " + allQuestions.size());			// 
+			throw new RadiantWrenchException("Asked for " + numQuestions + " questions, but we only have " + allQuestions.size());			// 
 		} else if (allQuestions.size() == numQuestions) {
 			return allQuestions.toArray(new Question[0]);
 		} else {

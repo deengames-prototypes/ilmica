@@ -2,12 +2,12 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="extlib/junit-4.10.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/game-core"/>
 	<classpathentry kind="lib" path="/game-core/libs/gdx-backend-jogl-natives.jar"/>
 	<classpathentry kind="lib" path="/game-core/libs/gdx-backend-jogl.jar"/>
 	<classpathentry kind="lib" path="/game-core/libs/gdx-natives.jar"/>
 	<classpathentry kind="lib" path="/game-core/libs/gdx-sources.jar"/>
 	<classpathentry kind="lib" path="/game-core/libs/gdx.jar"/>
+	<classpathentry kind="lib" path="extlib/junit-4.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

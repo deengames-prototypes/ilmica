@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.deengames.ilmica.controller.MainController;
 import com.deengames.ilmica.model.DataHelper;
 import com.deengames.ilmica.model.Question;
+import com.deengames.ilmica.model.QuestionMetaDataType;
 import com.deengames.radiantwrench.controller.ScreenController;
 import com.deengames.radiantwrench.utils.Action;
 import com.deengames.radiantwrench.utils.ClickListener;
@@ -98,12 +99,23 @@ public class QuizScreen extends Screen {
 		Sprite infoButton = this.addSprite("content/images/info.png");
 		infoButton.setX(this.getWidth() - infoButton.getWidth()- QUESTION_HEADER_OFFSET);
 		infoButton.setY(QUESTION_HEADER_OFFSET);
+		infoButton.setClickListener(new ClickListener() {
+			public void onClick(Clickable clickable) {
+				showCurrentQuestionInformation();
+			}
+		});
 		
 		showCurrentQuestion();
 		
 		Button b = new Button(new ButtonStyle());
 		
 		this.fadeIn();
+	}
+	
+	private void showCurrentQuestionInformation() {
+		Text t = this.addText(this._questions[this._currentQuestionIndex].getMetaData(QuestionMetaDataType.INFORMATION));
+		t.setX(50);
+		t.setY(225);
 	}
 
 	private void showPreviousQuestionIfPossible() {
