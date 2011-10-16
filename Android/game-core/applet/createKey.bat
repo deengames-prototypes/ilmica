@@ -1,0 +1,1 @@
+keytool -genkey -alias gdxkey -keypass gdxpassword -validity 360 -keystore .keystore
