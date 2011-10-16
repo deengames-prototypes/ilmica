@@ -25,7 +25,7 @@ public class SetSelectionScreen extends Screen {
 		super.initialize();
 		
 		this.fadeOutImmediately();
-		this.addSprite("content/images/mainMenuBackground.jpg");
+		this.addSprite("content/images/mainBackground.jpg");
 		this.addSprite("content/images/choose-question-set.png");		
 		
 		String[] sets = DataHelper.getQuestionSetNames();
@@ -38,6 +38,7 @@ public class SetSelectionScreen extends Screen {
 			
 			t.setX(baseX);
 			t.setY(baseY + (VERTICAL_SPACE_BETWEEN_SETS * i));
+			t.setFontSize(24);
 			
 			t.setClickListener(new ClickListener() {
 				public void onClick(Clickable clicked) {
