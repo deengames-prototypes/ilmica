@@ -41,11 +41,18 @@ public class QuizScreen extends Screen {
 	private final int CHECKMARK_IMAGE_HORIZONTAL_WHITESPACE_OFFSET = 4;
 	private final int CHECKMARK_IMAGE_VERTICAL_WHITESPACE_OFFSET = 10;
 	private final int QUESTION_HEADER_OFFSET = 12;
+	private final int INFO_PANEL_PADDING = 12;
+	private final int INFO_PANEL_MARGIN = 12;
 	
 	private ImageCheckbox _clickedCheckbox = null;
 	private SpriteSheet _previousButton = null;
 	private SpriteSheet _nextButton = null;
 	private Text _questionHeaderText = null;
+	private Sprite _infoIcon = null;
+	private Sprite _infoPanel = null;
+	private Text _infoPanelText = null;
+	
+	private ArrayList<Text> _persistentTexts = new ArrayList<Text>();
 	
 	// TODO: move into model?
 	int _currentQuestionIndex = 0;
@@ -96,32 +103,51 @@ public class QuizScreen extends Screen {
 			}
 		});
 
-		Sprite infoButton = this.addSprite("content/images/info.png");
-		infoButton.setX(this.getWidth() - infoButton.getWidth()- QUESTION_HEADER_OFFSET);
-		infoButton.setY(QUESTION_HEADER_OFFSET);
-		infoButton.setClickListener(new ClickListener() {
+		this._infoIcon = this.addSprite("content/images/info.png");
+		this._infoIcon.setX(this.getWidth() - this._infoIcon.getWidth()- QUESTION_HEADER_OFFSET);
+		this._infoIcon.setY(QUESTION_HEADER_OFFSET);
+		this._infoIcon.setClickListener(new ClickListener() {
 			public void onClick(Clickable clickable) {
-				showCurrentQuestionInformation();
+				toggleShowingCurrentQuestionInformation();
 			}
 		});
 		
-		showCurrentQuestion();
+		this._infoPanel = this.addSprite("content/images/metal-panel.png");
+		this._infoPanel.setX(this.getWidth() - this._infoPanel.getWidth() - this._infoIcon.getWidth() - INFO_PANEL_PADDING); 
+		this._infoPanel.setY(this._infoIcon.getHeight() + INFO_PANEL_PADDING);
+		this._infoPanel.setAlpha(0);
 		
-		Button b = new Button(new ButtonStyle());
+		this._infoPanelText = this.addText("HEYYYYYYYYYYYYY OVER HERE");
+		this._infoPanelText.setX(this._infoPanel.getX() + INFO_PANEL_MARGIN);
+		this._infoPanelText.setY(this._infoPanel.getY() + INFO_PANEL_MARGIN);
+		this._infoPanelText.setMaxWidth(this._infoPanel.getWidth() - (2 * INFO_PANEL_MARGIN));
+		this._infoPanelText.setFontSize(12);
+		this._infoPanelText.setIsVisible(false);
+		
+		this._persistentTexts.add(this._questionText);
+		this._persistentTexts.add(this._questionHeaderText);
+		this._persistentTexts.add(this._infoPanelText);
+		
+		showCurrentQuestion();
 		
 		this.fadeIn();
 	}
 	
-	private void showCurrentQuestionInformation() {
-		Text t = this.addText(this._questions[this._currentQuestionIndex].getMetaData(QuestionMetaDataType.INFORMATION));
-		t.setX(50);
-		t.setY(225);
+	private void hideCurentQuestionInformation() {
+		this._infoPanel.setAlpha(1);
+		this.toggleShowingCurrentQuestionInformation();
+	}
+	
+	private void toggleShowingCurrentQuestionInformation() {
+		this._infoPanel.setAlpha(1 - this._infoPanel.getAlpha());
+		this._infoPanelText.setIsVisible(this._infoPanel.getAlpha() == 0 ? false : true);
 	}
 
 	private void showPreviousQuestionIfPossible() {
 		if (this._currentQuestionIndex > 0) {
 			this._currentQuestionIndex--;
 			this.showCurrentQuestion();
+			this.hideCurentQuestionInformation();
 		}
 	}
 	
@@ -129,6 +155,7 @@ public class QuizScreen extends Screen {
 		if (this._currentQuestionIndex < this._questions.length - 1) {
 			this._currentQuestionIndex++;
 			this.showCurrentQuestion();
+			this.hideCurentQuestionInformation();
 		}
 	}
 	
@@ -158,6 +185,7 @@ public class QuizScreen extends Screen {
 		this._questionHeaderText.setX((this.getWidth() - this._questionHeaderText.getWidth()) / 2);
 		
 		this._questionText.setDisplayText(this._questions[index].getText());
+		this._infoPanelText.setDisplayText(this._questions[index].getMetaData(QuestionMetaDataType.INFORMATION));
 		String[] answers = this._questions[index].getAnswers();
 		
 		for (int i = 0; i < answers.length; i++) {
@@ -187,7 +215,7 @@ public class QuizScreen extends Screen {
 		
 		for (int i = 0; i < this._texts.size(); i++) {
 			Text t = this._texts.get(i);
-			if (t != this._questionText && t != this._questionHeaderText) {
+			if (!this._persistentTexts.contains(t)) {
 				toRemove.add(t);
 			}
 		}

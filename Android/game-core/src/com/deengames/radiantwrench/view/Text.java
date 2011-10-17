@@ -18,11 +18,12 @@ public class Text implements Drawable, Clickable {
 	private int _x = 0;
 	private int _y = 0;
 	private int _z = 0;
+	private boolean _isVisible = true;
 	private String _text = "";
 	private BitmapFont _font;
 	private boolean _wasDown = false;
 	
-	// Todo: generate somehow?
+	// Todo: generate somehow? We have files ...
 	private int[] _fontSizes = new int[] { 
 			12, 14, 24, 72
 	};
@@ -139,14 +140,24 @@ public class Text implements Drawable, Clickable {
 			this._font.scale(fontSize / bestFit);
 		}
 	}
+
+	public boolean getIsVisible() {
+		return this._isVisible;
+	}
+	
+	public void setIsVisible(boolean value) {
+		this._isVisible = value;
+	}
 	
 	public void draw(SpriteBatch spriteBatch) {
-		if (this._maxWidth == Integer.MAX_VALUE) {
-			this._font.draw(spriteBatch, this._text,
-				this._x, ScreenController.getCurrentScreen().getHeight() - this._y);
-		} else {
-			this._font.drawWrapped(spriteBatch, this._text,
-				this._x, ScreenController.getCurrentScreen().getHeight() - this._y, this._maxWidth);
+		if (this._isVisible == true) {
+			if (this._maxWidth == Integer.MAX_VALUE) {
+				this._font.draw(spriteBatch, this._text,
+					this._x, ScreenController.getCurrentScreen().getHeight() - this._y);
+			} else {
+				this._font.drawWrapped(spriteBatch, this._text,
+					this._x, ScreenController.getCurrentScreen().getHeight() - this._y, this._maxWidth);
+			}
 		}
 	}
 }
