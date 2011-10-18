@@ -16,11 +16,10 @@
 
 package com.deengames.ilmica;
 
-//import com.badlogic.gdx.backends.jogl.JoglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.jogl.JoglApplication;
 
 public class IlmicaGameDesktop {
 	public static void main (String[] argv) {
-		new LwjglApplication(new IlmicaGame(), "Deen Games", 480, 320, false);
+		new JoglApplication(new IlmicaGame(), "Deen Games", 480, 320, false);
 	}
 }

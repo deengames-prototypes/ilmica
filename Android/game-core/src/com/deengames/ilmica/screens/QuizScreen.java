@@ -31,7 +31,6 @@ public class QuizScreen extends Screen {
 	private Question[] _questions;
 	
 	private Text _questionText;
-	private ArrayList<Text> _answersTexts = new ArrayList<Text>();
 	
 	private final int QUESTION_TEXT_HORIZONTAL_OFFSET = 32;
 	private final int QUESTION_TEXT_VERTICAL_OFFSET = 44;
@@ -51,8 +50,10 @@ public class QuizScreen extends Screen {
 	private Sprite _infoIcon = null;
 	private Sprite _infoPanel = null;
 	private Text _infoPanelText = null;
+	private int[] _selectedAnswerIndicies;
 	
-	private ArrayList<Text> _persistentTexts = new ArrayList<Text>();
+	private ArrayList<ImageCheckbox> _answersCheckboxes = new ArrayList<ImageCheckbox>();
+	private ArrayList<Text> _answersTexts = new ArrayList<Text>();
 	
 	// TODO: move into model?
 	int _currentQuestionIndex = 0;
@@ -66,6 +67,14 @@ public class QuizScreen extends Screen {
 		super.initialize();
 		
 		this.fadeOutImmediately();
+		
+		this._questions = MainController.makeQuizForSet(this._setName);	
+		this._selectedAnswerIndicies = new int[this._questions.length];
+		// Le sigh...
+		for (int i = 0; i < this._selectedAnswerIndicies.length; i++) {
+			this._selectedAnswerIndicies[i] = -1;
+		}
+		
 		this.addSprite("content/images/mainBackground.jpg");
 		
 		this._questionHeaderText = this.addText("");
@@ -79,8 +88,6 @@ public class QuizScreen extends Screen {
 		
 		// Equal out with our LHS padding
 		this._questionText.setMaxWidth(this.getWidth() - (2 * QUESTION_TEXT_HORIZONTAL_OFFSET));
-		
-		this._questions = MainController.makeQuizForSet(this._setName);
 		
 		Sprite doneButton = this.addSprite("content/images/checkmark.png");
 		doneButton.setX((this.getWidth() - doneButton.getWidth()) / 2);
@@ -123,10 +130,6 @@ public class QuizScreen extends Screen {
 		this._infoPanelText.setMaxWidth(this._infoPanel.getWidth() - (2 * INFO_PANEL_MARGIN));
 		this._infoPanelText.setFontSize(12);
 		this._infoPanelText.setIsVisible(false);
-		
-		this._persistentTexts.add(this._questionText);
-		this._persistentTexts.add(this._questionHeaderText);
-		this._persistentTexts.add(this._infoPanelText);
 		
 		showCurrentQuestion();
 		
@@ -195,6 +198,7 @@ public class QuizScreen extends Screen {
 					ANSWERS_PADDING_FROM_QUESTION + 
 					this._questionText.getHeight() + (SPACE_BETWEEN_ANSWERS * i));
 			t.setFontSize(12);
+			this._answersTexts.add(t);
 			
 			ImageCheckbox c = this.addImageCheckbox();
 			c.x = t.getX() - c.getScaledWidth() - CHECKMARK_IMAGE_HORIZONTAL_WHITESPACE_OFFSET;
@@ -206,25 +210,20 @@ public class QuizScreen extends Screen {
 					checkedQuestionChanged();
 				}			
 			});
+			
+			if (this._selectedAnswerIndicies[index] == i) {
+				c.setIsChecked(true);
+			}
+			
+			this._answersCheckboxes.add(c);
 		}
 	}
 	
 	private void clearPreviousAnswerControls() {
-		// Iterating over a list and removing items from it? ARRR MATEY!
-		ArrayList<Text> toRemove = new ArrayList<Text>();
-		
-		for (int i = 0; i < this._texts.size(); i++) {
-			Text t = this._texts.get(i);
-			if (!this._persistentTexts.contains(t)) {
-				toRemove.add(t);
-			}
-		}
-		
-		this._texts.removeAll(toRemove);
-		
-		while (this._imageCheckBoxes.size() > 0) {
-			this._imageCheckBoxes.remove(0);
-		}
+		this._texts.removeAll(this._answersTexts);
+		this._imageCheckBoxes.removeAll(this._answersCheckboxes);
+		this._answersCheckboxes.clear();
+		this._answersTexts.clear();
 	}
 
 	/**
@@ -237,6 +236,13 @@ public class QuizScreen extends Screen {
 				c.setIsChecked(true);
 			} else {
 				c.setIsChecked(false);
+			}
+		}
+		
+		// Store the checked index
+		for (int i = 0; i < this._answersCheckboxes.size(); i++) {
+			if (this._answersCheckboxes.get(i) == this._clickedCheckbox) {
+				this._selectedAnswerIndicies[this._currentQuestionIndex] = i;
 			}
 		}
 	}
