@@ -9,8 +9,8 @@ import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
 import com.badlogic.gdx.ApplicationListener;
-import com.badlogic.gdx.backends.jogl.JoglApplication;
-import com.badlogic.gdx.backends.jogl.JoglApplicationConfiguration;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 public class GdxTestRunner extends BlockJUnit4ClassRunner implements ApplicationListener{
    
@@ -18,10 +18,10 @@ public class GdxTestRunner extends BlockJUnit4ClassRunner implements Application
    
    public GdxTestRunner(Class<?> klass) throws InitializationError {
       super(klass);
-      JoglApplicationConfiguration conf = new JoglApplicationConfiguration();
+      LwjglApplicationConfiguration conf = new LwjglApplicationConfiguration();
       conf.width = 800;
       conf.height = 640;
-      new JoglApplication(this, conf);
+      new LwjglApplication(this, conf);
    }
 
    @Override

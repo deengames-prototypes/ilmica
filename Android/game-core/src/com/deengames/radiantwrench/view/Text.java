@@ -130,11 +130,12 @@ public class Text implements Drawable, Clickable {
 		for (int f : this._fontSizes) {
 			if (Math.abs(f - fontSize) < Math.abs(bestFit - fontSize)) {
 				bestFit = f;
+				
 			}
 		}
 
 		// Load best-fit font
-		this._font = new BitmapFont(new FileHandle("Content/fonts/arial-" + bestFit + "pt-white.fnt"), false);
+		this._font = new BitmapFont(new FileHandle("content/fonts/arial-" + bestFit + "pt-white.fnt"), false);
 		// Scale
 		if (bestFit != fontSize) {
 			this._font.scale(fontSize / bestFit);
