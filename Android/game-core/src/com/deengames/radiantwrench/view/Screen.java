@@ -20,9 +20,14 @@ public class Screen {
 	private ArrayList<Action> _fadeOutListeners = new ArrayList<Action>();
 	private ArrayList<Action> _fadeInListeners = new ArrayList<Action>();
 
+	protected ArrayList<Sprite> _sprites = new ArrayList<Sprite>();
+	protected ArrayList<Text> _texts = new ArrayList<Text>();
+	protected ArrayList<SpriteSheet> _spriteSheets = new ArrayList<SpriteSheet>();
 	protected ArrayList<ImageButton> _imageButtons = new ArrayList<ImageButton>();
 	protected ArrayList<ImageCheckbox> _imageCheckBoxes = new ArrayList<ImageCheckbox>();
 
+	protected Sprite _blackoutSprite;
+	
 	public void addFadeOutListener(Action f) {
 		this._fadeOutListeners.add(f);
 	}
@@ -41,33 +46,35 @@ public class Screen {
 
 	// #endregion
 
-	protected ArrayList<Sprite> _sprites = new ArrayList<Sprite>();
-	protected ArrayList<Text> _texts = new ArrayList<Text>();
-	protected Sprite _blackoutSprite;
 
-	public Sprite[] getSprites() {
-		return this._sprites.toArray(new Sprite[0]);
+	public ArrayList<Sprite> getSprites() {
+		return this._sprites;
 	}
 
-	public Text[] getTexts() {
-		return this._texts.toArray(new Text[0]);
+	public ArrayList<Text> getTexts() {
+		return this._texts;
+	}
+	
+	public ArrayList<SpriteSheet> getSpriteSheets() {
+		return this._spriteSheets;
 	}
 
-	public ImageButton[] getImageButtons() {
-		return this._imageButtons.toArray(new ImageButton[0]);
+	public ArrayList<ImageButton> getImageButtons() {
+		return this._imageButtons;
 	}
 
-	public ImageCheckbox[] getImageCheckboxes() {
-		return this._imageCheckBoxes.toArray(new ImageCheckbox[0]);
+	public ArrayList<ImageCheckbox> getImageCheckboxes() {
+		return this._imageCheckBoxes;
 	}
 
-	public void initialize() { //throws RadiantWrenchException {
+	public void initialize() {
 		this._blackoutSprite = this.addSprite("content/images/blackout.jpg");
 		this._blackoutSprite.setZ(Integer.MAX_VALUE);
 		this._blackoutSprite.setAlpha(0);
 	}
 
-	public void update(double elapsedSeconds) { //throws RadiantWrenchException {
+	public void update(double elapsedSeconds) {
+		
 		for (Sprite s : this._sprites) {
 			s.update();
 		}
@@ -143,14 +150,12 @@ public class Screen {
 	public Sprite addSprite(String fileName) {
 		Sprite s = new Sprite(fileName);
 		this._sprites.add(s);
-		Collections.sort(this._sprites);
 		return s;
 	}
 	
 	public SpriteSheet addSpriteSheet(String fileName, int frameWidth, int frameHeight) {
 		SpriteSheet s = new SpriteSheet(fileName, frameWidth, frameHeight);
-		this._sprites.add(s);
-		Collections.sort(this._sprites);
+		this._spriteSheets.add(s);
 		return s;
 	}
 

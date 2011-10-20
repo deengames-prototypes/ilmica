@@ -2,28 +2,16 @@ package com.deengames.ilmica.screens;
 
 import java.util.ArrayList;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.deengames.ilmica.controller.MainController;
-import com.deengames.ilmica.model.DataHelper;
 import com.deengames.ilmica.model.Question;
 import com.deengames.ilmica.model.QuestionMetaDataType;
-import com.deengames.radiantwrench.controller.ScreenController;
-import com.deengames.radiantwrench.utils.Action;
 import com.deengames.radiantwrench.utils.ClickListener;
 import com.deengames.radiantwrench.utils.Clickable;
-import com.deengames.radiantwrench.utils.RadiantWrenchException;
-import com.deengames.radiantwrench.view.ImageButton;
 import com.deengames.radiantwrench.view.ImageCheckbox;
 import com.deengames.radiantwrench.view.Screen;
 import com.deengames.radiantwrench.view.Sprite;
 import com.deengames.radiantwrench.view.SpriteSheet;
 import com.deengames.radiantwrench.view.Text;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
 
 public class QuizScreen extends Screen {
 	
@@ -43,9 +31,10 @@ public class QuizScreen extends Screen {
 	private final int INFO_PANEL_PADDING = 12;
 	private final int INFO_PANEL_MARGIN = 12;
 	
-	private ImageCheckbox _clickedCheckbox = null;
+	ImageCheckbox _clickedCheckbox = null;
 	private SpriteSheet _previousButton = null;
 	private SpriteSheet _nextButton = null;
+	Sprite _halfBlackOut = null;
 	private Text _questionHeaderText = null;
 	private Sprite _infoIcon = null;
 	private Sprite _infoPanel = null;
@@ -63,10 +52,14 @@ public class QuizScreen extends Screen {
 	}
 	
 	@Override
-	public void initialize() { //throws RadiantWrenchException {
+	public void initialize() {
 		super.initialize();
 		
 		this.fadeOutImmediately();
+		
+		this._halfBlackOut = this.addSprite("content/images/half-black.png");
+		this._halfBlackOut.setAlpha(0);
+		this._halfBlackOut.setZ(Integer.MAX_VALUE - 1);
 		
 		this._questions = MainController.makeQuizForSet(this._setName);	
 		this._selectedAnswerIndicies = new int[this._questions.length];
@@ -92,6 +85,11 @@ public class QuizScreen extends Screen {
 		Sprite doneButton = this.addSprite("content/images/checkmark.png");
 		doneButton.setX((this.getWidth() - doneButton.getWidth()) / 2);
 		doneButton.setY(this.getHeight() - doneButton.getHeight());
+		doneButton.setClickListener(new ClickListener() {
+			public void onClick(Clickable clickable) {
+				_halfBlackOut.setAlpha(1);
+			}
+		});
 		
 		this._previousButton = this.addSpriteSheet("content/images/left-arrow.png", 64, 64);
 		this._previousButton.setY(this.getHeight() - this._previousButton.getHeight());
@@ -123,6 +121,7 @@ public class QuizScreen extends Screen {
 		this._infoPanel.setX(this.getWidth() - this._infoPanel.getWidth() - this._infoIcon.getWidth() - INFO_PANEL_PADDING); 
 		this._infoPanel.setY(this._infoIcon.getHeight() + INFO_PANEL_PADDING);
 		this._infoPanel.setAlpha(0);
+		this._infoPanel.setZ(1000);
 		
 		this._infoPanelText = this.addText("HEYYYYYYYYYYYYY OVER HERE");
 		this._infoPanelText.setX(this._infoPanel.getX() + INFO_PANEL_MARGIN);
@@ -130,23 +129,24 @@ public class QuizScreen extends Screen {
 		this._infoPanelText.setMaxWidth(this._infoPanel.getWidth() - (2 * INFO_PANEL_MARGIN));
 		this._infoPanelText.setFontSize(12);
 		this._infoPanelText.setIsVisible(false);
+		this._infoPanelText.setZ(this._infoPanel.getZ() + 1);
 		
 		showCurrentQuestion();
 		
 		this.fadeIn();
 	}
-	
+
 	private void hideCurentQuestionInformation() {
 		this._infoPanel.setAlpha(1);
 		this.toggleShowingCurrentQuestionInformation();
 	}
 	
-	private void toggleShowingCurrentQuestionInformation() {
+	void toggleShowingCurrentQuestionInformation() {
 		this._infoPanel.setAlpha(1 - this._infoPanel.getAlpha());
 		this._infoPanelText.setIsVisible(this._infoPanel.getAlpha() == 0 ? false : true);
 	}
 
-	private void showPreviousQuestionIfPossible() {
+	void showPreviousQuestionIfPossible() {
 		if (this._currentQuestionIndex > 0) {
 			this._currentQuestionIndex--;
 			this.showCurrentQuestion();
@@ -154,7 +154,7 @@ public class QuizScreen extends Screen {
 		}
 	}
 	
-	private void showNextQuestionIfPossible() {
+	void showNextQuestionIfPossible() {
 		if (this._currentQuestionIndex < this._questions.length - 1) {
 			this._currentQuestionIndex++;
 			this.showCurrentQuestion();

@@ -22,6 +22,7 @@ public class Text implements Drawable, Clickable {
 	private String _text = "";
 	private BitmapFont _font;
 	private boolean _wasDown = false;
+	private int _orderAdded = 0;
 	
 	// Todo: generate somehow? We have files ...
 	private int[] _fontSizes = new int[] { 
@@ -32,9 +33,13 @@ public class Text implements Drawable, Clickable {
 	
 	private ClickListener _clickListener;
 	
+	private static int nextOrderAdded = 0;
+	
 	public Text(String text) {
 		this._text = text;
 		this.setFontSize(15);
+		this._orderAdded = nextOrderAdded;
+		nextOrderAdded++;
 	}
 	
 	public boolean touchDown(float x, float y, int pointer) {
@@ -148,6 +153,10 @@ public class Text implements Drawable, Clickable {
 	
 	public void setIsVisible(boolean value) {
 		this._isVisible = value;
+	}
+	
+	public int getOrderAdded() {
+		return this._orderAdded;
 	}
 	
 	public void draw(SpriteBatch spriteBatch) {
