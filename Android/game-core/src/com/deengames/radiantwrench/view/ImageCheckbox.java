@@ -12,29 +12,20 @@ import com.deengames.radiantwrench.utils.Clickable;
 import com.deengames.radiantwrench.utils.RadiantWrenchException;
 
 // Adapted from http://www.badlogicgames.com/forum/viewtopic.php?f=11&t=2168&sid=a5ac07a6f80769c1b8405b8ba181e913#p11486
-public class ImageCheckbox extends Image implements Clickable {
+public class ImageCheckbox extends Image implements Clickable, Drawable {
 	
 	private TextureRegion _unchecked;
 	private TextureRegion _checked;
 	private Texture _texture;
 	private String _fileName;
+	private int _z = 0;
+	private int _orderAdded = 0;
 	
 	private boolean _isChecked = false;
 
 	private ClickListener _clickListener;
-	
-	public void setScale(float scale) {
-		this.scaleX = scale;
-		this.scaleY = scale;
-	}
-	
-	public float getScale() {
-		if (this.scaleX != this.scaleY) {
-			throw new RadiantWrenchException("Scale X and Y don't match.");
-		} else {
-			return this.scaleX;
-		}
-	}
+
+	private static int nextOrderAdded = 0;
 
 	public ImageCheckbox(String fileName) {
 		super("Checkbox");
@@ -48,6 +39,22 @@ public class ImageCheckbox extends Image implements Clickable {
 		
 		this.setUncheckedRegion(new TextureRegion(t, 0, 0, halfWidth, t.getHeight()));
 		this.setCheckedRegion(new TextureRegion(t, halfWidth, 0, halfWidth, t.getHeight()));
+	
+		this._orderAdded = nextOrderAdded;
+		nextOrderAdded++;
+	}
+	
+	public void setScale(float scale) {
+		this.scaleX = scale;
+		this.scaleY = scale;
+	}
+	
+	public float getScale() {
+		if (this.scaleX != this.scaleY) {
+			throw new RadiantWrenchException("Scale X and Y don't match.");
+		} else {
+			return this.scaleX;
+		}
 	}
 
 	@Override
@@ -132,14 +139,53 @@ public class ImageCheckbox extends Image implements Clickable {
 		return this._isChecked;
 	}
 	
+	@Override
+	public int getX() {
+		return Math.round(this.x);
+	}
+
+	@Override
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	@Override
+	public int getY() {
+		return Math.round(this.y);
+	}
+
+	@Override
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	@Override
+	public int getZ() {
+		return this._z;
+	}
+
+	@Override
+	public void setZ(int z) {
+		this._z = z;
+	}
+
+	@Override
+	public int getWidth() {
+		return Math.round(this.width);
+	}
+
+	@Override
+	public int getHeight() {
+		return Math.round(this.height);
+	}
+	
+	public int getOrderAdded() {
+		return this._orderAdded;
+	}
+	
 	// There's already a draw from our inherited class. Sigh. RW = Radiant Wrench
 	public void rwDraw(SpriteBatch spriteBatch) {
 		verifyRegionIsSet();
-		/*
-		spriteBatch.draw(this.region, this.x, 
-				ScreenController.getCurrentScreen().getHeight() - this.y - this.getScaledHeight(),
-				this.getScaledWidth(), this.getScaledHeight());
-		*/
 		
 		int frameIndex = (this._isChecked == true ? 1 : 0);		
 		int horizontalFrames = 2;

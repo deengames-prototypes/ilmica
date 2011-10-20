@@ -15,9 +15,12 @@ public class SpriteSheet extends Sprite {
 	
 	private int _horizontalFrames = 0;
 	private int _verticalFrames = 0;
+	private int _orderAdded = 0;
+	private static int nextOrderAdded = 0;
 	
 	public SpriteSheet(String fileName, int frameWidth, int frameHeight) {
 		super(fileName);
+		
 		if (frameWidth <= 0) {
 			throw new RadiantWrenchException("Frame width must be at least 1!");
 		} else if (frameWidth > this._texture.getWidth()) {
@@ -33,6 +36,9 @@ public class SpriteSheet extends Sprite {
 			this._horizontalFrames = this._texture.getWidth() / frameWidth;
 			this._verticalFrames = this._texture.getHeight() / frameHeight;
 		}
+		
+		this._orderAdded = nextOrderAdded;
+		nextOrderAdded++;
 	}
 
 	public int getFrameRow() {
@@ -68,25 +74,12 @@ public class SpriteSheet extends Sprite {
 		return this._texture.getHeight();
 	}
 	
+	public int getOrderAdded() { 
+		return this._orderAdded;
+	}
+	
 	
 	public void draw(SpriteBatch spriteBatch) {
-		/*
-		int screenHeight = ScreenController.getCurrentScreen().getHeight();
-		Texture t = this._texture;
-		
-		float u = this._frameIndex * 1.0f / this._horizontalFrames; // Start X, as a percent
-		float v = this._frameRow * 1.0f / this._verticalFrames; // Start Y, as a percent
-		float u2 = (this._frameIndex + 1.0f) / this._horizontalFrames; // Stop X, as a percent
-		float v2 = (this._frameRow + 1.0f) / this._verticalFrames; // Stop Y, as a percent
-		
-		//(0, 0, 0.5, 1) shows the first frame, with two frames
-		//(0.5, 0, 1, 1) shows the second frame, with two frames
-		
-		spriteBatch.setColor(new Color(1, 1, 1, this._alpha));
-		spriteBatch.draw(t,  0f + this._x, 0f + screenHeight - t.getHeight() - this._y,
-				this.getWidth(), this.getHeight(), u, v, u2, v2);
-		*/
-		
 
 		float destX = this._x;
 		float destY = ScreenController.getCurrentScreen().getHeight() - this._y - this.getOriginalHeight();

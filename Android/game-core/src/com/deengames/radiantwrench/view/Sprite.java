@@ -9,12 +9,13 @@ import com.deengames.radiantwrench.utils.ClickListener;
 import com.deengames.radiantwrench.utils.Clickable;
 import com.deengames.radiantwrench.utils.RadiantWrenchException;
 
-public class Sprite implements Comparable<Sprite>, Drawable, Clickable {
+public class Sprite implements Drawable, Clickable {
 	
 	protected int _x = 0;
 	protected int _y = 0;
 	protected int _z = 0;
 	protected float _scale = 1f;
+	private int _orderAdded = 0;
 	
 	protected Texture _texture;
 	private String _fileName = "";
@@ -26,9 +27,14 @@ public class Sprite implements Comparable<Sprite>, Drawable, Clickable {
 	private ClickListener _clickListener;
 	private boolean _wasClicked = false;
 
+	private static int nextOrderAdded = 0;
+	private static Color FULLY_OPAQUE = new Color(1, 1, 1, 1);
+	
 	public Sprite(String fileName) {
 		this._fileName = fileName;
 		this.loadTexture();
+		this._orderAdded = nextOrderAdded;
+		nextOrderAdded++;
 	}
 	
 	public int getX() {
@@ -106,22 +112,8 @@ public class Sprite implements Comparable<Sprite>, Drawable, Clickable {
 	}
 
 	@Override
-	// For sorting
-	public int compareTo(Sprite o) {
-		int myZ = this.getZ();
-		int theirZ = o.getZ();
-		if (myZ < theirZ) {
-			return -1;
-		} else if (myZ > theirZ) {
-			return 1;
-		} else {
-			return 0;
-		}
-	}
-	
-	@Override
 	public String toString() {
-		return this._fileName;
+		return String.format("(" + this.getZ() + "/" + this.getOrderAdded() + ") " + this._fileName);
 	}
 
 	public int getOriginalWidth() {
@@ -171,10 +163,15 @@ public class Sprite implements Comparable<Sprite>, Drawable, Clickable {
 		}
 	}
 	
+	public int getOrderAdded() {
+		return this._orderAdded;
+	}
+	
 	public void draw(SpriteBatch spriteBatch) {
 		int screenHeight = ScreenController.getCurrentScreen().getHeight();
 		Texture t = this._texture;
 		
+		// Draw at our transparency level
 		spriteBatch.setColor(new Color(1, 1, 1, this._alpha));
 		spriteBatch.draw(t,  0f + this._x, 0f + screenHeight - this.getHeight() - this._y,
 				this.getWidth() / 2, this.getHeight() / 2, // origin 
@@ -182,5 +179,7 @@ public class Sprite implements Comparable<Sprite>, Drawable, Clickable {
 				1, 1, 0, // Scale to (1, 1), rotation = 0
 				0, 0, this.getOriginalWidth(), this.getOriginalHeight(),
 				false, false);
+		// Tell spritebatch to raw everything fully opaque
+		spriteBatch.setColor(FULLY_OPAQUE); // Fully opaque
 	}
 }

@@ -12,16 +12,20 @@ import com.deengames.radiantwrench.utils.Clickable;
 import com.deengames.radiantwrench.utils.RadiantWrenchException;
 
 // Adapted from http://www.badlogicgames.com/forum/viewtopic.php?f=11&t=2168&sid=a5ac07a6f80769c1b8405b8ba181e913#p11486
-public class ImageButton extends Image implements Clickable {
+public class ImageButton extends Image implements Clickable, Drawable {
 	
 	private TextureRegion _down;
 	private TextureRegion _up;
 	private Texture _texture;
 	private String _fileName;
 	private boolean _wasClicked = false;
+	private int _z = 0;
+	private int _orderAdded = 0;
 
 	private ClickListener _clickListener;
 
+	private static int nextOrderAdded = 0;
+	
 	public ImageButton(String fileName) {
 		super("Button");
 		this._fileName = fileName;
@@ -35,9 +39,11 @@ public class ImageButton extends Image implements Clickable {
 		this.setUpRegion(new TextureRegion(t, 0, 0, halfWidth, t.getHeight()));
 		this.setDownRegion(new TextureRegion(t, halfWidth, 0, halfWidth, t.getHeight()));
 		
-		this.rotation = 123;
 		this.originX = width;
-		this.originY = 999;
+		this.originY = height;
+		
+		this._orderAdded = nextOrderAdded;
+		nextOrderAdded++;
 	}
 	
 	public void setScale(float scale) {
@@ -121,6 +127,49 @@ public class ImageButton extends Image implements Clickable {
 		return Math.round(this.height * this.scaleY);
 	}
 
+	@Override
+	public int getX() {
+		return Math.round(this.x);
+	}
+
+	@Override
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	@Override
+	public int getY() {
+		return Math.round(this.y);
+	}
+
+	@Override
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	@Override
+	public int getZ() {
+		return this._z;
+	}
+
+	@Override
+	public void setZ(int z) {
+		this._z = z;
+	}
+
+	@Override
+	public int getWidth() {
+		return Math.round(this.width);
+	}
+
+	@Override
+	public int getHeight() {
+		return Math.round(this.height);
+	}
+	
+	public int getOrderAdded() {
+		return this._orderAdded;
+	}
 
 	// There's already a draw from our inherited class. Sigh. RW = Radiant Wrench
 	public void rwDraw(SpriteBatch spriteBatch) {
@@ -129,21 +178,6 @@ public class ImageButton extends Image implements Clickable {
 		// Calculating Y is complicated (inverted Y). Sigh. Just accept it, it's experimentally derived.
 		spriteBatch.draw(this.region, this.x,
 				ScreenController.getCurrentScreen().getHeight() - this.y - this.height,
-				this.scaleX * this.width, this.scaleY * this.height);
-		
-		/*
-		 * Epic fail LOL, looked at the wrong class three times XD
-		 
-		float destX = this.x;
-		float destY = ScreenController.getCurrentScreen().getHeight() - this.y - this.height;
-		int srcX = (this.region == _up ? 0 : Math.round(this.width / 2)); 
-				
-		spriteBatch.draw(this._texture, destX, destY,
-				this.originX, this.originY, this.getScaledWidth(), this.getScaledHeight(), // Use center origin
-				this.originX, this.originY, this.rotation, // No scale/rotation, really
-				srcX, 0, Math.round(this.width), Math.round(this.height), // Assume 2 frames
-				false, false); // No flip
-		*/
-				
+				this.scaleX * this.width, this.scaleY * this.height);	
 	}
 }

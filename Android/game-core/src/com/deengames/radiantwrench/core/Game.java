@@ -1,6 +1,8 @@
 package com.deengames.radiantwrench.core;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 
 import com.badlogic.gdx.ApplicationListener;
@@ -19,22 +21,25 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.deengames.radiantwrench.controller.ScreenController;
 import com.deengames.radiantwrench.utils.RadiantWrenchException;
+import com.deengames.radiantwrench.utils.ZTypeOrderComparator;
+import com.deengames.radiantwrench.view.Drawable;
 import com.deengames.radiantwrench.view.ImageButton;
 import com.deengames.radiantwrench.view.ImageCheckbox;
 import com.deengames.radiantwrench.view.Screen;
 import com.deengames.radiantwrench.view.Sprite;
+import com.deengames.radiantwrench.view.SpriteSheet;
 import com.deengames.radiantwrench.view.Text;
 
 public class Game implements ApplicationListener, InputProcessor {
 	
-	SpriteBatch _spriteBatch;
-	BitmapFont _defaultFont;
-	Date _lastRenderOn;
-	Sprite _blackout;
+	private SpriteBatch _spriteBatch;
+	private BitmapFont _defaultFont;
+	private Date _lastRenderOn;
+	private Sprite _blackout;
+	private Comparator _zTypeOrderComparator = new ZTypeOrderComparator();
 	
 	private static Game _instance = new Game();
 	public static Game getCurrentGame() { return _instance; }
-	private Color NO_BLENDING = new Color(1, 1, 1, 1);
 	
 	public Game() {
 		_instance = this;		
@@ -55,7 +60,6 @@ public class Game implements ApplicationListener, InputProcessor {
 		
 		// Can't be earlier
 		for (Sprite s : ScreenController.getCurrentScreen().getSprites()) {
-			//s.loadTexture();
 			if (s.getFileName().endsWith("/blackout.jpg")) {
 				this._blackout = s;
 			}
@@ -68,58 +72,64 @@ public class Game implements ApplicationListener, InputProcessor {
 	
 	@Override
 	public void render () {
-		//try {
-			if (this._lastRenderOn == null) {
-				this._lastRenderOn = new Date();
-			}
-			
-			Date now = new Date();		
-			double elapsedTime = (now.getTime() - this._lastRenderOn.getTime()) / 1000f;
-			
-			int SCREEN_WIDTH = Gdx.graphics.getWidth();
-			int SCREEN_HEIGHT = Gdx.graphics.getHeight();
-			int centerX = SCREEN_WIDTH / 2;
-			int centerY = SCREEN_HEIGHT / 2;
-	
-			Screen currentScreen = ScreenController.getCurrentScreen();
-			currentScreen.update(elapsedTime);
-			
-			clearScreen();
-	
-			_spriteBatch.begin();
-			_spriteBatch.setColor(Color.WHITE);	
-			
-			for (Sprite s : currentScreen.getSprites()) {
-				if (s.getFileName().endsWith("/blackout.jpg")) {
-					// For some reason, assigning this early on gives us two copies?!?!
-					this._blackout = s;
-				} else {
-					s.draw(this._spriteBatch);
-				}
-			}
-			
-			_spriteBatch.setColor(NO_BLENDING);
-			
-			for (Text t : currentScreen.getTexts()) {
-				t.draw(this._spriteBatch);
-			}
-			
-			for (ImageButton b : currentScreen.getImageButtons()) {
-				b.rwDraw(this._spriteBatch);
-			}
-			
-			for (ImageCheckbox i : currentScreen.getImageCheckboxes()) {
-				i.rwDraw(this._spriteBatch);
-			}
-			
-			this._blackout.draw(this._spriteBatch);
-				
-			_spriteBatch.end();
-			
+		if (this._lastRenderOn == null) {
 			this._lastRenderOn = new Date();
-		/*} catch (Exception e) {
-			ScreenController.getCurrentScreen().showException(e);
-		}*/
+		}
+		
+		Date now = new Date();		
+		double elapsedTime = (now.getTime() - this._lastRenderOn.getTime()) / 1000f;
+		
+		int SCREEN_WIDTH = Gdx.graphics.getWidth();
+		int SCREEN_HEIGHT = Gdx.graphics.getHeight();
+		int centerX = SCREEN_WIDTH / 2;
+		int centerY = SCREEN_HEIGHT / 2;
+
+		Screen currentScreen = ScreenController.getCurrentScreen();
+		currentScreen.update(elapsedTime);
+		
+		ArrayList<Drawable> drawables = new ArrayList<Drawable>();
+		drawables.addAll(currentScreen.getSprites());
+		drawables.addAll(currentScreen.getSpriteSheets());
+		drawables.addAll(currentScreen.getTexts());
+		drawables.addAll(currentScreen.getImageButtons());
+		drawables.addAll(currentScreen.getImageCheckboxes());
+		
+		clearScreen();
+
+		_spriteBatch.begin();
+		_spriteBatch.setColor(Color.WHITE);	
+		
+		for (Sprite s : currentScreen.getSprites()) {
+			if (s.getFileName().endsWith("/blackout.jpg")) {
+				// For some reason, assigning this early on gives us two copies?!?!
+				this._blackout = s;
+			}
+		}
+		
+		Collections.sort(drawables, _zTypeOrderComparator);
+		
+		for (Drawable d : drawables) {
+			if (d instanceof SpriteSheet) {
+				((SpriteSheet)d).draw(_spriteBatch);
+			} else if (d instanceof Sprite) {
+				((Sprite)d).draw(_spriteBatch);
+			} else if (d instanceof Text) {
+				((Text)d).draw(_spriteBatch);
+			} else if (d instanceof ImageButton) {
+				((ImageButton)d).rwDraw(_spriteBatch);
+			} else if (d instanceof ImageCheckbox) {
+				((ImageCheckbox)d).rwDraw(_spriteBatch);
+			} else {
+				throw new RadiantWrenchException("Not sure how to draw a " + d.getClass().getName());
+			}
+		}
+		
+		// Always draw on top
+		this._blackout.draw(this._spriteBatch);
+			
+		_spriteBatch.end();
+		
+		this._lastRenderOn = new Date();
 	}
 	
 	@Override
@@ -176,8 +186,13 @@ public class Game implements ApplicationListener, InputProcessor {
 		int yFromScreenTop = ScreenController.getCurrentScreen().getHeight() - y;
 		Screen currentScreen = ScreenController.getCurrentScreen();
 		
-		for (Sprite s : currentScreen.getSprites())
+		for (Sprite s : currentScreen.getSprites()) {
 			s.touchDown(x, yFromScreenTop, pointer);
+		}
+		
+		for (SpriteSheet s : currentScreen.getSpriteSheets()) {
+			s.touchDown(x,  yFromScreenTop, pointer);
+		}
 		
 		for (Text t : currentScreen.getTexts()) {
 			t.touchDown(x, y, pointer);
@@ -218,6 +233,10 @@ public class Game implements ApplicationListener, InputProcessor {
 			s.touchUp(x, yFromScreenTop, pointer);
 		}
 		
+		for (SpriteSheet s : currentScreen.getSpriteSheets()) {
+			s.touchUp(x, yFromScreenTop, pointer);
+		}
+		
 		for (Text t : currentScreen.getTexts()) {
 			t.touchUp(x,  y, pointer);
 		}
@@ -231,9 +250,5 @@ public class Game implements ApplicationListener, InputProcessor {
 		}
 		
 		return true;
-	}
-
-	public void rethrowException(RadiantWrenchException r) throws RadiantWrenchException {
-		throw r;
 	}
 }
