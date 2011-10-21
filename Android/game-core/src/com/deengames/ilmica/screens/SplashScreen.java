@@ -11,7 +11,7 @@ import java.util.TimerTask;
 
 public class SplashScreen extends Screen {
 
-	private Timer _timer = new Timer();
+	Timer _timer = new Timer();
 	
 	@Override
 	public void initialize() { //throws RadiantWrenchException {

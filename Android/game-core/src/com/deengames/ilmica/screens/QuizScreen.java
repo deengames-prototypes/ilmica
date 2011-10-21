@@ -1,10 +1,13 @@
 package com.deengames.ilmica.screens;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.deengames.ilmica.controller.MainController;
 import com.deengames.ilmica.model.Question;
 import com.deengames.ilmica.model.QuestionMetaDataType;
+import com.deengames.radiantwrench.controller.ScreenController;
+import com.deengames.radiantwrench.utils.Action;
 import com.deengames.radiantwrench.utils.ClickListener;
 import com.deengames.radiantwrench.utils.Clickable;
 import com.deengames.radiantwrench.view.ImageCheckbox;
@@ -15,7 +18,7 @@ import com.deengames.radiantwrench.view.Text;
 
 public class QuizScreen extends Screen {
 	
-	private String _setName;
+	String _setName;
 	private Question[] _questions;
 	
 	private Text _questionText;
@@ -32,6 +35,7 @@ public class QuizScreen extends Screen {
 	private final int INFO_PANEL_MARGIN = 12;
 	private final int DONE_DESCRIPTION_Y = 48;
 	
+	long _startTime;
 	ImageCheckbox _clickedCheckbox = null;
 	private SpriteSheet _previousButton = null;
 	private SpriteSheet _nextButton = null;
@@ -40,7 +44,7 @@ public class QuizScreen extends Screen {
 	private Sprite _infoIcon = null;
 	private Sprite _infoPanel = null;
 	private Text _infoPanelText = null;
-	private int[] _selectedAnswerIndicies;
+	int[] _selectedAnswerIndicies;
 	
 	private ArrayList<ImageCheckbox> _answersCheckboxes = new ArrayList<ImageCheckbox>();
 	private ArrayList<Text> _answersTexts = new ArrayList<Text>();
@@ -52,7 +56,9 @@ public class QuizScreen extends Screen {
 	private Sprite _cancelDoneButton;
 	
 	// TODO: move into model?
-	int _currentQuestionIndex = 0;
+	private int _currentQuestionIndex = 0;
+	// TODO: DEFIINITELY move into the model.
+	int[] _bestAnswerIndicies;
 	
 	public QuizScreen(String setName) {
 		this._setName = setName;
@@ -70,6 +76,12 @@ public class QuizScreen extends Screen {
 		
 		this._questions = MainController.makeQuizForSet(this._setName);	
 		this._selectedAnswerIndicies = new int[this._questions.length];
+		this._bestAnswerIndicies = new int[this._questions.length];
+		
+		for (int i = 0; i < this._questions.length; i++) {
+			this._bestAnswerIndicies[i] = this._questions[i].getBestAnswerIndex();
+		}
+		
 		// Le sigh...
 		for (int i = 0; i < this._selectedAnswerIndicies.length; i++) {
 			this._selectedAnswerIndicies[i] = -1;
@@ -165,14 +177,32 @@ public class QuizScreen extends Screen {
 		this._confirmDoneButton.setX((this.getWidth() - this._confirmDoneButton.getWidth()) * 5 / 6);
 		this._confirmDoneButton.setY((this.getHeight() - this._confirmDoneButton.getHeight()) * 3 / 4);
 		this._confirmDoneButton.setZ(this._doneDescription.getZ());
+		this._confirmDoneButton.setClickListener(new ClickListener() {
+			public void onClick(Clickable clickable) {
+				finishQuiz();
+			}
+		});
 		this.hideDoneControls();
 		
 		showCurrentQuestion();
 		
 		this.fadeIn();
+		
+		this._startTime = System.nanoTime();
 	}
 	
 
+	void finishQuiz() {
+		this.addFadeOutListener(new Action() {
+			@Override
+			public void invoke() {
+				ScreenController.showScreen(new ReviewScreen(_setName, _selectedAnswerIndicies, _bestAnswerIndicies, _startTime));
+			}
+		});
+		
+		this.fadeOut();
+	}
+	
 	boolean areDoneControlsVisible() {
 		return this._doneCaption.getIsVisible();
 	}

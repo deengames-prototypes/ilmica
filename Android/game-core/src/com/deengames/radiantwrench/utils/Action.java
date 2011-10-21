@@ -8,5 +8,5 @@ package com.deengames.radiantwrench.utils;
  *
  */
 public interface Action {
-	void invoke();
+	public void invoke();
 }

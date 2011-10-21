@@ -8,7 +8,7 @@ import java.util.Random;
 public class Question {
 	private String _text;
 	private ArrayList<String> _answers = new ArrayList<String>();
-	private int _bestAnswer = -1;
+	private int _bestAnswerIndex = -1;
 	private HashMap<QuestionMetaDataType, String> _metaData = new HashMap<QuestionMetaDataType, String>();
 	
 	public Question(String text) {
@@ -30,7 +30,7 @@ public class Question {
 	public void addAnswer(String answer, boolean isBestAnswer) {
 		this._answers.add(answer);
 		if (isBestAnswer == true) {
-			this._bestAnswer = this._answers.size() - 1;			
+			this._bestAnswerIndex = this._answers.size() - 1;			
 		}
 	}
 
@@ -57,5 +57,9 @@ public class Question {
 
 	public void setMetaData(QuestionMetaDataType key, String value) {
 		this._metaData.put(key, value);
+	}
+	
+	public int getBestAnswerIndex() {
+		return this._bestAnswerIndex;
 	}
 }
