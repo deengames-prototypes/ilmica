@@ -39,16 +39,26 @@ public class Question {
 	}
 
 	public void randomizeAnswerOrder() {
-		ArrayList<String> randomized = new ArrayList<String>();
-		Random rGen = new Random();
-		
-		while (this._answers.size() > 0) {
-			int next = rGen.nextInt(this._answers.size());
-			randomized.add(this._answers.get(next));
-			this._answers.remove(next);
+		boolean hasAllNone = false;
+		for (String answer : this._answers) {
+			if (answer.toLowerCase().contains("all of the above") || answer.toLowerCase().contains("none of the above")) {
+				hasAllNone = true;
+			}
 		}
 		
-		this._answers.addAll(randomized);
+		// skip questions with two answers, or with "all of the above" "none of the above"
+		if (this._answers.size() > 2 && !hasAllNone) {
+			ArrayList<String> randomized = new ArrayList<String>();
+			Random rGen = new Random();
+			
+			while (this._answers.size() > 0) {
+				int next = rGen.nextInt(this._answers.size());
+				randomized.add(this._answers.get(next));
+				this._answers.remove(next);
+			}
+			
+			this._answers.addAll(randomized);
+		}
 	}
 
 	public String getMetaData(QuestionMetaDataType key) {

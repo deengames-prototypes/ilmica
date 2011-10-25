@@ -1,70 +1,961 @@
-Set: Fundamentals of Tawheed 1.0
-  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. While a man is praying salaah, some people enter the room. The man starts beautifying his salaah, and makes his recitation more beautiful. 
-    Answer: Shirk by humanization
-    Answer: Shirk by Deification
-    Answer: Shirk Al Akbar
-    Best Answer: Shirk Al Asghar
-    Meta: Information=Small
+Set: Qur'an and Tafseer
+Question: Which surah is mentioned as "the likes of which has not been revealed in the Tawrah, the Injeel, the Zabur, or the Qur'an?"
+Answer: Surah Ikhlaas
+Best Answer: Surah Al-Fatiha
+Answer: Surah Al-Baqarah
+Answer: Surah Ar-Rahman
 
-  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk.Brahma is a supreme God, but his powers are shared by Vishnu and Shiva. 
-    Best Answer: Shirk by association
-    Answer: Shirk by humanization
-    Answer: Shirk by Deification
-    Answer: Shirk Al Akbar
-    Meta: Information=It's by partnership.
- 
-  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk.HINDUS worship Idols as representation of God. These idols look like elephants and Asian men. 
-    Answer: Shirk by negation
-    Best Answer: Shirk by humanization
-    Answer: Shirk Al Akbar
-    Answer: Shirk Al Asghar
-    Meta: Information=Hindus are a religion predominant in south-east Asia (desi people). They are one of the most polytheistic nations, having hundreds and thousands of idols. Seriously.
- 
-  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk.Ahura Mazda is the creator of all that is good, but Angra Mainya is creation and a symbol of darkness.
-    Best Answer: Shirk by association
-    Answer: Shirk by negation
-    Answer: Shirk by humanization
-    Answer: Shirk Al Akbar
-	Meta: Information=
- 
-  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. God is the total of all parts of the universe including man.
-    Answer: Shirk by association
-    Best Answer: Shirk by negation
-    Answer: Shirk by humanization
-    Answer: Shirk by Deification
-    Meta: Information=This premise is illogical. Is god a part of your washrooms and your poop? Then the concept is "God is part of everything except poop and pee?" Crazy mushriks.
- 
-  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. Catholics praying to Maryum, stating she is mother of God. 
-    Answer: Shirk by humanization
-    Answer: Shirk by Deification
-    Answer: Shirk Al Akbar
-    Best Answer: Shirk Al Asghar
-    Meta: Information=ALL YOUR BASE ARE BELONG TO US!!1
- 
-  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. Souls of saints and righteous people affect the affairs of this world even after their death.
-    Best Answer: Shirk by association
-    Answer: Shirk by humanization
-    Answer: Shirk by Deification
-    Answer: Shirk Al Akbar
-    Meta: Information=Not al-Akbar
+Question: Out of the following phrases, which one should be the most repeated?
+Best Answer: Ar-Rahman Ar-Raheem
+Answer: Maliki Yawm Ad-deen
+Answer: Alhamdulillahi Rabbil-Alameen
+Answer: Qul hu Allahu Ahad
 
-  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. Some Muslims, in the past and the present, say, " All is Allah and Allah is all."
-    Answer: Shirk by association
-    Best Answer: Shirk by negation
-    Answer: Shirk by Deification
-    Answer: Shirk Al Asghar
-    Meta: Information=Not an "A" word shirk
- 
-  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. Praying to Prophet Muhammad (saw). 
-    Answer: Shirk by association
-    Answer: Shirk by Deification
-    Best Answer: Shirk Al Akbar
-    Answer: Shirk Al Asghar
-    Meta: Information=Al-...
+Question: What is the meaning of Allah's name "Al-Hayy" (mentioned in Ayat al-Kursi)?
+Answer: Ever-living
+Answer: Who possesses the perfect living
+Answer: Endless existence
+Best Answer: All of the above
 
-  Question: The concept falls under one of these categories of shirk. Match the concept with the correct category of shirk. God the father, Jesus, and Holy Spirit are three entities sharing the same power of God.
-    Best Answer: Shirk by association
-    Answer: Shirk by Deification
-    Answer: Shirk Al Akbar
-    Answer: Shirk by negation
-    Meta: Information="Shirk by ..."
+Question: What is the meaning of Allah's name "Al-Hayy" (mentioned in Ayat al-Kursi)?
+Best Answer: The Ever-Living
+Answer: The Self-Subsisting
+Answer: The Most Magnificent
+Answer: The Most High
+
+Question: What is the meaning of Allah's name "Al-Qayyum" (mentioned in Ayat al-Kursi)?
+Answer: The Ever-Living
+Best Answer: The Self-Subsisting
+Answer: The Most Magnificent
+Answer: The Most High
+
+Question: What is the meaning of Allah's name "Al-'Alee" (mentioned in Ayat al-Kursi)?
+Answer: The Ever-Living
+Answer: The Self-Subsisting
+Answer: The Most Magnificent
+Best Answer: The Most High
+
+Question: Which of the following is NOT from the implications of Allah's name, "Al-Qayyum" (mentioned in Ayat al-Kursi)?
+Answer: Neither slumber, nor sleep over takes Him
+Answer: Allah is the Self-Subsisting and the One by Whom all things subsist
+Answer: The one who is established on His Own
+Best Answer: Allah is only merciful to the believers
+
+Question: Which of the following is the only way to know our Creator?
+Answer: Philosophy
+Answer: Logic
+Answer: Statements of scholars
+Best Answer: Revelation from Allah in the Qur'an and the sunnah
+
+Question: This one surah alone is so powerful that it serves as a protection, and Rasoolullah declared it to be equivalent to one-third of Qur'an. Loving it attains the love of Allah for the one who loves the soorah and causes one to enter Jannah (paradise).
+Best Answer: Surah Ikhlaas
+Answer: Surah Al-Fatiha
+Answer: Surah Al-Baqarah
+Answer: Surah Ar-Rahman
+
+Question: The Qur'an begins with which letter?
+Answer: Alif
+Best Answer: Ba
+Answer: Jeem
+Answer: Dal
+
+Question: Which of the following is the correct explanation of the meaning of the letter "ba" in Bismillah?
+Best Answer: Seeking closeness to and assistance of
+Answer: Praise and Thanks
+Answer: King and Owner
+Answer: In, with, of, belongs to
+
+Question: Complete the following hadeeth recorded in Saheeh Al-Bukhari and Muslim: "Surely, all actions are driven by ___________" (inna mal a'malu bi _______).
+Answer: Allah
+Answer: Hope
+Answer: Fear
+Best Answer: Intention
+
+Question: Complete the following hadeeth recorded in Saheeh Muslim:  "Verily, Allah does not look at your shapes or your wealth, but He looks at your ________ and your ___________."
+Best Answer: Heart / actions
+Answer: Eman / Islam
+Answer: Intention / Hope
+Answer: Qur'an / Sunnah
+
+Question: Which of the following is incorrect explanation of Allah's name, Ar-Rabb?
+Answer: Ar-Rabb is the owner and possessor, who has full authority over his property.
+Answer: Ar-Rabb is the sovereign, ruler, who controls and directs.
+Answer: Ar-Rabb is the master who has the authority to lead and His authority must by obeyed.
+Best Answer: Ar-Rabb is a master whose authority is based on mercy, and thus He never punishes His creation.
+
+Question: What is the opposite of the word "shukr" (gratitude)?
+Answer: Khauf
+Best Answer: Kufr
+Answer: Hamd
+Answer: Raja'a
+
+Question: Complete the following hadeeth: Nu'man bin Bashar quoted Rasoolullah as saying, "Speaking of Allah's blessing is __________ and ignoring it is kufr."
+Best Answer: Gratitude
+Answer: Worship
+Answer: Praise
+Answer: Mercy
+
+Question: Which of the following is the first attribute of Allah mentioned in the Noble Qur'an?
+Answer: Al-Khaliq (The Creator)
+Answer: Al-Ahad (The One)
+Answer: Al-Malik (The Master)
+Best Answer: Ar-Rahman (The Merciful)
+
+Question: What is Allah's ruboobiyyah (lordship) based on?
+Best Answer: Mercy
+Answer: Ruthlessness
+Answer: Punishment
+Answer: Accountability
+
+Question: Allah (subhanahu wa ta'ala) says, "Surely, your Lord is swift in retribution, and certainly He is Oft-Forgiving, Most Merciful." [Al-Furqaan, verse 165] How do you reconcile that Allah is Merciful, yet He is takes retribution?
+Answer: Justice is part of mercy
+Answer: Allah has forbidden thulm upon Himself
+Answer: Retribution is no dhulm.
+Best Answer: All of the above
+
+Question: What is our essential pledge to Allah (subhanahu wa ta'ala) as Muslims?
+Answer: We will be kind
+Best Answer: We will worship none but Allah
+Answer: We will speak the truth
+Answer: We will listen to our parents no matter what
+
+Question: Which of the following is NOT implied in the Arabic term "ibaadah" (worship)?
+Answer: Love and adoration
+Answer: Obedience
+Answer: Service and subjugation
+Best Answer: All of the above terms are implied
+
+Question:  Which of the following constitute worshiping Allah through action of the heart?
+Answer: To testify there is none worthy of worship except Allah
+Answer: To believe in Allah, His angels, His books, His messenger, in the Day of Judgment and the divine decree
+Best Answer: To love, hope and fear Allah
+Answer: Prayer and sacrifice
+
+Question: Which of the following constitute worshiping Allah through action of the limbs?
+Answer: To testify there is none worthy of worship except Allah
+Answer: To believe in Allah, His angels, His books, His messenger, in the Day of Judgment and the divine decree
+Answer: To love, hope and fear Allah
+Best Answer: Prayer and sacrifice
+
+Question: Which of the following constitute worshiping Allah through statement of the heart?
+Answer: To testify there is none worthy of worship except Allah
+Answer: To believe in Allah, His angels, His books, His messenger, in the Day of Judgment and the divine decree
+Answer: To love, hope and fear Allah
+Answer: Prayer and sacrifice
+
+Question: Which of the following constitute worshiping Allah through statement of the tongue?
+Best Answer: To testify there is none worthy of worship except Allah
+Answer: To believe in Allah, His angels, His books, His messenger, in the Day of Judgment and the divine decree
+Answer: To love, hope and fear Allah
+Answer: Prayer and sacrifice
+
+Question: Define the following term which is also one of the ways we worship Allah: khawf
+Best Answer: Reverential fear
+Answer: Hope and longing
+Answer: Trust and reliance
+Answer: Turning repentantly
+
+Question: Define the following term which is also one of the ways we worship Allah: raja'a
+Answer: Reverential fear
+Best Answer: Hope and longing
+Answer: Trust and reliance
+Answer: Turning repentantly
+
+Question: Define the following term which is also one of the ways we worship Allah: tawakkul
+Answer: Reverential fear
+Answer: Hope and longing
+Best Answer: Trust and reliance
+Answer: Turning repentantly
+
+Question: Define the following term which is also one of the ways we worship Allah: inaabah
+Answer: Reverential fear
+Answer: Hope and longing
+Answer: Trust and reliance
+Best Answer: Turning repentantly
+
+Question: Define the following term which is also one of the ways we worship Allah: du'a
+Best Answer: Invocation
+Answer: Awe
+Answer: Seeking refuge
+Answer: Seeking assistance
+
+Question: Define the following term which is also one of the ways we worship Allah: khashyah
+Answer: Invocation
+Best Answer: Awe
+Answer: Seeking refuge
+Answer: Seeking assistance
+
+Question: Define the following term which is also one of the ways we worship Allah: isti'aadhah
+Answer: Invocation
+Answer: Awe
+Best Answer: Seeking refuge
+Answer: Seeking assistance
+
+Question: Define the following term which is also one of the ways we worship Allah: isti'aanah
+Answer: Invocation
+Answer: Awe
+Answer: Seeking refuge
+Best Answer: Seeking assistance
+
+Question: What is tawheed?
+Answer: To make Allah One
+Best Answer: To make Allah One in our understanding
+Answer: To believe the Muhammad is the messenger of Allah
+Answer: None of the above
+
+Question: Complete the following hadeeth recorded in Al-Hakim: "Allah has given a parable of a straight path, on both sides are two walls, and these walls have doors, and there is a curtain to it. End of the path a caller calling not to swerve. At each door there is a warning when he turns towards those doors. This straight path is Islam, walls are delineating lawful and unlawful …" What is the caller at the end?
+Best Answer: Book of Allah
+Answer: Messenger of Allah
+Answer: An angel of Allah
+Answer: Your soul
+
+Question: There are two conditions for an act to be counted as an act of worship. What are those two conditions?
+Best Answer: Intention and accordance to the sunnah
+Answer: Cleanliness of the heart and cleanliness of the body
+Answer: Hope and fear
+Answer: All of the above
+
+Question: Complete the following verse: "This day I have perfected and ________ your religion for you, completed my favor upon you and have chosen for you Islam as your religion." [Al-Maaidah, verse 3]
+Answer: Revealed
+Best Answer: Completed
+Answer: Exalted
+Answer: None of the above
+
+Question: There is only one straight path to success in the hereafter.
+Best Answer: True
+Answer: False
+
+Question: How does one attain guidance?
+Answer: Knowledge
+Answer: Struggle
+Answer: Invocation
+Best Answer: All of the above
+
+Question: Complete the following hadeeth recorded in Saheeh Muslim: "Indeed the best speech is the book of Allah, and the best guidance is the guidance of Muhammad; and the worst affairs are the newly invented matters, and every __________________."
+Answer: Every innovator is in hell-fire.
+Best Answer: Every innovation is misguidance
+Answer: Every person is accountable
+Answer: Every Muslim is should adhere to my sunnah
+
+Question: Complete the following hadeeth recorded in Al-Bayhaqee: "O people I have left amongst you that which if you cling onto you will never go astray:__________________."
+Best Answer: The book of Allah and my sunnah
+Answer: My Sunnah and my sahabah
+Answer: The book of Allah
+Answer: My sunnah
+
+Question: Complete the following hadeeth recorded by Imam At-Tirmidhee: "Indeed the Children of Israa'eel split up into seventy-one sects and my Ummah will split up into seventy-three, all of them are in the Fire except one." It was asked, "Which is the one?" He responded, _________________________."
+Answer: That which I am upon.
+Best Answer: That which I and my companions are upon.
+Answer: That of the Noble Qur'an.
+Answer: None of the above
+
+Question: Which of the following is not a pillar of Islam?
+Answer: Shahadah
+Answer: Prayer
+Answer: Hajj
+Best Answer: Jihad
+
+Question: How many pillars of eman are there?
+Answer: 5
+Best Answer: 6
+Answer: 7
+Answer: 8
+
+Question: Which of the following is not a condition of shahadah?
+Answer: Certainty
+Answer: Acceptance
+Answer: Compliance
+Best Answer: All of the above are conditions
+
+Question: What was revealed when Rasoolullah travelled above the heavens on Al-Miraaj?
+Answer: Islam
+Answer: Qur'an
+Best Answer: Salah
+Answer: Prophethood
+
+Question: What did Rasoolullah call the animal that took him from Masjid ul-Haram to Masjid ul-Aqsa?
+Answer: Qaswa
+Best Answer: Buraq
+Answer: Speedy
+Answer: Himaar
+
+Question: Angel Jibreel washed the insides of Rasoolullah; what did he wash it with?
+Answer: Water from the well of Kauthar
+Answer: Milk from Jannah
+Best Answer: Water from the well of Zam Zam
+Answer: Water from a bowl made out of pearls
+
+Question: Which prophet did Rasoolullah meet in the first heaven?
+Best Answer: Adam
+Answer: Esa
+Answer: Ibraheem
+Answer: Musa
+
+Question: What was the farthest point that Rasoolullah was taken in journey on Al-Miraaj?
+Answer: Paradise
+Answer: The seventh Heaven
+Best Answer: The Lote Tree
+Answer: None of the Above
+
+Question: He's a tall man, with curly hair, hooked nose, as if he were a man from the tribe of Shanuah. Rasoolullah met him in this sixth heaven. Who is he?
+Answer: Adam
+Answer: Esa
+Answer: Ibraheem
+Best Answer: Musa
+
+Question: He was reclining against Baytul Ma'mur, where 70,000 angles visit every day, and they never return to it again. Rasoolullah met this man in the seventh heaven. Who is he?
+Answer: Adam
+Answer: Esa
+Best Answer: Ibraheem
+Answer: Musa
+
+Question: He was of moderate height, red faced, and had hair as if he had just come out of a bath. He was with his cousin Yahya (peace be upon him) in the second heaven. Who is he?
+Answer: Adam
+Best Answer: Esa
+Answer: Ibraheem
+Answer: Musa
+
+Question: Complete the following hadeeth recorded in At-Tabaranee: "The first act which the slave will be accountable for on the Day of Judgement will be the ________. If it is good, then the rest of his acts will be good. And if it is evil, then the rest of his acts will be evil."
+Answer: Belief in Allah
+Answer: Ihsan toward parents
+Best Answer: Salah
+Answer: Love of Rasoolullah
+
+Question: After Rasoolullah passed away, there were a few major groups that became threat to the Muslim ummah. Which group did Abu Bakr choose to fight first?
+Answer: The apostates
+Answer: The false prophets
+Best Answer: Those who refused to pay zakat
+Answer: The Persians
+
+Question: Complete the following hadeeth recorded in Ibn Majah: "A people do not keep from ________________except that they will be kept from having rain falling from the sky. If it were not for the animals, it would not rain at all." [Ibn Majah]
+Best Answer: Giving the zakat on their wealth
+Answer: Giving the sadaqah
+Answer: Praying salah in the masjid
+Answer: Taking care of the orphans
+
+Question: How can you render the deed of charity worthless?
+Answer: By boasting about it
+Answer: By reminding the recipient about it
+Answer: By showing off
+Best Answer: All of the above
+
+Question: Which of the following is not a way to give sadaqah?
+Answer: A good word
+Answer: Every step you take for prayer
+Answer: Removing a harmful thing from the road
+Best Answer: All of the above
+
+Question: When Rasoolullah travelled from Medina to Makkah, approximately how many Muslims accompanied him?
+Answer: 10,000 – 20,000
+Answer: 50,000 – 70,000
+Best Answer: 90,000 – 120,000
+Answer: 130,000 to 150,000
+
+Question: If you are legitimately stopped from Hajj or umrah due to sickness or threat, after making intention of making Hajj or umrah by putting on the ihram, how do you break your state of ihram?
+Best Answer: Sacrifice your animals and shave your head
+Answer: Shave your head and change your clothes
+Answer: Sacrifice your animals and distribute its meat
+Answer: Shave your head and fast ten days
+
+Question: In the sixth year after hijra, when Rasoolullah set out for umrah, he was stopped by the Quraish from enter Makkah. What was the result after the envoys went back and forth?
+Answer: The Quraish eventually allowed the Muslims to do umrah
+Answer: The Battle of Siffeen
+Best Answer: The treaty of Hudaybiyyah
+Answer: Sohail ibn Amr became Muslim
+
+Question: Can we conduct business when we go for Hajj?
+Best Answer: Yes
+Answer: No
+
+Question: What is the literal meaning of Hajj?
+Best Answer: To respect and show honor
+Answer: To visit someone
+Answer: To travel a great distance
+Answer: To purify yourself
+
+Question: Hajj is obligatory on every male Muslim who has reached the age of puberty.
+Answer: True
+Best Answer: False
+
+Question: What is the purpose of fasting in Ramadan?
+Answer: To lose weight
+Answer: To feel what the poor feel
+Answer: To feel humility
+Best Answer: To attain consciousness of Allah
+
+Question: What must you refrain from while fasting?
+Answer: Food and drink
+Answer: Sexual intercourse
+Answer: All evil and vices
+Best Answer: All of the above
+
+Question: What marks the beginning and end of fasting?
+Best Answer: The sighting of new moon
+Answer: The setting of the sun
+Answer: The sighting of a full moon
+Answer: The rising of the sun
+
+Question: What was revealed in the month of Ramadan?
+Answer: The Qur'an
+Answer: Surah Alaq: Iqra bismi rabbikal-ladhee khalaq ...
+Answer: Surah Al-Fatiha
+Best Answer: All of the above
+
+Question: What is the description of those who have taqwa (God-consciousness)?
+Answer: They believe in the unseen
+Answer: They establish prayer
+Answer: They spend from what Allah has given them
+Best Answer: All of the above
+
+Question: Complete the following hadeeth recorded in At-Tirmidhee: "Fear Allah wherever you are, and follow up a bad deed with a good one and it will wipe it out, and ___________________."
+Best Answer: Behave well towards people
+Answer: Behave well towards your parents
+Answer: Complete for obligations to Allah
+Answer: None of the above
+
+Question: Which of the following is not a component of eman?
+Answer: Believing in the heart
+Answer: Profession by the tongue
+Answer: Performing righteous deeds
+Best Answer: None of the above
+
+Question: Which of the following is not a component of eman?
+Answer: Eman increases and decreases
+Answer: Deeds are part of Eman
+Answer: Profession by tongue
+Best Answer: Eating with your hands
+
+Question: How many wings does Angel Jibreel have?
+Answer: 100
+Answer: 300
+Best Answer: 600
+Answer: 900
+
+Question: Which of the following is not an angel mentioned in Qur'an and sunnah?
+Answer: Jibreel
+Answer: Haroot
+Answer: Mikaeel
+Best Answer: Azraeel
+
+Question: How many angels carry the throne of Allah?
+Answer: 4
+Answer: 6
+Best Answer: 8
+Answer: 10
+
+Question: Jibreel (alayhis alam) often came to Rasoolullah looking like which sahabi?
+Best Answer: Zuhya Al-Kalbi
+Answer: Musab Ibn Umair
+Answer: Jafar Ibn Abi Talib
+Answer: Salman Al-Farsi
+
+Question: Which of the following is not a book of Allah revealed to Prophets?
+Answer: The Zaboor
+Answer: The Injeel
+Answer: The Furqan
+Best Answer: The Suhoor
+
+Question: Which prophet was the Torah revealed to?
+Answer: Dawud
+Best Answer: Musa
+Answer: Zakariyah
+Answer: Esa
+
+Question: Which prophet was the Zaboor revealed to?
+Best Answer: Dawud
+Answer: Musa
+Answer: Zakariyah
+Answer: Esa
+
+Question: Which prophet was the Injeel revealed to?
+Answer: Yahya
+Answer: Sulaiman
+Answer: Musa
+Best Answer: Esa
+
+Question: Which book abrogated (overruled) which preceding books?
+Best Answer: The Qur'an abrogated all of the previous books
+Answer: The Injeel abrogated all of the previous books except for Qur'an
+Answer: The Zaboor abrogated all of the previous books except Qur'an
+Answer: The Suhoof abrogated all of the books excluding Qur'an
+
+Question: Which of the following is a problem with the scriptures before Qur'an?
+Answer: Distortion in meaning
+Answer: Distortion in wording
+Answer: Message being concealed
+Best Answer: All of the above
+
+Question: All prophets came with the same message?
+Best Answer: True
+Answer: False
+
+Question: We must believe in all the prophets mentioned in the Qur'an, and all the prophets mentioned in the Injeel and the Torah.
+Answer: True
+Best Answer: False
+
+Set: The Science of hadeeth
+Question: Choose the best explanation of the ayah "we have not sent any messenger except that he be obeyed." [An-Nisa, verse 64]
+Best Answer: Allah made it obligatory to follow all the prophets
+Answer: Prophets are infallible therefore they should be followed
+Answer: The sahabah followed all the prophets blindly
+Answer: It is prophet's responsibility to explain the Qur'an
+ 
+Question: Choose the best explanation of the ayah "we have revealed the dhikr to you so that you can explain to mankind what has been sent." [An-Nahl, verse 44]
+Answer: Allah made it obligatory to follow all the prophets
+Answer: Prophets are infallible therefore they should be followed
+Answer: The sahabah followed all the prophets, blindly
+Best Answer: It is prophet's responsibility to explain the Qur'an
+ 
+Question: Choose the best explanation of the ayah "whoever obeys the messenger has indeed obeyed Allah." [An-Nisa, verse 80]
+Best Answer: Obedience to Prophet is linked with obedience to Allah
+Answer: Prophets are infallible therefore they should be followed
+Answer: The sahabah followed all the prophets blindly
+Answer: It is prophet's responsibility to explain the Qur'an
+ 
+Question: Which category does the following hadeeth fall under: "if anyone lies upon the Prophet, prepare to take your seat in Hellfire."
+Answer: Ahad
+Best Answer: Mutawatir
+Answer: Mash-hoor
+Answer: Azeez
+ 
+Question: What is a daeef hadeeth?
+Answer: A hadeeth that large number of people narrated at every generation
+Answer: A weak, unacceptable hadeeth that can never move up in rank
+Answer: A fabricated hadeeth
+Best Answer: A weak, unacceptable hadeeth that can improve in rank if there are supporting ahadeeth
+ 
+Question: What is a mowdu hadeeth?
+Answer: A hadeeth that large number of people narrated at every generation
+Answer: A weak, unacceptable hadeeth that can never move up in rank
+Best Answer: A fabricated hadeeth that can never become acceptable
+Answer: A weak, unacceptable that can move in rank if there are supporting ahadeeth
+ 
+Question: What is a da'eef jiddan hadeeth?
+Answer: A hadeeth that large number of people narrated at every generation
+Best Answer: A weak, unacceptable hadeeth that can never move up in rank
+Answer: A fabricated hadeeth
+Answer: A weak, unacceptable hadeeth that can move in rank if there are support ahadeeth
+ 
+Question: What is a saheeh hadeeth?
+Answer: The words of the Allah preserved in hadeeth but not the Qur'an
+Answer: A hadeeth that large number of people narrated at every generation
+Best Answer: An acceptable hadeeth of the highest grade
+Answer: An acceptable hadeeth that didn't reach the highest grade
+ 
+Question: What is a hassan hadeeth?
+Answer: The words of the Allah preserved in hadeeth but not the Qur'an
+Answer: A hadeeth that large number of people narrated at every generation
+Answer: An acceptable hadeeth of the highest grade
+Best Answer: An acceptable hadeeth that didn't reach the highest grade
+ 
+Question: What is a qudsi hadeeth?
+Best Answer: The words of the Allah preserved in hadeeth but not the Qur'an
+Answer: A hadeeth that large number of people narrated at every generation
+Answer: An acceptable hadeeth of the highest grade
+Answer: An acceptable hadeeth that didn't reach the highest grade
+ 
+Question: What is a mutawatir hadeeth?
+Answer: The words of the Allah preserved in hadeeth but not the Qur'an
+Best Answer: A hadeeth that large number of people narrated at every generation
+Answer: An acceptable hadeeth of the highest grade
+Answer: An acceptable hadeeth that didn't reach the highest grade
+ 
+Question: Which of the following is the highest grade of authencity?
+Best Answer: Saheeh
+Answer: Hassan
+Answer: Daeef
+Answer: Mowdu
+ 
+Question: Which of the following is the lowest grade of authencity?
+Answer: Saheeh
+Answer: Hassan
+Answer: Daeef
+Best Answer: Mowdu
+ 
+Question: What is the difference between saheeh hadeeth and hassan hadeeth?
+Answer: One has a complete isnaad while the other has an incomplete isnaad
+Answer: One has completely trustworthy narrators while the other has one or more untrustworty narrators
+Best Answer: One has narrators with excellent memory while the other has narrators with average memory
+Answer: One has no defects while the other has minor defects
+ 
+Question: Which of the following conditions does NOT make a hadeeth mowdu or daeef jiddan?
+Answer: If a narrator is liar in sunnah
+Answer: If a narrator is liar in worldly affairs
+Answer: If the narrator is a major innovator
+Best answer: If the narrator is unknown with two or more known students.
+ 
+Question: If the chain (isnaad) of a hadeeth is broken, what is the hadeeth known as?
+Best Answer: Munqati
+Answer: Saheeh
+Answer: Hassan
+Answer: Mowdu
+ 
+Question: If a narrator was known to be a liar in affairs of the sunnah, what becomes the status of the hadeeth?
+Answer: Saheeh (authentic)
+Answer: Hassan (good)
+Answer: Daeef (weak)
+Best Answer: Mowdu (fabricated)
+ 
+Question: Is the following person a sahabi? He prayed janazah over the Prophet (peace be upon him) but he did not see the Prophet while he was alive.
+Answer: Yes
+Best Answer: No
+Answer: Maybe
+ 
+Question: A statement of a sahabi is known as what?
+Best Answer: Athaar
+Answer: Muqaddaram
+Answer: Hadeeth
+Answer: Mustalah
+ 
+Question: Which of the following is a jawami (comprehensive) hadeeth book?
+Best Answer: Saheeh al-Bukhari
+Answer: Musnad Ahmed
+Answer: Sunan Abu Dawood
+Answer: Mujam at-Tabarani
+ 
+Question: What do the "sunan" books mostly cover?
+Best Answer: Mainly fiqh
+Answer: They are comprehensive
+Answer: They are arranged in accordance to sahabah
+Answer: None of the above
+ 
+Question: Which of the following is a jawami (comprehensive) hadeeth book?
+Answer: Musnad Ahmed
+Best Answer: Saheeh al-Muslim
+Answer: Sunan at-Nasai
+Answer: Mujam at-Tabarani
+ 
+Question: Which of the following is a jawami (comprehensive) hadeeth book?
+Answer: Sunan Ibn Maja
+Answer: Musnad Ahmed
+Best Answer: Muwatta Imam Malik
+Answer: Mujam at-Tabarani
+ 
+Question: Which of the following hadeeth books has ahadeeth categorized in chapters under title of the sahabah who narrated them?
+Best Answer: Musnad Imam Ahmed
+Answer: Mujam At-Tabarani
+Answer: Sahih Al-Bukhari
+Answer: Sunan Abu Dawood
+ 
+Question: What is the classification of a hadeeth if it has a narrator that had weak memory?
+Answer: Saheeh
+Answer: Hassan
+Best Answer: Daeef
+Answer: Mowdu
+ 
+Question: What is the classification of a hadeeth if it has a narrator that had average memory?
+Answer: Saheeh
+Best Answer: Hassan
+Answer: Daeef
+Answer: Mowdu
+ 
+Question: What is the classification of a hadeeth if it has a narrator that had strong memory?
+Best Answer: Saheeh
+Answer: Hassan
+Answer: Daeef
+Answer: Mowdu
+ 
+Question: Which of the following types of hadeeth can raise up in rank if there is corroborating evidence?
+Answer: Saheeh
+Best Answer: Daeef
+Answer: Daeef Jiddan
+Answer: Mowdu
+ 
+Question: Which of the following types of hadeeth can raise up in rank if there is corroborating evidence?
+Answer: Saheeh
+Best Answer: Hassan
+Answer: Daeef Jiddan
+Answer: Mowdu
+ 
+Question: What does "sunnah" mean according to scholars of fiqh?
+Answer: Sunnah means belief of prophet and pious predecessors
+Best Answer: Sunnah means recommended but not obligatory
+Answer: Sunnah means actions, approvals, statements
+Answer: Sunnah means everything that came from Rasoolullah including his established conduct, his biography, his deeds, sayings, approvals, his description, etc.
+ 
+Question: What does Sunnah mean according to scholars of aqeedah?
+Best Answer: Sunnah means belief of prophet and pious predecessor
+Answer: Sunnah means recommended but not obligatory
+Answer: Sunnah means actions, approvals, statements
+Answer: Sunnah means everything that came from Rasoolullah including his established conduct, his biography, his deeds, sayings, approvals, his description, etc.
+ 
+Question: What does Sunnah mean according to scholars of hadeeth?
+Answer: Sunnah means belief of prophet and pious predecessor
+Answer: Sunnah means recommended but not obligatory
+Answer: Sunnah means actions, approvals, statements
+Best Answer: Sunnah means everything that came from Rasoolullah including his established conduct, his biography, his deeds, sayings, approvals, his description, etc.
+ 
+Question: What does Sunnah means according to the scholars of usool al-fiqh?
+Answer: Sunnah means belief of prophet and pious predecessor
+Answer: Sunnah means recommended but not obligatory
+Best Answer: Sunnah means actions, approvals, statements
+Answer: Sunnah means everything that came from Rasoolullah including his established conduct, his biography, his deeds, sayings, approvals, his description, etc.
+ 
+Question: What is the isnaad and matn of a hadeeth?
+Best answer: Isnaad is a list of narrators, and matn is the text of hadeeth
+Answer: Matn is a list of narrators, and isnaad is the text of hadeeth
+Answer: Matn is a story or conversation, and isnaad is the preservation of that story
+Answer: Isnaad is a story or conversation, and matn is the preservation of that story
+
+Set: Usool Al-Fiqh
+Question: Is the following fiqh or Usool al-Fiqh: pork is haram!
+Best Answer: Fiqh
+Answer: Usool Al-Fiqh
+ 
+Question: Is the following fiqh or Usool al-Fiqh: it is only an obligation to pray for those who are sane and pass the age of puberty.
+Best Answer: Fiqh
+Answer: Usool Al-Fiqh
+ 
+Question: Is the following fiqh or Usool al-Fiqh: does passing wind break ones salaah?
+Best Answer: Fiqh
+Answer: Usool Al-Fiqh
+ 
+Question: Is the following fiqh or Usool al-Fiqh: Fasting becomes an obligation when Ramadan arrives.
+Best Answer: Fiqh
+Answer: Usool Al-Fiqh
+ 
+Question: Is the following Fiqh or Usool al-Fiqh: what sources can be used as sources for a fatawa?
+Answer: Fiqh
+Best Answer: Usool Al-Fiqh
+ 
+Question: Is the following fiqh or Usool al-Fiqh: Who is authorized to speak about Islam?
+Answer: Fiqh
+Best Answer: Usool Al-Fiqh
+ 
+Question: Is the following fiqh or Usool al-Fiqh: How to derive ruling from Islamically acceptable sources
+Answer: Fiqh
+Best Answer: Usool Al-Fiqh
+ 
+Question: Is the following fiqh or Usool al-Fiqh: What does Haram mean?
+Answer: Fiqh
+Best Answer: Usool Al-Fiqh
+ 
+Question: Who is a lawmaker?
+Best Answer: Allah
+Answer: Prophets
+Answer: Scholars
+Answer: Intelligence
+Answer: All of the above
+ 
+Question: Who is the law meant for?
+Answer: Prophets
+Answer: Scholars
+Answer: The public
+Best Answer: All of the above
+ 
+Question: Who is responsible for extracting the law?
+Answer: Any Muslim who is sane and reached the age of puberty
+Best Answer: Only scholars who are knowledgeable enough
+Answer: Any Muslim
+ 
+Question: What is the definition of fard (also known as maktoob and wajib)?
+Best Answer: A commandment that is binding
+Answer: A commandment that is not binding
+Answer: A prohibition that is not binding
+Answer: Neutral: permission to do or not to do it
+ 
+Question: What is the definition of tahreem (also known as ithm and thanb)?
+Answer: A commandment that is binding
+Best Answer: A prohibition that is binding that is issued from a position of superiority to inferiority
+Answer: A prohibition that is not binding
+Answer: Neutral: permission to do or not to do it
+ 
+Question: What is the definition of mustahhab (also known as naafilah and sunnah)?
+Answer: A commandment that is binding
+Best Answer: A commandment that is not binding
+Answer: A prohibition that is not binding
+Answer: Neutral: permission to do or not to do it
+ 
+Question: What is the definition of al-karahah (also known as makruh)?
+Answer: A prohibition that is binding that is issued from a position of superiority to inferiority.
+Answer: A commandment that is not binding
+Best Answer: A prohibition that is not binding
+Answer: Neutral: permission to do or not to do it
+ 
+Question: What is the definition of mubah?
+Answer: A commandment that is binding
+Answer: A commandment that is not binding.
+Answer: A prohibition that is not binding.
+Best Answer: Neutral: permission to do or not to do it
+ 
+Question: Which of the following is a atatement of command?
+Best Answer: Fard
+Answer: Mustahhab
+Answer: Mubah
+Answer: Haram
+Answer: Makruh
+ 
+Question: Words such as "haqqa", "farada", "wajaba", "kataba", and "amara" indicate that an action is:
+Best Answer: Fard
+Answer: Mustahhab
+Answer: Mubah
+Answer: Haram
+Answer: Makruh
+ 
+Question: A warning of punishment if the deed is not performed indicates that the deed is:
+Best Answer: Fard
+Answer: Mustahhab
+Answer: Mubah
+Answer: Haram
+Answer: Makruh
+ 
+Question: Nahee ("do not do") indicates that an action is:
+Answer: Fard
+Answer: Mustahhab
+Answer: Mubah
+Best Answer: Haram
+Answer: Makruh
+ 
+Question: Warning of punishment for doing a deed indicates that the deed is:
+Answer: Fard
+Answer: Mustahhab
+Answer: Mubah
+Best Answer: Haram
+Answer: Makruh
+ 
+Question: "Harama" and it derivatives are used to indicate deeds that are:
+Answer: Fard
+Answer: Mustahhab
+Answer: Mubah
+Best Answer: Haram
+Answer: Makruh
+ 
+Question: Hadd punishment associated with an act indicates that it is:
+Answer: Fard
+Answer: Mustahhab
+Answer: Mubah
+Best Answer: Haram
+Answer: Makruh
+ 
+Question: Comparison of an action to another that is haram makes the compared action:
+Answer: Fard
+Answer: Mustahhab
+Answer: Mubah
+Best Answer: Haram
+Answer: Makruh
+ 
+Question: Notification that an action nullifies good deeds means that action is:
+Answer: Fard
+Answer: Mustahhab
+Answer: Mubah
+Answer: Haram
+Best Answer: Makruh
+ 
+Question: Words such as "kabeerah," "ma'seeyah," "fisq," and "kufr" indicates actions that are:
+Answer: Fard
+Answer: Mustahhab
+Answer: Mubah
+Best Answer: Haram
+Answer: Makruh
+ 
+Question: Another name for an action that is encouraged is:
+Answer: Fard
+Best Answer: Mustahhab
+Answer: Mubah
+Answer: Haram
+Answer: Makruh
+ 
+Question: When a reward is associated with doing a deed, that shows that the deed is:
+Answer: Fard
+Best Answer: Mustahhab
+Answer: Mubah
+Answer: Haram
+Answer: Makruh
+ 
+Question: A command with a clue that it lowers it from level of fard means the action is:
+Answer: Fard
+Best Answer: Mustahhab
+Answer: Mubah
+Answer: Haram
+Answer: Makruh
+ 
+Question: Acts of worship of the prophets without proof of them being fard take the ruling of:
+Answer: Fard
+Best Answer: Mustahhab
+Answer: Mubah
+Answer: Haram
+Answer: Makruh
+ 
+Question: When a reward is mentioned for not doing an action, without mention of any punishment, that means the action is:
+Answer: Fard
+Answer: Mustahhab
+Answer: Mubah
+Answer: Haram
+Best Answer: Makruh
+ 
+Question: A command of prohibition with clue that it is not binding takes the ruling of:
+Answer: Fard
+Answer: Mustahhab
+Answer: Mubah
+Answer: Haram
+Best Answer: Makruh
+ 
+Question: A Prophet leaving aside an action purposely shows that action is:
+Answer: Fard
+Answer: Mustahhab
+Answer: Mubah
+Answer: Haram
+Best Answer: Makruh
+ 
+Question: The statement "there is no sin upon you" indicates an action that is:
+Answer: Fard
+Answer: Mustahhab
+Answer: Mubah
+Answer: Haram
+Best Answer: Makruh
+ 
+Question: Actions of the Prophet that are daily life actions without proof that they are binding or not binding take the ruling of:
+Answer: Fard
+Answer: Mustahhab
+Best Answer: Mubah
+Answer: Haram
+Answer: Makruh
+ 
+Question: If the shariah (Islamic law) doesn't speak about it, that means the action is:
+Answer: Fard
+Answer: Mustahhab
+Best Answer: Mubah
+Answer: Haram
+Answer: Makruh
+
+Question: Which of the following is the most major of these haram deeds?
+Best Answer: Shirk
+Answer: Murder
+Answer: Cursing your parents
+Answer: Backbiting 
+ 
+Question: If a haram action can't be abstained unless something is else is done first, then that latter action becomes ______.
+Best Answer: Fard
+Answer: Haram
+Answer: Mustahhab
+Answer: Makruh
+ 
+Question: What is needed to complete fard is also _____.
+Best answer: Fard
+Answer: Haram
+Answer: Mustahhab
+Answer: Makruh
+ 
+Question: The default ruling in ibaadah is ______; the default ruling in other than ibaadah is ______.
+Answer: Mubah, haram
+Best Answer: Haram, mubah
+Answer: Fard, makruh
+Answer: Makruh, fard
+ 
+Question: What are the conditions that a person must be under that makes him susceptible to takleef?
+Answer: A sane mind
+Answer: Past puberty
+Answer: Not under compulsion
+Best answer: All of the above
+ 
+Question: What are the signs of puberty?
+Answer: Wet dreams
+Answer: Coarse hair around the privates
+Answer: Menstruation
+Best Answer: All of the above
+ 
+Question: What does a scholar have to do, if a word in the Qur'an/sunnah has two meanings?
+Answer: Give preference to the literal meaning
+Answer: Realize that there are two meanings intended
+Best Answer: Look at the context and circumstances of revelation
+Answer: All of the above

@@ -1,16 +1,8 @@
 package com.deengames.radiantwrench.view;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
-import com.deengames.radiantwrench.core.Game;
 import com.deengames.radiantwrench.utils.Action;
 import com.deengames.radiantwrench.utils.RadiantWrenchException;
 

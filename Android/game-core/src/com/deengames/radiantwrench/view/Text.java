@@ -43,6 +43,10 @@ public class Text implements Drawable, Clickable {
 	}
 	
 	public boolean touchDown(float x, float y, int pointer) {
+		if (this._text == null) { 
+			return true; // processed = true
+		}
+		
 		TextBounds bounds = this._font.getBounds(this._text);
 		
 		boolean touchDown = (x >= this._x && x <= this._x + bounds.width && 
@@ -169,5 +173,10 @@ public class Text implements Drawable, Clickable {
 					this._x, ScreenController.getCurrentScreen().getHeight() - this._y, this._maxWidth);
 			}
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return "Text: " + this._text;
 	}
 }
