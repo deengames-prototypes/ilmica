@@ -277,7 +277,12 @@ public class QuizScreen extends Screen {
 		this._questionHeaderText.setX((this.getWidth() - this._questionHeaderText.getWidth()) / 2);
 		
 		this._questionText.setDisplayText(this._questions[index].getText());
-		this._infoPanelText.setDisplayText(this._questions[index].getMetaData(QuestionMetaDataType.INFORMATION));
+		
+		String moreInformation = this._questions[index].getMetaData(QuestionMetaDataType.INFORMATION);
+		if (moreInformation == null) {
+			moreInformation = "There is no additional information available for this question. Sorry!";
+		}
+		this._infoPanelText.setDisplayText(moreInformation);
 		String[] answers = this._questions[index].getAnswers();
 		
 		for (int i = 0; i < answers.length; i++) {

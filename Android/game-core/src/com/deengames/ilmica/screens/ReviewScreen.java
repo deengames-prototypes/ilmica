@@ -35,6 +35,7 @@ public class ReviewScreen extends Screen {
 		int numCorrect = calcuatePercentCorrect(this._userAnswers, this._correctAnswers);
 		int percentCorrect = Math.round((100f * numCorrect) / this._correctAnswers.length);
 		
+		this.addSprite("content/images/mainBackground.jpg");
 		Text header = this.addText("Review");
 		header.setFontSize(24);
 		header.setX((this.getWidth() - header.getWidth()) / 2);
@@ -73,10 +74,10 @@ public class ReviewScreen extends Screen {
 		timePlayed.setX(HORIZONTAL_OFFSET);
 		timePlayed.setY(numQuestions.getY() + LINE_OFFSET);
 		
-		Text clickToTitle = this.addText("(Touch/click anywhere to return to the title screen)");
+		Text clickToTitle = this.addText("(Click anywhere to return to the title screen)");
 		clickToTitle.setFontSize(14);
 		clickToTitle.setX((this.getWidth() - clickToTitle.getWidth()) / 2);
-		clickToTitle.setY(this.getHeight() - clickToTitle.getHeight());
+		clickToTitle.setY(this.getHeight() - clickToTitle.getHeight() - LINE_OFFSET);
 		
 		// Can't easily do screen-wide touchdown, just use blackout
 		this._blackoutSprite.setClickListener(new ClickListener() {
