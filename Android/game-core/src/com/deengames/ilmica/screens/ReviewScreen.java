@@ -74,8 +74,7 @@ public class ReviewScreen extends Screen {
 		timePlayed.setX(HORIZONTAL_OFFSET);
 		timePlayed.setY(numQuestions.getY() + LINE_OFFSET);
 		
-		Text clickToTitle = this.addText("(Click anywhere to return to the title screen)");
-		clickToTitle.setFontSize(14);
+		Text clickToTitle = this.addText("(Click anywhere to return to the title screen)");		clickToTitle.setFontSize(14);
 		clickToTitle.setX((this.getWidth() - clickToTitle.getWidth()) / 2);
 		clickToTitle.setY(this.getHeight() - clickToTitle.getHeight() - LINE_OFFSET);
 		
