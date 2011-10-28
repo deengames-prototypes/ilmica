@@ -26,14 +26,15 @@ public class QuizScreen extends Screen {
 	private final int QUESTION_TEXT_HORIZONTAL_OFFSET = 32;
 	private final int QUESTION_TEXT_VERTICAL_OFFSET = 44;
 	private final int ANSWER_HORIZONTAL_OFFSET = 72;
-	private final int ANSWERS_PADDING_FROM_QUESTION = 36;
-	private final int SPACE_BETWEEN_ANSWERS = 32;
+	private final int ANSWERS_PADDING_FROM_QUESTION = 22;
+	private final int SPACE_BETWEEN_ANSWERS = 20;
 	private final int CHECKMARK_IMAGE_HORIZONTAL_WHITESPACE_OFFSET = 4;
 	private final int CHECKMARK_IMAGE_VERTICAL_WHITESPACE_OFFSET = 10;
 	private final int QUESTION_HEADER_OFFSET = 12;
 	private final int INFO_PANEL_PADDING = 12;
 	private final int INFO_PANEL_MARGIN = 12;
 	private final int DONE_DESCRIPTION_Y = 48;
+	private final int ANSWER_TEXT_MARGIN = 16;
 	
 	long _startTime;
 	ImageCheckbox _clickedCheckbox = null;
@@ -288,15 +289,31 @@ public class QuizScreen extends Screen {
 		for (int i = 0; i < answers.length; i++) {
 			Text t = this.addText(answers[i]);
 			t.setX(ANSWER_HORIZONTAL_OFFSET);
-			t.setY(this._questionText.getY() + 
-					ANSWERS_PADDING_FROM_QUESTION + 
-					this._questionText.getHeight() + (SPACE_BETWEEN_ANSWERS * i));
+			
+			if (i == 0) {
+				t.setY(this._questionText.getY() + 
+						ANSWERS_PADDING_FROM_QUESTION + 
+						this._questionText.getHeight());
+				// + (SPACE_BETWEEN_ANSWERS * i));
+			} else {
+				Text previousAnswer = this._answersTexts.get(i - 1);
+				t.setY(previousAnswer.getY() +
+						previousAnswer.getHeight() +
+						SPACE_BETWEEN_ANSWERS);
+			}
+			
 			t.setFontSize(12);
+			t.setMaxWidth(this.getWidth() - t.getX() - ANSWER_TEXT_MARGIN);
+			
 			this._answersTexts.add(t);
 			
 			final ImageCheckbox c = this.addImageCheckbox();
 			c.x = t.getX() - c.getScaledWidth() - CHECKMARK_IMAGE_HORIZONTAL_WHITESPACE_OFFSET;
 			c.y = t.getY() - CHECKMARK_IMAGE_VERTICAL_WHITESPACE_OFFSET;
+			
+			if (t.getHeight() > 16) {
+				c.y += CHECKMARK_IMAGE_VERTICAL_WHITESPACE_OFFSET / 2;
+			}
 			
 			c.setClickListener(new ClickListener() {
 				public void onClick(Clickable clickable) {
