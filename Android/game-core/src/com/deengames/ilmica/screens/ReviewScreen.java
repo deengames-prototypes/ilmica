@@ -6,6 +6,7 @@ import com.deengames.radiantwrench.utils.ClickListener;
 import com.deengames.radiantwrench.utils.Clickable;
 import com.deengames.radiantwrench.utils.RadiantWrenchException;
 import com.deengames.radiantwrench.view.Screen;
+import com.deengames.radiantwrench.view.Sprite;
 import com.deengames.radiantwrench.view.Text;
 
 public class ReviewScreen extends Screen {
@@ -15,6 +16,7 @@ public class ReviewScreen extends Screen {
 	private final int HEADER_OFFSET = 36;
 	private final int LINE_OFFSET = 24;
 	private final int FONT_SIZE = 14;
+	private final int LINE_PADDING = 16;
 	
 	private String _setName;
 	private int[] _userAnswers;
@@ -45,6 +47,13 @@ public class ReviewScreen extends Screen {
 		setNameText.setFontSize(FONT_SIZE);
 		setNameText.setX(HORIZONTAL_OFFSET);
 		setNameText.setY(header.getY() + HEADER_OFFSET);
+		
+		Sprite line = this.addSprite("content/images/1x1.jpg");
+		int bottomOfHeader = header.getY() + header.getHeight();
+		line.setX(LINE_PADDING);
+		line.setY((bottomOfHeader + setNameText.getY()) / 2);
+		line.setScaleWidth(this.getWidth() - (LINE_PADDING * 2));
+		
 		
 		Text results = this.addText("Answered Correctly: " + numCorrect + "/" + this._correctAnswers.length + " (" + percentCorrect + "%)");
 		results.setFontSize(FONT_SIZE);
