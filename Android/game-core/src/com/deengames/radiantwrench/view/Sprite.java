@@ -14,7 +14,8 @@ public class Sprite implements Drawable, Clickable {
 	protected int _x = 0;
 	protected int _y = 0;
 	protected int _z = 0;
-	protected float _scale = 1f;
+	protected float _scaleWidth = 1f;
+	protected float _scaleHeight = 1f;
 	private int _orderAdded = 0;
 	
 	protected Texture _texture;
@@ -59,11 +60,20 @@ public class Sprite implements Drawable, Clickable {
 	}
 	
 	public void setScale(float scale) {
-		this._scale = scale;
+		this._scaleWidth = scale;
+		this._scaleHeight = scale;
+	}
+	
+	public void setScaleWidth(float scaleWidth) {
+		this._scaleWidth = scaleWidth;
+	}
+	
+	public void setScaleHeight(float scaleHeight) {
+		this._scaleHeight = scaleHeight;
 	}
 	
 	public float getScale() {
-		return this._scale;
+		return Math.max(this._scaleWidth, this._scaleHeight);
 	}
 	
 	private void loadTexture() {
@@ -129,11 +139,11 @@ public class Sprite implements Drawable, Clickable {
 	}	
 
 	public int getHeight() {
-		return Math.round(this.getTexture().getHeight() * this._scale);
+		return Math.round(this.getTexture().getHeight() * this._scaleHeight);
 	}
 
 	public int getWidth() {
-		return Math.round(this.getTexture().getWidth() * this._scale);
+		return Math.round(this.getTexture().getWidth() * this._scaleWidth);
 	}
 	
 	public void setClickListener(ClickListener c) {

@@ -35,6 +35,7 @@ public class QuizScreen extends Screen {
 	private final int INFO_PANEL_MARGIN = 12;
 	private final int DONE_DESCRIPTION_Y = 48;
 	private final int ANSWER_TEXT_MARGIN = 16;
+	private final int LINE_PADDING = 16;
 	
 	long _startTime;
 	ImageCheckbox _clickedCheckbox = null;
@@ -90,14 +91,20 @@ public class QuizScreen extends Screen {
 		
 		this.addSprite("content/images/mainBackground.jpg");
 		
-		this._questionHeaderText = this.addText("");
+		this._questionHeaderText = this.addText("Real text will be loaded later...");
 		this._questionHeaderText.setFontSize(24);
-		this._questionHeaderText.setY(QUESTION_HEADER_OFFSET);
+		this._questionHeaderText.setY(QUESTION_HEADER_OFFSET);		
 		
 		this._questionText = this.addText("");
 		this._questionText.setFontSize(14);
 		this._questionText.setX(QUESTION_TEXT_HORIZONTAL_OFFSET);
 		this._questionText.setY(this._questionHeaderText.getY() + QUESTION_TEXT_VERTICAL_OFFSET);
+		
+		Sprite line = this.addSprite("content/images/1x1.jpg");
+		int bottomOfQuestionHeader = this._questionHeaderText.getY() + this._questionHeaderText.getHeight();
+		line.setX(LINE_PADDING);
+		line.setY((bottomOfQuestionHeader + this._questionText.getY()) / 2);
+		line.setScaleWidth(this.getWidth() - (LINE_PADDING * 2));
 		
 		// Equal out with our LHS padding
 		this._questionText.setMaxWidth(this.getWidth() - (2 * QUESTION_TEXT_HORIZONTAL_OFFSET));
@@ -129,8 +136,8 @@ public class QuizScreen extends Screen {
 		});
 
 		this._infoIcon = this.addSprite("content/images/info.png");
-		this._infoIcon.setX(this.getWidth() - this._infoIcon.getWidth()- QUESTION_HEADER_OFFSET);
-		this._infoIcon.setY(QUESTION_HEADER_OFFSET);
+		this._infoIcon.setX(this.getWidth() - this._infoIcon.getWidth() - (QUESTION_HEADER_OFFSET / 2));
+		this._infoIcon.setY(QUESTION_HEADER_OFFSET / 2);
 		this._infoIcon.setClickListener(new ClickListener() {
 			public void onClick(Clickable clickable) {
 				toggleShowingCurrentQuestionInformation();

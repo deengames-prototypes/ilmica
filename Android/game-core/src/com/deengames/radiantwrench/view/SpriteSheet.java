@@ -58,11 +58,11 @@ public class SpriteSheet extends Sprite {
 	}
 	
 	public int getWidth() {
-		return Math.round(this._frameWidth * this._scale);
+		return Math.round(this._frameWidth * this._scaleWidth);
 	}
 	
 	public int getHeight() {
-		return Math.round(this._frameHeight * this._scale);
+		return Math.round(this._frameHeight * this._scaleHeight);
 	}
 	
 
@@ -89,7 +89,7 @@ public class SpriteSheet extends Sprite {
 		spriteBatch.draw(this._texture, destX, destY, // Draw to
 				this._frameWidth / 2, this._frameHeight / 2, // Origin
 				this.getOriginalWidth() / this._horizontalFrames, this.getOriginalHeight() / this._verticalFrames, // Stretch to this width/height
-				this._scale, this._scale, 0, // Scale stretch width/height by (1, 1), rotation = 0
+				this._scaleWidth, this._scaleHeight, 0, // Scale stretch width/height by (1, 1), rotation = 0
 				srcX, srcY, this._frameWidth, this._frameHeight,
 				false, false); // No flip
 	}
